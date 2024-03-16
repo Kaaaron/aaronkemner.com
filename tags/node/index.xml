@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node on Aaron Kemner</title>
+    <link>https://www.aaronkemner.com/tags/node/</link>
+    <description>Recent content in Node on Aaron Kemner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://www.aaronkemner.com/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blend</title>
+      <link>https://www.aaronkemner.com/animnode-reference/twowayblend/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/twowayblend/</guid>
+      <description>Blend two poses together</description>
+    </item>
+    <item>
+      <title>Blend Bone by Channel</title>
+      <link>https://www.aaronkemner.com/animnode-reference/blendbonebychannel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/blendbonebychannel/</guid>
+      <description>Blend bones by channel from two poses together</description>
+    </item>
+    <item>
+      <title>Blend Multi</title>
+      <link>https://www.aaronkemner.com/animnode-reference/multiwayblend/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/multiwayblend/</guid>
+      <description>Blend multiple poses together by Alpha</description>
+    </item>
+    <item>
+      <title>Layered blend per bone</title>
+      <link>https://www.aaronkemner.com/animnode-reference/layeredboneblend/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/layeredboneblend/</guid>
+      <description>Blend multiple poses together on a per-bone basis.</description>
+    </item>
+  </channel>
+</rss>
