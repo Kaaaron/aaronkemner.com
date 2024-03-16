@@ -38,7 +38,7 @@
 <meta itemprop="name" content="Layered blend per bone">
 <meta itemprop="description" content="Blend multiple poses together on a per-bone basis.">
 
-<meta itemprop="wordCount" content="359"><meta itemprop="image" content="https://www.aaronkemner.com/" />
+<meta itemprop="wordCount" content="375"><meta itemprop="image" content="https://www.aaronkemner.com/" />
 <meta itemprop="keywords" content="UE5,Node," />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Layered blend per bone"/>
@@ -202,6 +202,7 @@ The setup of which bones get blended can happen in 2 ways:</p>
 <h3 id="blend-mode-branch-filter">Blend Mode: Branch Filter</h3>
 <p>Using a branch filter, every blend pose will have an array of filters associated in the nodes&rsquo; details. This is the default setting of the node.
 Each filter is able to dicate from which bone the pose will take effect and how deep the effect should go in the hierarchy.</p>
+<p>For more reference on the nuances of branch filters, take a look at <a href="https://forums.unrealengine.com/t/what-does-the-blend-depth-parameter-in-layered-blend-per-bone-do/350231/3">this forum discussion</a></p>
 <h3 id="blend-mode-blend-mask">Blend Mode: Blend Mask</h3>
 <p>Setting the blend mode to &ldquo;Blend Mask&rdquo; will remove the branch filters and instead associate a blend mask for each blend pose on the node.
 Blend masks need to be configured on the skeleton asset the animation blueprint is based on, before they are available on the node.</p>
