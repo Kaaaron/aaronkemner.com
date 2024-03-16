@@ -8,6 +8,13 @@
     <language>en-us</language>
     <atom:link href="https://www.aaronkemner.com/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Additive Nodes</title>
+      <link>https://www.aaronkemner.com/categories/additive-nodes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/categories/additive-nodes/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>AnimNode Reference</title>
       <link>https://www.aaronkemner.com/categories/animnode-reference/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

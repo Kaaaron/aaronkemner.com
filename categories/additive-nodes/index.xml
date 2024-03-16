@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Additive Nodes on Aaron Kemner</title>
+    <link>https://www.aaronkemner.com/categories/additive-nodes/</link>
+    <description>Recent content in Additive Nodes on Aaron Kemner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://www.aaronkemner.com/categories/additive-nodes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Apply Additive</title>
+      <link>https://www.aaronkemner.com/animnode-reference/applyadditive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/applyadditive/</guid>
+      <description>Apply additive animation to normal pose</description>
+    </item>
+    <item>
+      <title>Apply Mesh Space Additive</title>
+      <link>https://www.aaronkemner.com/animnode-reference/applymeshspaceadditive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/applymeshspaceadditive/</guid>
+      <description>Apply mesh space additive animation to normal pose</description>
+    </item>
+  </channel>
+</rss>

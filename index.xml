@@ -15,6 +15,20 @@
       <description>My name is Aaron and I am a technical animator working in the games industry.&#xA;I started getting into 3D as a hobbyist around 2014 and after some experimenting in the different disciplines 3D has to offer I shifted towards animation and technical animation. Since then I started working in the games industry in 2020.&#xA;My skills include Blender, Autodesk Maya, Unreal Engine and I am able to program in Python, Blueprints and C++.</description>
     </item>
     <item>
+      <title>Apply Additive</title>
+      <link>https://www.aaronkemner.com/animnode-reference/applyadditive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/applyadditive/</guid>
+      <description>Apply additive animation to normal pose</description>
+    </item>
+    <item>
+      <title>Apply Mesh Space Additive</title>
+      <link>https://www.aaronkemner.com/animnode-reference/applymeshspaceadditive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/applymeshspaceadditive/</guid>
+      <description>Apply mesh space additive animation to normal pose</description>
+    </item>
+    <item>
       <title>Blend</title>
       <link>https://www.aaronkemner.com/animnode-reference/twowayblend/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -40,7 +54,7 @@
       <link>https://www.aaronkemner.com/animnode-reference/layeredboneblend/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aaronkemner.com/animnode-reference/layeredboneblend/</guid>
-      <description>Blend multiple poses together on a per-bone basis.</description>
+      <description>Blend multiple poses together on a per-bone basis</description>
     </item>
     <item>
       <title>Nothing here yet</title>
