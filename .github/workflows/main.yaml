@@ -1,0 +1,32 @@
+name: 🚀 Deploy to prod
+
+# Will trigger the workflow on each push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # deploy the site to the FTP server
+  deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ vars.ftp_server }}
+          username: ${{ vars.ftp_username }}
+          #ssh_private_key: ${{ secrets.ftp_password }}
+          # or if you only use a password
+          sftp_only: true
+          password: ${{ secrets.ftp_password }}
+          port: ${{ vars.ftp_port }}
+          remote_path: '/home/dh_9zyajp/aaronkemner.com' # This will depend on your server
+          local_path: './*' # This is the path where the artifact is located
