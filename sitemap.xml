@@ -6,6 +6,8 @@
   </url><url>
     <loc>https://www.aaronkemner.com/about/</loc>
   </url><url>
+    <loc>https://www.aaronkemner.com/animnode-reference/identitypose/</loc>
+  </url><url>
     <loc>https://www.aaronkemner.com/categories/additive-nodes/</loc>
   </url><url>
     <loc>https://www.aaronkemner.com/categories/animnode-reference/</loc>
@@ -36,13 +38,19 @@
   </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/deadblending/</loc>
   </url><url>
+    <loc>https://www.aaronkemner.com/categories/identity-pose/</loc>
+  </url><url>
     <loc>https://www.aaronkemner.com/categories/inertialization/</loc>
   </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/inertialization/</loc>
   </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/layeredboneblend/</loc>
   </url><url>
+    <loc>https://www.aaronkemner.com/animnode-reference/localrefpose/</loc>
+  </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/makedynamicadditive/</loc>
+  </url><url>
+    <loc>https://www.aaronkemner.com/animnode-reference/meshrefpose/</loc>
   </url><url>
     <loc>https://www.aaronkemner.com/tags/node/</loc>
   </url><url>

@@ -5,16 +5,16 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="" />
-<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation" />
+<meta name="description" content="Mesh Space Reference Pose" />
+<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Node" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
-<link rel="canonical" href="https://www.aaronkemner.com/series/" />
+<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/meshrefpose/" />
 
 
     <title>
         
-            Series :: Aaron Kemner 
+            Mesh Space Ref Pose :: Aaron Kemner 
         
     </title>
 
@@ -35,28 +35,36 @@
     <meta name="msapplication-TileColor" content="">
 
 
-<meta itemprop="name" content="Series">
-<meta itemprop="description" content="Technical Animation is a tricky, but maybe I can be of help.">
+<meta itemprop="name" content="Mesh Space Ref Pose">
+<meta itemprop="description" content="Mesh Space Reference Pose">
+
+<meta itemprop="wordCount" content="34"><meta itemprop="image" content="https://www.aaronkemner.com/" />
+<meta itemprop="keywords" content="UE5,Node," />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Series"/>
-<meta name="twitter:description" content="Technical Animation is a tricky, but maybe I can be of help."/>
+<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Mesh Space Ref Pose"/>
+<meta name="twitter:description" content="Mesh Space Reference Pose"/>
 
 
 
-    <meta property="og:title" content="Series" />
-<meta property="og:description" content="Technical Animation is a tricky, but maybe I can be of help." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.aaronkemner.com/series/" /><meta property="og:image" content="https://www.aaronkemner.com/" />
-
-
-
+    <meta property="og:title" content="Mesh Space Ref Pose" />
+<meta property="og:description" content="Mesh Space Reference Pose" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/meshrefpose/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
 
 
 
 
 
 
-<link rel="alternate" type="application/rss+xml" href="https://www.aaronkemner.com/series/index.xml" title="Aaron Kemner" />
+
+    <meta property="article:section" content="AnimNode Reference" />
+
+    <meta property="article:section" content="Identity Pose" />
+
+
+
+
+
 
 
 
@@ -142,24 +150,81 @@ if (!doNotTrack) {
 
             <div class="content">
                 
+	<main class="post">
+		<article>
+			<h2 class="post-title">Mesh Space Ref Pose</h2>
+			
+				<h4>Mesh Space Reference Pose</h4>
+			
+			<hr />
+			<div style="height:fit-content;">
+	<div class="row">
+		<div class="column">
+			
+				<b>GraphNode:</b>
+				<code>UAnimGraphNode_MeshRefPose</code>
+			
+		</div>
+		<div class="column">
+			
+				<b>AnimNode:</b>
+				<code>FAnimNode_MeshSpaceRefPose</code>
+			
+		</div>
+	</div>
+
+	<b>Official Documentation:</b>
 	
-<main class="posts">
-	<h1>All Nodes in "" </h1>
-
-	<hr />
-	<hr />
-
+		<i> Not officially documented. </i>
 	
-
-<div class="pagination">
-    <div class="pagination__buttons">
-        
-        
-    </div>
 </div>
 
-</main>
+			<hr />
+			
+	
+	
+	
+		
+	
+	<img src="../../animnode-reference/defaultnodes/MeshRefPose.png" style="height:125px;border-radius:15px;">
 
+
+			<hr />
+
+			
+
+			
+
+			<div class="post-content">
+				<p>Outputs the reference pose of the mesh in mesh space.</p>
+<p>Mainly useful to avoid warnings about unconnected pins if they are intended to be empty, or to be blended with another mesh space pose.</p>
+
+			</div>
+		</article>
+
+		<hr />
+
+		<div class="post-info">
+			
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/ue5/">UE5</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/node/">Node</a></span>
+        
+    </p>
+
+			
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/categories/animnode-reference/">AnimNode Reference</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/categories/identity-pose/">Identity Pose</a></span>
+        
+    </p>
+
+		</div>
+	</main>
 
             </div>
 

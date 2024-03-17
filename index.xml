@@ -15,6 +15,13 @@
       <description>My name is Aaron and I am a technical animator working in the games industry.&#xA;I started getting into 3D as a hobbyist around 2014 and after some experimenting in the different disciplines 3D has to offer I shifted towards animation and technical animation. Since then I started working in the games industry in 2020.&#xA;My skills include Blender, Autodesk Maya, Unreal Engine and I am able to program in Python, Blueprints and C++.</description>
     </item>
     <item>
+      <title>Additive Identity Pose</title>
+      <link>https://www.aaronkemner.com/animnode-reference/identitypose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/identitypose/</guid>
+      <description>Additive Identity Pose</description>
+    </item>
+    <item>
       <title>Apply Additive</title>
       <link>https://www.aaronkemner.com/animnode-reference/applyadditive/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -92,11 +99,25 @@
       <description>Blend multiple poses together on a per-bone basis</description>
     </item>
     <item>
+      <title>Local Space Ref Pose</title>
+      <link>https://www.aaronkemner.com/animnode-reference/localrefpose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/localrefpose/</guid>
+      <description>Local Space Reference Pose</description>
+    </item>
+    <item>
       <title>Make Dynamic Additive</title>
       <link>https://www.aaronkemner.com/animnode-reference/makedynamicadditive/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aaronkemner.com/animnode-reference/makedynamicadditive/</guid>
       <description>Create a dynamic additive pose</description>
+    </item>
+    <item>
+      <title>Mesh Space Ref Pose</title>
+      <link>https://www.aaronkemner.com/animnode-reference/meshrefpose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/meshrefpose/</guid>
+      <description>Mesh Space Reference Pose</description>
     </item>
     <item>
       <title>Nothing here yet</title>
