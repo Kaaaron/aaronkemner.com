@@ -36,6 +36,27 @@
       <description>Blend bones by channel from two poses together</description>
     </item>
     <item>
+      <title>Blend by Bool</title>
+      <link>https://www.aaronkemner.com/animnode-reference/blendlistbybool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/blendlistbybool/</guid>
+      <description>Blend between two poses based on a boolean</description>
+    </item>
+    <item>
+      <title>Blend by Enum</title>
+      <link>https://www.aaronkemner.com/animnode-reference/blendlistbyenum/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/blendlistbyenum/</guid>
+      <description>Blend between multiple poses based on an enumeration</description>
+    </item>
+    <item>
+      <title>Blend by Int</title>
+      <link>https://www.aaronkemner.com/animnode-reference/blendlistbyint/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/blendlistbyint/</guid>
+      <description>Blend between multiple poses based on an integer</description>
+    </item>
+    <item>
       <title>Blend Multi</title>
       <link>https://www.aaronkemner.com/animnode-reference/multiwayblend/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

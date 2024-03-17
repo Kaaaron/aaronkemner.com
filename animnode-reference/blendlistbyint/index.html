@@ -5,16 +5,16 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="Blend multiple poses together on a per-bone basis" />
+<meta name="description" content="Blend between multiple poses based on an integer" />
 <meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Node" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
-<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/layeredboneblend/" />
+<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/blendlistbyint/" />
 
 
     <title>
         
-            Layered blend per bone :: Aaron Kemner 
+            Blend by Int :: Aaron Kemner 
         
     </title>
 
@@ -35,21 +35,21 @@
     <meta name="msapplication-TileColor" content="">
 
 
-<meta itemprop="name" content="Layered blend per bone">
-<meta itemprop="description" content="Blend multiple poses together on a per-bone basis">
+<meta itemprop="name" content="Blend by Int">
+<meta itemprop="description" content="Blend between multiple poses based on an integer">
 
-<meta itemprop="wordCount" content="375"><meta itemprop="image" content="https://www.aaronkemner.com/" />
+<meta itemprop="wordCount" content="136"><meta itemprop="image" content="https://www.aaronkemner.com/" />
 <meta itemprop="keywords" content="UE5,Node," />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Layered blend per bone"/>
-<meta name="twitter:description" content="Blend multiple poses together on a per-bone basis"/>
+<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Blend by Int"/>
+<meta name="twitter:description" content="Blend between multiple poses based on an integer"/>
 
 
 
-    <meta property="og:title" content="Layered blend per bone" />
-<meta property="og:description" content="Blend multiple poses together on a per-bone basis" />
+    <meta property="og:title" content="Blend by Int" />
+<meta property="og:description" content="Blend between multiple poses based on an integer" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/layeredboneblend/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
+<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/blendlistbyint/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
 
 
 
@@ -152,9 +152,9 @@ if (!doNotTrack) {
                 
 	<main class="post">
 		<article>
-			<h2 class="post-title">Layered blend per bone</h2>
+			<h2 class="post-title">Blend by Int</h2>
 			
-				<h4>Blend multiple poses together on a per-bone basis</h4>
+				<h4>Blend between multiple poses based on an integer</h4>
 			
 			<hr />
 			<div style="height:fit-content;">
@@ -162,26 +162,26 @@ if (!doNotTrack) {
 		<div class="column">
 			
 				<b>GraphNode:</b>
-				<code>UAnimGraphNode_LayeredBoneBlend</code>
+				<code>UAnimGraphNode_BlendListByInt</code>
 			
 		</div>
 		<div class="column">
 			
 				<b>AnimNode:</b>
-				<code>FAnimNode_LayeredBoneBlend</code>
+				<code>FAnimNode_BlendListByInt</code>
 			
 		</div>
 	</div>
 
 	<b>Official Documentation:</b>
 	
-		<a href="https://docs.unrealengine.com/latest/en-US/animation-blueprint-blend-nodes-in-unreal-engine/#layeredblendperbone">Link</a>
+		<a href="https://docs.unrealengine.com/5.3/en-US/animation-blueprint-blend-nodes-in-unreal-engine/#blendposesbyint">Link</a>
 	
 </div>
 
 			<hr />
 			
-	<img src="../../animnode-reference/defaultnodes/LayeredBoneBlend.png" style="height:250px;border-radius:15px;">
+	<img src="../../animnode-reference/defaultnodes/BlendListByInt.png" style="height:250px;border-radius:15px;">
 
 
 			<hr />
@@ -191,32 +191,18 @@ if (!doNotTrack) {
 			
 
 			<div class="post-content">
-				<p>Blends the Base Pose with a number of other poses defined based on an alpha value per blend pose.
-Blend poses can be added and removed via the right click context menu or by using the &ldquo;add pin&rdquo; button on the node.</p>
+				<p>Blends between a variable number of local space poses based on an integer value.</p>
+<p>New inputs can be added via the right click context menu.
+Blend poses are always sorted in ascending order, start at 0 and increment by one.
+Existing inputs can be removed by right-clicking on any of the inputs.
 <div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
 	<em><strong>Warning:</strong></em>
-<em>As of Unreal 5.3, removing all blend pins and leaving only the base pose on the node will crash the editor as soon as it gets evaluated for the first frame!</em>
-</div>
-
-<p>Every blend pose has an associated alpha value and is able to completely or partially override blend poses that came before if the setups would modify the same bones(blend pose 0 will override the base pose and blend pose 1 will override blend pose 0, etc.).</p>
-<p><hr />
-
-The setup of which bones get blended can happen in 2 ways:</p>
-<h3 id="blend-mode-branch-filter">Blend Mode: Branch Filter</h3>
-<p>Using a branch filter, every blend pose will have an array of filters associated in the nodes&rsquo; details. This is the default setting of the node.
-Each filter is able to dicate from which bone the pose will take effect and how deep the effect should go in the hierarchy.</p>
-<p>For more reference on the nuances of branch filters, take a look at <a href="https://forums.unrealengine.com/t/what-does-the-blend-depth-parameter-in-layered-blend-per-bone-do/350231/3">this forum discussion</a></p>
-<h3 id="blend-mode-blend-mask">Blend Mode: Blend Mask</h3>
-<p>Setting the blend mode to &ldquo;Blend Mask&rdquo; will remove the branch filters and instead associate a blend mask for each blend pose on the node.
-Blend masks need to be configured on the skeleton asset the animation blueprint is based on, before they are available on the node.
-<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
-	<h4 id="a-note-on-the-use-of-blend-masks-and-template-animation-blueprints">A note on the use of Blend Masks and Template Animation Blueprints</h4>
-<p>The blend masks available in the node are queried from the associated skeleton of the Animation Blueprint.
-Due to Template Animation Blueprints not having a skeleton assigned, it is not possible to select a blend mask, eventhough the blend mode can still be set to &lsquo;Blend Mask&rsquo;
-Since the AnimGraphs of child classes are ReadOnly, this cannot be changed in child classes that have a skeleton assigned, effectively making this mode useless in Template Animation Blueprints.</p>
+<em>As of Unreal 5.3, removing all blend pins on the node will crash the editor as soon as it gets evaluated for the first frame!</em>
 </div>
 </p>
-<p>Other than the blend mode, the node has options to blend rotation and scale in Mesh Space, as well as on how AnimCurves should be blended and how the node may affect rootmotion.</p>
+<p>The blend behaviour of the node can be configured to use either a blend curve provided by the engine or a custom blend curve.
+Optionally a blend profile can be provided, if configured on the skeleton, to use during blending.</p>
+<p>It has a variable &ldquo;Transition Type&rdquo; that can be set to either use a standard blend or inertialization.</p>
 
 			</div>
 		</article>
