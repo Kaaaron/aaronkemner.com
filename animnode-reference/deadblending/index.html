@@ -5,16 +5,16 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="Create a dynamic additive pose" />
+<meta name="description" content="Processes inertial blending requests from previous nodes" />
 <meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Node" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
-<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/makedynamicadditive/" />
+<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/deadblending/" />
 
 
     <title>
         
-            Make Dynamic Additive :: Aaron Kemner 
+            Dead Blending :: Aaron Kemner 
         
     </title>
 
@@ -35,21 +35,21 @@
     <meta name="msapplication-TileColor" content="">
 
 
-<meta itemprop="name" content="Make Dynamic Additive">
-<meta itemprop="description" content="Create a dynamic additive pose">
+<meta itemprop="name" content="Dead Blending">
+<meta itemprop="description" content="Processes inertial blending requests from previous nodes">
 
-<meta itemprop="wordCount" content="155"><meta itemprop="image" content="https://www.aaronkemner.com/" />
+<meta itemprop="wordCount" content="471"><meta itemprop="image" content="https://www.aaronkemner.com/" />
 <meta itemprop="keywords" content="UE5,Node," />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Make Dynamic Additive"/>
-<meta name="twitter:description" content="Create a dynamic additive pose"/>
+<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Dead Blending"/>
+<meta name="twitter:description" content="Processes inertial blending requests from previous nodes"/>
 
 
 
-    <meta property="og:title" content="Make Dynamic Additive" />
-<meta property="og:description" content="Create a dynamic additive pose" />
+    <meta property="og:title" content="Dead Blending" />
+<meta property="og:description" content="Processes inertial blending requests from previous nodes" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/makedynamicadditive/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
+<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/deadblending/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
 
 
 
@@ -59,7 +59,7 @@
 
     <meta property="article:section" content="AnimNode Reference" />
 
-    <meta property="article:section" content="Additive Nodes" />
+    <meta property="article:section" content="Inertialization" />
 
 
 
@@ -152,9 +152,9 @@ if (!doNotTrack) {
                 
 	<main class="post">
 		<article>
-			<h2 class="post-title">Make Dynamic Additive</h2>
+			<h2 class="post-title">Dead Blending</h2>
 			
-				<h4>Create a dynamic additive pose</h4>
+				<h4>Processes inertial blending requests from previous nodes</h4>
 			
 			<hr />
 			<div style="height:fit-content;">
@@ -162,20 +162,20 @@ if (!doNotTrack) {
 		<div class="column">
 			
 				<b>GraphNode:</b>
-				<code>UAnimGraphNode_MakeDynamicAdditive</code>
+				<code>UAnimGraphNode_DeadBlending</code>
 			
 		</div>
 		<div class="column">
 			
 				<b>AnimNode:</b>
-				<code>FAnimNode_MakeDynamicAdditive</code>
+				<code>FAnimNode_DeadBlending</code>
 			
 		</div>
 	</div>
 
 	<b>Official Documentation:</b>
 	
-		<a href="https://docs.unrealengine.com/latest/en-US/animation-blueprint-blend-nodes-in-unreal-engine/#applyadditive">Link</a>
+		<a href="https://docs.unrealengine.com/5.3/en-US/animation-blueprint-blend-nodes-in-unreal-engine/#inertialization">Link</a>
 	
 </div>
 
@@ -184,7 +184,9 @@ if (!doNotTrack) {
 	
 	
 	
-	<img src="../../animnode-reference/defaultnodes/MakeDynamicAdditive.png" style="height:250px;border-radius:15px;">
+		
+	
+	<img src="../../animnode-reference/defaultnodes/DeadBlending.png" style="height:125px;border-radius:15px;">
 
 
 			<hr />
@@ -194,16 +196,28 @@ if (!doNotTrack) {
 			
 
 			<div class="post-content">
-				<p>Generates an additive output pose by calculating the difference between the two input poses(additive pose - base pose).
-These input poses do not need to be additives themselves.</p>
-<p>By default, the output pose is local space additive, but the node is able to generate a mesh space additive instead if specified in the details.</p>
-<p>The output pose can then be applied as an additive down the line, for example using the <a href="https://www.aaronkemner.com/animnode-reference/applyadditive/">Apply Additive</a> or <a href="https://www.aaronkemner.com/animnode-reference/applymeshspaceadditive/">Apply MeshSpace Additive</a> nodes.</p>
-<p>Applying the Output to the &ldquo;Base&rdquo; input pose will yield the input of the &ldquo;Additive&rdquo; input.</p>
-<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
-	<h4 id="note-about-a-warning-pre-ue53">Note about a warning Pre-UE5.3</h4>
-<p>Before Unreal 5.3 there was a bug that would expect the &ldquo;Additive&rdquo; input to already be an additive animation to begin with and would throw a warning if it was not.</p>
-<p>This warning was just a bug though and, as far as I can tell, did not have any impact on the functionality of the node.</p>
+				<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	The Dead Blending node is a drop in replacement for the <a href="https://www.aaronkemner.com/animnode-reference/inertialization/">Inertialization</a> node and may be used instead to achieve a different blending behaviour.
+</div>
 
+<p>Offers an alternative way to blend between animations, instead of the default crossfade, by tracking bone velocities and letting them carry over into the blend.
+Optionally a blend profile can be used as well.</p>
+<p>By default, AnimCurves will be dead blended as well, but the node allows specific curves to be filtered out by name. Filtered AnimCurves will then instantly change values instead of being dead blended.
+The Dead Blending node also allows a list of bones to be filtered out by bone reference to be configured. These filtered bones will, just like filtered AnimCurves, transition poses instantly, instead being dead blended.</p>
+<p>Instead of regular <a href="https://www.aaronkemner.com/animnode-reference/inertialization/">Inertialization</a> though, dead blending is able to dampen the blend to the expected range and avoid breaking joints due to high bone velocities like inertialization can. This can make it more desirable over the default inertialization in a lot of situations, but it may also result in stiffer blends in other situations where inertialization would be more natural.</p>
+<p>Basically, Dead Blending tries to extrapolate the motion of the animation from the pose and the velocities blend starts from, and then blends that extrapolated result with the animation it is blending towards.
+A more technical explanation of Dead Blending with some nice visualizations can be found <a href="https://theorangeduck.com/page/dead-blending">over here</a>.</p>
+<p>The Dead Blending node is also able to override the blend time configuration from incoming inertialization requests and can be configured to always use a default blending setup that can be configured on the node instead.</p>
+<p>Since dead blending tries to extrapolate the motion of the pose it is blending from, the node also exposes a section on configuring how that Extrapolation should be performed.</p>
+<p>The node also exposes a debug option called &ldquo;Show Extrapolations&rdquo;.
+If enabled, the blending part of the node will be disabled, and it wil only display the extrapolated result of the pose the node is blending from and snap to the target pose after the blend time. Essentially only half of the functionality is executed. This may be useful to tweak the configuration of the extrapolation without it being overshadowed by the blend.
+<strong>This debug option only has an effect in the editor, not in a packaged game!</strong></p>
+<p>Just like the <a href="https://www.aaronkemner.com/animnode-reference/inertialization/">Inertialization</a> node, the Dead Blending node also allows to preallocate memory for dead blends, which avoids overhead of allocating and deallocating memory for blends, but adds a slight memory cost in turn.</p>
+<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	<h4 id="on-inertialization-requests">On inertialization requests</h4>
+<p>Inertialization requests can come from a few different places in the AnimGraph.
+BlendList nodes as well as state machine transitions have the option to use inertialization instead of standard blends.
+AnimLayer nodes don&rsquo;t have this option and can only use inertialization for their blending.</p>
 </div>
 
 
@@ -227,7 +241,7 @@ These input poses do not need to be additives themselves.</p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
 
         <span class="tag"><a href="https://www.aaronkemner.com/categories/animnode-reference/">AnimNode Reference</a></span>
-        <span class="tag"><a href="https://www.aaronkemner.com/categories/additive-nodes/">Additive Nodes</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/categories/inertialization/">Inertialization</a></span>
         
     </p>
 

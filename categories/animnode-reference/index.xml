@@ -64,6 +64,20 @@
       <description>Blend multiple poses together by Alpha</description>
     </item>
     <item>
+      <title>Dead Blending</title>
+      <link>https://www.aaronkemner.com/animnode-reference/deadblending/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/deadblending/</guid>
+      <description>Processes inertial blending requests from previous nodes</description>
+    </item>
+    <item>
+      <title>Inertialization</title>
+      <link>https://www.aaronkemner.com/animnode-reference/inertialization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/inertialization/</guid>
+      <description>Processes inertial blending requests from previous nodes</description>
+    </item>
+    <item>
       <title>Layered blend per bone</title>
       <link>https://www.aaronkemner.com/animnode-reference/layeredboneblend/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
