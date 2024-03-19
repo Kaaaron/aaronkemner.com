@@ -112,5 +112,12 @@
       <guid>https://www.aaronkemner.com/animnode-reference/meshrefpose/</guid>
       <description>Mesh Space Reference Pose</description>
     </item>
+    <item>
+      <title>ModifyCurve</title>
+      <link>https://www.aaronkemner.com/animnode-reference/modifycurve/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/modifycurve/</guid>
+      <description>Modify AnimCurves</description>
+    </item>
   </channel>
 </rss>
