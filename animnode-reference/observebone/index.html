@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Displays debug information for a specified bone" />
+<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Node" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/observebone/" />
+
+
+    <title>
+        
+            Observe Bone :: Aaron Kemner 
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="/main.949191c1dcc9c4a887997048b240354e47152016d821198f89448496ba42e491.css" integrity="sha256-lJGRwdzJxKiHmXBIskA1TkcVIBbYIRmPiUSElrpC5JE=">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="Observe Bone">
+<meta itemprop="description" content="Displays debug information for a specified bone">
+
+<meta itemprop="wordCount" content="243"><meta itemprop="image" content="https://www.aaronkemner.com/" />
+<meta itemprop="keywords" content="UE5,Node," />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Observe Bone"/>
+<meta name="twitter:description" content="Displays debug information for a specified bone"/>
+
+
+
+    <meta property="og:title" content="Observe Bone" />
+<meta property="og:description" content="Displays debug information for a specified bone" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/observebone/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
+
+
+
+
+
+
+
+    <meta property="article:section" content="AnimNode Reference" />
+
+    <meta property="article:section" content="Skeletal Control" />
+
+    <meta property="article:section" content="Debugging" />
+
+
+
+
+
+
+
+
+
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark"> </span>
+            <span class="logo__text ">
+                Aaron Kemner</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/animnode-reference/">AnimNode Reference</a></li><li><a href="/blog/">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+	<main class="post">
+		<article>
+			<h2 class="post-title">Observe Bone</h2>
+			
+				<h4>Displays debug information for a specified bone</h4>
+			
+			<hr />
+			<div style="height:fit-content;">
+	<div class="row">
+		<div class="column">
+			
+				<b>GraphNode:</b>
+				<code>UAnimGraphNode_ObserveBone</code>
+			
+		</div>
+		<div class="column">
+			
+				<b>AnimNode:</b>
+				<code>FAnimNode_ObserveBone</code>
+			
+		</div>
+	</div>
+
+	<b>Official Documentation:</b>
+	
+		<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-blueprint-observe-bone-in-unreal-engine?application_version=5.3">Link</a>
+	
+</div>
+
+			<hr />
+			
+	
+	
+	
+		
+	
+	<img src="../../animnode-reference/defaultnodes/ObserveBone.png" style="height:175px;border-radius:15px;">
+
+
+			<hr />
+
+			
+
+			
+
+			<div class="post-content">
+				<p>Displays debug information about a bone that can be specified in the detail panel.
+After compiling the AnimBP with a valid bone, it will display the debug information in two ways: In the graph and in the 3D viewport</p>
+<p>In the graph, the node will add a text bubble above the node itself, that displays translation, rotation and scale of the bone as text.
+This information is displayed in the relevant display space configured in the details panel and can be displayed relative to the ref pose.</p>
+<p>In the 3D viewport, the node wil add a translation gizmo that moves with the bone, as long as the node is selected in the graph. This gizmo does not allow edits and is just a visualization.
+By default, this gizmo will be aligned with the world axes, but it can be switched to be aligned with the local rotation. As of UE5.3 though, this resets itself back to world alignment when the AnimBP is compiled.</p>
+<p>Both the &ldquo;Enabled&rdquo; and &ldquo;Alpha Curve Name&rdquo; pins don&rsquo;t have an effect.
+They are part of the alpha configuration, because both variables are exposed as pins by default from <code>FAnimNode_SkeletalControlBase</code>, the parent class of <code>FAnimNode_ObserveBone</code>, eventhough the node does not modify anything and as such does not need alpha settings.
+If desired they can be disabled per node by switching the alpha input type to <code>Anim Curve Value</code> and <code>Bool Value</code> and disabling the corresponding pins in the details panel.</p>
+
+			</div>
+		</article>
+
+		<hr />
+
+		<div class="post-info">
+			
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/ue5/">UE5</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/node/">Node</a></span>
+        
+    </p>
+
+			
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/categories/animnode-reference/">AnimNode Reference</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/categories/skeletal-control/">Skeletal Control</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/categories/debugging/">Debugging</a></span>
+        
+    </p>
+
+		</div>
+	</main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2024</span>
+            
+            
+            
+            <span>Aaron Kemner</span>
+        </div>
+    </div>
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ac2a4bcaed631ec2dc154407be7f09fc28da37de71fae6dee6711b2a3d1622770f87d3cda22c460e9a68ff619bdb1dd75cb7a5d33f159a54e419736cc4541087.js" integrity="sha512-rCpLyu1jHsLcFUQHvn8J/CjaN95x&#43;ube5nEbKj0WIncPh9PNoixGDppo/2Gb2x3XXLel0z8VmlTkGXNsxFQQhw=="></script>
+
+
+
+
+    </body>
+</html>
