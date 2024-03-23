@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Asset Player on Aaron Kemner</title>
+    <link>https://www.aaronkemner.com/categories/asset-player/</link>
+    <description>Recent content in Asset Player on Aaron Kemner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://www.aaronkemner.com/categories/asset-player/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Random Sequence Player</title>
+      <link>https://www.aaronkemner.com/animnode-reference/randomplayer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/randomplayer/</guid>
+      <description>Play a random animation from a list</description>
+    </item>
+    <item>
+      <title>Sequence Evaluator</title>
+      <link>https://www.aaronkemner.com/animnode-reference/sequenceevaluator/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/sequenceevaluator/</guid>
+      <description>Evaluate a specific time from an animation</description>
+    </item>
+    <item>
+      <title>Sequence Player</title>
+      <link>https://www.aaronkemner.com/animnode-reference/sequenceplayer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/sequenceplayer/</guid>
+      <description>Plays an animation</description>
+    </item>
+  </channel>
+</rss>
