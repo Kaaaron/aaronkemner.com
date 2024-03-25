@@ -36,6 +36,8 @@
   </url><url>
     <loc>https://www.aaronkemner.com/blog/</loc>
   </url><url>
+    <loc>https://www.aaronkemner.com/categories/caching/</loc>
+  </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/callfunction/</loc>
   </url><url>
     <loc>https://www.aaronkemner.com/categories/</loc>
@@ -74,6 +76,8 @@
   </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/randomplayer/</loc>
   </url><url>
+    <loc>https://www.aaronkemner.com/animnode-reference/savecachedpose/</loc>
+  </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/sequenceevaluator/</loc>
   </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/sequenceplayer/</loc>
@@ -85,5 +89,7 @@
     <loc>https://www.aaronkemner.com/tags/</loc>
   </url><url>
     <loc>https://www.aaronkemner.com/tags/ue5/</loc>
+  </url><url>
+    <loc>https://www.aaronkemner.com/animnode-reference/usecachedpose/</loc>
   </url>
 </urlset>
