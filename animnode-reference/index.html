@@ -142,446 +142,562 @@ if (!doNotTrack) {
 
             <div class="content">
                 
-	<main class="posts">
-		<h1>AnimNode Reference </h1>
 
-		<b>A hopefully comprehensive documentation of Unreal Engines AnimNodes</b>
 
-		<div style="height: 20px;"> </div>
-		<hr />
+<main class="posts">
+	<h1>An unofficial AnimNode Reference </h1>
 
-		
+	<b>A hopefully comprehensive documentation of Unreal Engines AnimNodes</b>
 
-		
-			<div class="posts-group" style="margin:0;">
-				<ul class="posts-list">
+	<div style="height: 20px;"> </div>
+	<hr />
+
+	
+
+	
+		<div class="posts-group" style="margin:0;">
+			<ul class="posts-list">
+				
 					
 						
-						<h2 style="height:1em;margin:1.5em 0em 0em 0em;"> Additives </h2>
+						<h2 id=Additives style="height:1em;margin:1.5em 0em 0em 0em;"> Additives </h2>
+					
+				
+
+
+				<hr />
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/applyadditive/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Apply Additive</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Apply additive animation to normal pose</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/applymeshspaceadditive/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Apply Mesh Space Additive</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Apply mesh space additive animation to normal pose</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/makedynamicadditive/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Make Dynamic Additive</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Create a dynamic additive pose</span>
+							
+						</a>
+					</li>
+				
+			</ul>
+		</div>
+	
+		<div class="posts-group" style="margin:0;">
+			<ul class="posts-list">
+				
+					
 						
+						<h2 id=Blends style="height:1em;margin:1.5em 0em 0em 0em;"> Blends </h2>
 					
+				
 
 
-					<hr />
+				<hr />
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/twowayblend/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Blend</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Blend two poses together</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/blendbonebychannel/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Blend Bone by Channel</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Blend bones by channel from two poses together</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/multiwayblend/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Blend Multi</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Blend multiple poses together by Alpha</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/layeredboneblend/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Layered blend per bone</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Blend multiple poses together on a per-bone basis</span>
+							
+						</a>
+					</li>
+				
+			</ul>
+		</div>
+	
+		<div class="posts-group" style="margin:0;">
+			<ul class="posts-list">
+				
 					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/applyadditive/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Apply Additive</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Apply additive animation to normal pose</span>
-								
-							</a>
-						</li>
+						
+						<h2 id=Caching style="height:1em;margin:1.5em 0em 0em 0em;"> Caching </h2>
 					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/applymeshspaceadditive/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Apply Mesh Space Additive</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Apply mesh space additive animation to normal pose</span>
-								
-							</a>
-						</li>
+				
+
+
+				<hr />
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/savecachedpose/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Save Cached Pose</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Caches a pose for later use</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/usecachedpose/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Use Cached Pose</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Uses a previously cached pose.</span>
+							
+						</a>
+					</li>
+				
+			</ul>
+		</div>
+	
+		<div class="posts-group" style="margin:0;">
+			<ul class="posts-list">
+				
 					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/makedynamicadditive/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Make Dynamic Additive</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Create a dynamic additive pose</span>
-								
-							</a>
-						</li>
+						
+						<h2 id=Curves style="height:1em;margin:1.5em 0em 0em 0em;"> Curves </h2>
 					
-				</ul>
+				
+
+
+				<hr />
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/curvesource/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>CurveSource</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Applies a programmatic source for curves</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/modifycurve/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>ModifyCurve</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Modify AnimCurves</span>
+							
+						</a>
+					</li>
+				
+			</ul>
+		</div>
+	
+		<div class="posts-group" style="margin:0;">
+			<ul class="posts-list">
+				
+					
+						
+						<h2 id=Debug style="height:1em;margin:1.5em 0em 0em 0em;"> Debug </h2>
+					
+				
+
+
+				<hr />
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/observebone/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Observe Bone</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Displays debug information for a specified bone</span>
+							
+						</a>
+					</li>
+				
+			</ul>
+		</div>
+	
+		<div class="posts-group" style="margin:0;">
+			<ul class="posts-list">
+				
+					
+						
+						<h2 id=Inertialization style="height:1em;margin:1.5em 0em 0em 0em;"> Inertialization </h2>
+					
+				
+
+
+				<hr />
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/deadblending/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Dead Blending</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Processes inertial blending requests from previous nodes</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/inertialization/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Inertialization</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Processes inertial blending requests from previous nodes</span>
+							
+						</a>
+					</li>
+				
+			</ul>
+		</div>
+	
+		<div class="posts-group" style="margin:0;">
+			<ul class="posts-list">
+				
+					
+						
+						<h2 id=List&#32;Blends style="height:1em;margin:1.5em 0em 0em 0em;"> List Blends </h2>
+					
+				
+
+
+				<hr />
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/blendlistbybool/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Blend by Bool</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Blend between two poses based on a boolean</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/blendlistbyenum/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Blend by Enum</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Blend between multiple poses based on an enumeration</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/blendlistbyint/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Blend by Int</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Blend between multiple poses based on an integer</span>
+							
+						</a>
+					</li>
+				
+			</ul>
+		</div>
+	
+		<div class="posts-group" style="margin:0;">
+			<ul class="posts-list">
+				
+					
+						
+						<h2 id=Miscellaneous style="height:1em;margin:1.5em 0em 0em 0em;"> Miscellaneous </h2>
+					
+				
+
+
+				<hr />
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/callfunction/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Call Function</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Calls a threadsafe function from the node</span>
+							
+						</a>
+					</li>
+				
+			</ul>
+		</div>
+	
+		<div class="posts-group" style="margin:0;">
+			<ul class="posts-list">
+				
+					
+						
+						<h2 id=Reference/Identity&#32;Pose style="height:1em;margin:1.5em 0em 0em 0em;"> Reference/Identity Pose </h2>
+					
+				
+
+
+				<hr />
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/identitypose/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Additive Identity Pose</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Additive Identity Pose</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/localrefpose/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Local Space Ref Pose</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Local Space Reference Pose</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/meshrefpose/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Mesh Space Ref Pose</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Mesh Space Reference Pose</span>
+							
+						</a>
+					</li>
+				
+			</ul>
+		</div>
+	
+		<div class="posts-group" style="margin:0;">
+			<ul class="posts-list">
+				
+					
+						
+						<h2 id=Sequences style="height:1em;margin:1.5em 0em 0em 0em;"> Sequences </h2>
+					
+				
+
+
+				<hr />
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/randomplayer/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Random Sequence Player</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Play a random animation from a list</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/sequenceevaluator/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Sequence Evaluator</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Evaluate a specific time from an animation</span>
+							
+						</a>
+					</li>
+				
+					<li style="height:2em; padding:0em 0em 0em 1.5em;">
+						<a href="https://www.aaronkemner.com/animnode-reference/sequenceplayer/" class="post-item-inner" style="padding: 0;">
+							<span class="post-title" style="font-size:1.2em;">
+								<b>Sequence Player</b>
+							</span>
+							
+								<div style="width: 20px;"> </div>
+								<span style="font-size:0.9em;">Plays an animation</span>
+							
+						</a>
+					</li>
+				
+			</ul>
+		</div>
+	
+</main>
+
+<div class="sidenav">
+	<div class="sidenavcontent">
+		<div class=cathead><b> Node Categories: </b></div>
+
+		
+			<div class="sidenavelement">
+				<a href="#Additives">
+					<b>Additives</b>
+				</a>
 			</div>
 		
-			<div class="posts-group" style="margin:0;">
-				<ul class="posts-list">
-					
-						
-						<h2 style="height:1em;margin:1.5em 0em 0em 0em;"> Blends </h2>
-						
-					
-
-
-					<hr />
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/twowayblend/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Blend</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Blend two poses together</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/blendbonebychannel/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Blend Bone by Channel</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Blend bones by channel from two poses together</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/multiwayblend/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Blend Multi</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Blend multiple poses together by Alpha</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/layeredboneblend/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Layered blend per bone</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Blend multiple poses together on a per-bone basis</span>
-								
-							</a>
-						</li>
-					
-				</ul>
+			<div class="sidenavelement">
+				<a href="#Blends">
+					<b>Blends</b>
+				</a>
 			</div>
 		
-			<div class="posts-group" style="margin:0;">
-				<ul class="posts-list">
-					
-						
-						<h2 style="height:1em;margin:1.5em 0em 0em 0em;"> Caching </h2>
-						
-					
-
-
-					<hr />
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/savecachedpose/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Save Cached Pose</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Caches a pose for later use</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/usecachedpose/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Use Cached Pose</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Uses a previously cached pose.</span>
-								
-							</a>
-						</li>
-					
-				</ul>
+			<div class="sidenavelement">
+				<a href="#Caching">
+					<b>Caching</b>
+				</a>
 			</div>
 		
-			<div class="posts-group" style="margin:0;">
-				<ul class="posts-list">
-					
-						
-						<h2 style="height:1em;margin:1.5em 0em 0em 0em;"> Curves </h2>
-						
-					
-
-
-					<hr />
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/curvesource/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>CurveSource</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Applies a programmatic source for curves</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/modifycurve/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>ModifyCurve</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Modify AnimCurves</span>
-								
-							</a>
-						</li>
-					
-				</ul>
+			<div class="sidenavelement">
+				<a href="#Curves">
+					<b>Curves</b>
+				</a>
 			</div>
 		
-			<div class="posts-group" style="margin:0;">
-				<ul class="posts-list">
-					
-						
-						<h2 style="height:1em;margin:1.5em 0em 0em 0em;"> Debug </h2>
-						
-					
-
-
-					<hr />
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/observebone/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Observe Bone</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Displays debug information for a specified bone</span>
-								
-							</a>
-						</li>
-					
-				</ul>
+			<div class="sidenavelement">
+				<a href="#Debug">
+					<b>Debug</b>
+				</a>
 			</div>
 		
-			<div class="posts-group" style="margin:0;">
-				<ul class="posts-list">
-					
-						
-						<h2 style="height:1em;margin:1.5em 0em 0em 0em;"> Inertialization </h2>
-						
-					
-
-
-					<hr />
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/deadblending/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Dead Blending</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Processes inertial blending requests from previous nodes</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/inertialization/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Inertialization</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Processes inertial blending requests from previous nodes</span>
-								
-							</a>
-						</li>
-					
-				</ul>
+			<div class="sidenavelement">
+				<a href="#Inertialization">
+					<b>Inertialization</b>
+				</a>
 			</div>
 		
-			<div class="posts-group" style="margin:0;">
-				<ul class="posts-list">
-					
-						
-						<h2 style="height:1em;margin:1.5em 0em 0em 0em;"> List Blends </h2>
-						
-					
-
-
-					<hr />
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/blendlistbybool/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Blend by Bool</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Blend between two poses based on a boolean</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/blendlistbyenum/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Blend by Enum</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Blend between multiple poses based on an enumeration</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/blendlistbyint/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Blend by Int</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Blend between multiple poses based on an integer</span>
-								
-							</a>
-						</li>
-					
-				</ul>
+			<div class="sidenavelement">
+				<a href="#List%20Blends">
+					<b>List Blends</b>
+				</a>
 			</div>
 		
-			<div class="posts-group" style="margin:0;">
-				<ul class="posts-list">
-					
-						
-						<h2 style="height:1em;margin:1.5em 0em 0em 0em;"> Miscellaneous </h2>
-						
-					
-
-
-					<hr />
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/callfunction/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Call Function</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Calls a threadsafe function from the node</span>
-								
-							</a>
-						</li>
-					
-				</ul>
+			<div class="sidenavelement">
+				<a href="#Miscellaneous">
+					<b>Miscellaneous</b>
+				</a>
 			</div>
 		
-			<div class="posts-group" style="margin:0;">
-				<ul class="posts-list">
-					
-						
-						<h2 style="height:1em;margin:1.5em 0em 0em 0em;"> Reference/Identity Pose </h2>
-						
-					
-
-
-					<hr />
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/identitypose/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Additive Identity Pose</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Additive Identity Pose</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/localrefpose/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Local Space Ref Pose</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Local Space Reference Pose</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/meshrefpose/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Mesh Space Ref Pose</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Mesh Space Reference Pose</span>
-								
-							</a>
-						</li>
-					
-				</ul>
+			<div class="sidenavelement">
+				<a href="#Reference%2fIdentity%20Pose">
+					<b>Reference/Identity Pose</b>
+				</a>
 			</div>
 		
-			<div class="posts-group" style="margin:0;">
-				<ul class="posts-list">
-					
-						
-						<h2 style="height:1em;margin:1.5em 0em 0em 0em;"> Sequences </h2>
-						
-					
-
-
-					<hr />
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/randomplayer/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Random Sequence Player</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Play a random animation from a list</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/sequenceevaluator/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Sequence Evaluator</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Evaluate a specific time from an animation</span>
-								
-							</a>
-						</li>
-					
-						<li style="height:2em; padding:0em 0em 0em 1.5em;">
-							<a href="https://www.aaronkemner.com/animnode-reference/sequenceplayer/" class="post-item-inner" style="padding: 0;">
-								<span class="post-title" style="font-size:1.2em;">
-									<b>Sequence Player</b>
-								</span>
-								
-									<div style="width: 20px;"> </div>
-									<span style="font-size:0.9em;">Plays an animation</span>
-								
-							</a>
-						</li>
-					
-				</ul>
+			<div class="sidenavelement">
+				<a href="#Sequences">
+					<b>Sequences</b>
+				</a>
 			</div>
 		
-	</main>
+	</div>
+</div>
+
+<style>
+	.sidenav {
+		text-align: right;
+		height: 100%;  
+		width: auto;  
+		position: fixed;  
+		z-index: 1;  
+		top: 0;  
+		left: 0;
+		background-color: #1b1c1d;
+	}
+
+	.sidenavcontent{
+		position: relative;
+		top: 50%;
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+
+	.cathead{
+		font-size:1.5em;
+		margin-left: 1em;
+		margin-right: 0.5em;
+		padding-bottom: 1em;
+	}
+
+	.sidenavelement{
+		padding-left: 1em;
+		padding-right: 1em;
+		padding-bottom: 1em;
+	}
+</style>
+
 
             </div>
 
