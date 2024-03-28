@@ -141,6 +141,13 @@
       <description>Displays debug information for a specified bone</description>
     </item>
     <item>
+      <title>Pose Snapshot</title>
+      <link>https://www.aaronkemner.com/animnode-reference/posesnapshot/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/posesnapshot/</guid>
+      <description>Use a saved snapshot of a pose</description>
+    </item>
+    <item>
       <title>Random Sequence Player</title>
       <link>https://www.aaronkemner.com/animnode-reference/randomplayer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
