@@ -106,6 +106,13 @@
       <description>Processes inertial blending requests from previous nodes</description>
     </item>
     <item>
+      <title>Input Pose</title>
+      <link>https://www.aaronkemner.com/animnode-reference/linkedinputpose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/linkedinputpose/</guid>
+      <description>Input to an AnimGraph or AnimLayer</description>
+    </item>
+    <item>
       <title>Layered blend per bone</title>
       <link>https://www.aaronkemner.com/animnode-reference/layeredboneblend/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -153,6 +160,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aaronkemner.com/animnode-reference/observebone/</guid>
       <description>Displays debug information for a specified bone</description>
+    </item>
+    <item>
+      <title>Output Pose</title>
+      <link>https://www.aaronkemner.com/animnode-reference/root/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/root/</guid>
+      <description>Final result of an AnimGraph or AnimLayer</description>
     </item>
     <item>
       <title>Pose Snapshot</title>
