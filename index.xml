@@ -155,6 +155,13 @@
       <description>Mesh Space Reference Pose</description>
     </item>
     <item>
+      <title>Mirror</title>
+      <link>https://www.aaronkemner.com/animnode-reference/mirror/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/mirror/</guid>
+      <description>Mirrors a pose</description>
+    </item>
+    <item>
       <title>ModifyCurve</title>
       <link>https://www.aaronkemner.com/animnode-reference/modifycurve/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
