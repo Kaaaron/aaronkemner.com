@@ -5,16 +5,16 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="Rotate the root of the skeleton" />
+<meta name="description" content="Limits the rotation of an array of joints" />
 <meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Node" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
-<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/rotaterootbone/" />
+<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/applylimits/" />
 
 
     <title>
         
-            Rotate Root Bone | Aaron Kemner 
+            Apply Limits | Aaron Kemner 
         
     </title>
 
@@ -35,21 +35,21 @@
     <meta name="msapplication-TileColor" content="">
 
 
-<meta itemprop="name" content="Rotate Root Bone">
-<meta itemprop="description" content="Rotate the root of the skeleton">
+<meta itemprop="name" content="Apply Limits">
+<meta itemprop="description" content="Limits the rotation of an array of joints">
 
-<meta itemprop="wordCount" content="124"><meta itemprop="image" content="https://www.aaronkemner.com/" />
+<meta itemprop="wordCount" content="203"><meta itemprop="image" content="https://www.aaronkemner.com/" />
 <meta itemprop="keywords" content="UE5,Node," />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Rotate Root Bone"/>
-<meta name="twitter:description" content="Rotate the root of the skeleton"/>
+<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Apply Limits"/>
+<meta name="twitter:description" content="Limits the rotation of an array of joints"/>
 
 
 
-    <meta property="og:title" content="Rotate Root Bone" />
-<meta property="og:description" content="Rotate the root of the skeleton" />
+    <meta property="og:title" content="Apply Limits" />
+<meta property="og:description" content="Limits the rotation of an array of joints" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/rotaterootbone/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
+<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/applylimits/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
 
 
 
@@ -151,9 +151,9 @@ if (!doNotTrack) {
                 
 	<main class="post">
 		<article>
-			<h2 class="post-title">Rotate Root Bone</h2>
+			<h2 class="post-title">Apply Limits</h2>
 			
-				<h4>Rotate the root of the skeleton</h4>
+				<h4>Limits the rotation of an array of joints</h4>
 			
 			<hr />
 			<div style="height:fit-content;">
@@ -161,13 +161,13 @@ if (!doNotTrack) {
 		<div class="column">
 			
 				<b>GraphNode:</b>
-				<code>UAnimGraphNode_RotateRootBone</code>
+				<code>UAnimGraphNode_ApplyLimits</code>
 			
 		</div>
 		<div class="column">
 			
 				<b>AnimNode:</b>
-				<code>FAnimNode_RotateRootBone</code>
+				<code>FAnimNode_ApplyLimits</code>
 			
 		</div>
 	</div>
@@ -185,7 +185,7 @@ if (!doNotTrack) {
 	
 		
 	
-	<img src="../../animnode-reference/defaultnodes/RotateRootBone.png" style="height:250px;border-radius:15px;">
+	<img src="../../animnode-reference/defaultnodes/ApplyLimits.png" style="height:150px;border-radius:15px;">
 
 
 			<hr />
@@ -195,10 +195,25 @@ if (!doNotTrack) {
 			
 
 			<div class="post-content">
-				<p>Rotates the joint at the root of the skeletal hierarchy by the specified pitch and roll.</p>
-<p>Each of the two has an associated scale-bias-clamp attribute, to map the value from one range to another, clamp, interpolate, and scale the result, and apply a bias, like with a lot of alpha attributes as well.</p>
-<p>Additionally, a <code>mesh to component</code> rotator is exposed. This is a rotator that will get combined with the rotation resulting from pitch and yaw. While undocumented in code, this is presumably intended to compensate for potential space offsets that could be caused by a root bone that is rotated in the rest pose.</p>
-<p>The node is also able to apply the rotation to the root motion, rotating the direction of motion.</p>
+				<p>Limits the rotation of an array of joints in local space(relative to their refpose).</p>
+<p>The limits are defined in two arrays, the Angular Range Limits and the Angular Offsets.</p>
+<h4 id="angular-range-limits">Angular Range Limits</h4>
+<p>Each entry in this array holds a reference to the bone that should be constrained, and the angles the rotation of that bone should be constrained within.
+The entries of this array can be freely added and removed, and the node also works if multiple entries reference the same bone.
+In that case they will be applied in the order they appear.</p>
+<h4 id="angular-offsets">Angular Offsets</h4>
+<p>Each entry offsets the corresponding limits by the specified euler angles.
+The entries of this array get automatically added and removed based on the contents of the Angular Range Limits.
+Each Angular Offset corresponds to the range limit of the same index.</p>
+<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	<h4 id="debug-visualization">Debug Visualization</h4>
+<p>While the node is selected, the specified limits and angular offsets are visualized in the 3d viewport of the animation blueprint editor.</p>
+<p>Each entry gets visualized independently though.
+This means that if one entry conflicts or overrides with another, the visualization will not display this, and instead just draw the conflicting limits over another.
+In that case the behaviour is not accurately displayed.</p>
+
+</div>
+
 
 			</div>
 		</article>
