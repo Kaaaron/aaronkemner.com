@@ -211,6 +211,13 @@
       <description>Play a random animation from a list</description>
     </item>
     <item>
+      <title>Reset Root Transform</title>
+      <link>https://www.aaronkemner.com/animnode-reference/resetroot/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/resetroot/</guid>
+      <description>Resets the root joint, leaving children in place</description>
+    </item>
+    <item>
       <title>Rotate Root Bone</title>
       <link>https://www.aaronkemner.com/animnode-reference/rotaterootbone/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
