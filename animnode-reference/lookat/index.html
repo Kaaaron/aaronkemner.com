@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Look at another location" />
+<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Node" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/lookat/" />
+
+
+    <title>
+        
+            Look At | Aaron Kemner 
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="/main.949191c1dcc9c4a887997048b240354e47152016d821198f89448496ba42e491.css" integrity="sha256-lJGRwdzJxKiHmXBIskA1TkcVIBbYIRmPiUSElrpC5JE=">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="Look At">
+<meta itemprop="description" content="Look at another location">
+
+<meta itemprop="wordCount" content="560"><meta itemprop="image" content="https://www.aaronkemner.com/" />
+<meta itemprop="keywords" content="UE5,Node," />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Look At"/>
+<meta name="twitter:description" content="Look at another location"/>
+
+
+
+    <meta property="og:title" content="Look At" />
+<meta property="og:description" content="Look at another location" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/lookat/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
+
+
+
+
+
+
+
+    <meta property="article:section" content="AnimNode Reference" />
+
+
+
+
+
+
+
+
+
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark"> </span>
+            <span class="logo__text ">
+                Aaron Kemner</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/animnode-reference/">AnimNode Reference</a></li><li><a href="/blog/">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+	<main class="post">
+		<article>
+			<h2 class="post-title">Look At</h2>
+			
+				<h4>Look at another location</h4>
+			
+			<hr />
+			<div style="height:fit-content;">
+	<div class="row">
+		<div class="column">
+			
+				<b>GraphNode:</b>
+				<code>UAnimGraphNode_LookAt</code>
+			
+		</div>
+		<div class="column">
+			
+				<b>AnimNode:</b>
+				<code>FAnimNode_LookAt</code>
+			
+		</div>
+	</div>
+
+	<b>Official Documentation:</b>
+	
+		<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-blueprint-head-look-at-in-unreal-engine?application_version=5.4">Link</a>
+	
+</div>
+
+			<hr />
+			
+	
+	
+	
+		
+	
+	<img src="../../animnode-reference/defaultnodes/LookAt.png" style="height:150px;border-radius:15px;">
+
+
+			<hr />
+
+			
+
+			
+
+			<div class="post-content">
+				<p>Rotates one bone to point a specified axis towards a specified location.
+This location is generally, but not necessarily, relative to some bone.</p>
+<p>For any setup, a <code>BoneToModify</code> needs to be specified.
+The node will then align the rotation of this bone so that the axis specified in the <code>LookAtAxis</code> will point towards the final target location.</p>
+<p>Optionally, if desired a <code>LookUpAxis</code> can be specified, that will be used if <code>UseLookUpAxis</code> is <code>true</code>.
+This <code>LookUpAxis</code> will then be treated as immobile, meaning the node will try apply the LookAt as good as possible, without modifying the orientation of the specified axis.
+Essentially this means that if the <code>LookAtAxis</code> is <code>(1.0, 0.0, 0.0)</code> and the <code>LookUpAxis</code> is <code>(0.0, 1.0, 0.0)</code>, the node will rotate the bone <em>around</em> the Y-Axis(the specified <code>LookUpAxis</code>) to have the X-Axis(the specified <code>LookAtAxis</code>) point towards the target location.</p>
+<p>If this bone should look at another bone in the skeleton, this can be specified via the <code>LookAtTarget</code> in the nodes&rsquo; details panel.</p>
+<p>The <code>LookAtLocation</code> will be treated as relative to the <code>LookAtTarget</code> joint, if one is specified, otherwise it will be interpreted as a world space location.</p>
+<p>If the <code>LookAtClamp</code> is effectively greater than 0, the angles of the rotation the node will do will be limited within that range.</p>
+<p>The rotation can also be interpolated.
+The interpolation works by setting an <code>InterpolationTime</code> and an <code>InterpolationTriggerThreshold</code>.
+When interpolating the LookAt, the node will remember a last target location. Only if the new target location is at any point further away from the last remembered location than the <code>InterpolationTriggerThreshold</code>, the interpolation will trigger. The node will remember a new location, which is the location that triggered the interpolation, and interpolate the LookAt over the specified  <code>InterpolationTime</code> in seconds.
+How the rotation is interpolated can be set via the <code>InterpolationType</code>.
+<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	The way the interpolation works can easily produce an ugly side effect, that occurs whenever a new interpolation would be triggered while another one is already in progress.
+In that case, the old interpolation will be skipped, the bone will instantly rotate as if it had already reached the result of the previous interpolation, and begin a new one.
+This can be remedied by not interpolating the LookAt of the node directly, but rather interpolating the target location directly, effectively replacing the built-in interpolation by your own implementation
+</div>
+</p>
+<p>With the exception of the bone references, and the axis related settings, all of the parameters can also be exposed on the node bound to a variable.</p>
+<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	<h4 id="preview-bugs-when-modifying-settings-of-the-node">Preview bugs when modifying settings of the node</h4>
+<p>As of UE5.3, when compiling the Animation Blueprint with the <code>LookAtAxis</code> value not being simply axis aligned(like <code>1.0, 1.0, 0.0</code> or  <code>0.5, 1.0, 1.0</code> instead of <code>1.0, 0.0, 0.0</code> or <code>0.0, 1.0, 0.0</code>), the LookAt node will react accordingly. But changing the axis afterwards is not possible anymore.
+You will be able to change the numerical values, but they will not be represented in the 3d viewport anymore.</p>
+<p>A similar issue can sometimes occur when setting the values of the <code>LookAtLocation</code> after using the translation gizmo in the 3d viewport to modify it.
+In this case, sometimes setting the numerical values and compiling the animation blueprint will not change the result in the 3d viewport.</p>
+<p><strong>In both cases, closing the Animation Blueprint and opening it again fixes the &ldquo;unchanged&rdquo; values, and they should be correctly displayed again.</strong></p>
+
+</div>
+
+
+			</div>
+		</article>
+
+		<hr />
+
+		<div class="post-info">
+			
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/ue5/">UE5</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/node/">Node</a></span>
+        
+    </p>
+
+			
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/categories/animnode-reference/">AnimNode Reference</a></span>
+        
+    </p>
+
+		</div>
+	</main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2024</span>
+            
+            
+            
+            <span>Aaron Kemner</span>
+        </div>
+    </div>
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ac2a4bcaed631ec2dc154407be7f09fc28da37de71fae6dee6711b2a3d1622770f87d3cda22c460e9a68ff619bdb1dd75cb7a5d33f159a54e419736cc4541087.js" integrity="sha512-rCpLyu1jHsLcFUQHvn8J/CjaN95x&#43;ube5nEbKj0WIncPh9PNoixGDppo/2Gb2x3XXLel0z8VmlTkGXNsxFQQhw=="></script>
+
+
+
+
+    </body>
+</html>
