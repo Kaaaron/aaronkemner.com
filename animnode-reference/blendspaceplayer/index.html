@@ -5,16 +5,16 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="Blend two poses together" />
+<meta name="description" content="Play a blendspace" />
 <meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Node" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
-<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/twowayblend/" />
+<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/blendspaceplayer/" />
 
 
     <title>
         
-            Two Way Blend | Aaron Kemner 
+            BlendSpace Player | Aaron Kemner 
         
     </title>
 
@@ -35,21 +35,21 @@
     <meta name="msapplication-TileColor" content="">
 
 
-<meta itemprop="name" content="Two Way Blend">
-<meta itemprop="description" content="Blend two poses together">
+<meta itemprop="name" content="BlendSpace Player">
+<meta itemprop="description" content="Play a blendspace">
 
-<meta itemprop="wordCount" content="61"><meta itemprop="image" content="https://www.aaronkemner.com/" />
+<meta itemprop="wordCount" content="225"><meta itemprop="image" content="https://www.aaronkemner.com/" />
 <meta itemprop="keywords" content="UE5,Node," />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Two Way Blend"/>
-<meta name="twitter:description" content="Blend two poses together"/>
+<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="BlendSpace Player"/>
+<meta name="twitter:description" content="Play a blendspace"/>
 
 
 
-    <meta property="og:title" content="Two Way Blend" />
-<meta property="og:description" content="Blend two poses together" />
+    <meta property="og:title" content="BlendSpace Player" />
+<meta property="og:description" content="Play a blendspace" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/twowayblend/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
+<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/blendspaceplayer/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
 
 
 
@@ -58,8 +58,6 @@
 
 
     <meta property="article:section" content="AnimNode Reference" />
-
-    <meta property="article:section" content="Blend Nodes" />
 
 
 
@@ -153,9 +151,9 @@ if (!doNotTrack) {
                 
 	<main class="post">
 		<article>
-			<h2 class="post-title">Two Way Blend</h2>
+			<h2 class="post-title">BlendSpace Player</h2>
 			
-				<h4>Blend two poses together</h4>
+				<h4>Play a blendspace</h4>
 			
 			<hr />
 			<div style="height:fit-content;">
@@ -163,20 +161,20 @@ if (!doNotTrack) {
 		<div class="column">
 			
 				<b>GraphNode:</b>
-				<code>UAnimGraphNode_TwoWayBlend</code>
+				<code>UAnimGraphNode_BlendSpacePlayer</code>
 			
 		</div>
 		<div class="column">
 			
 				<b>AnimNode:</b>
-				<code>FAnimNode_TwoWayBlend</code>
+				<code>FAnimNode_BlendSpacePlayer</code>
 			
 		</div>
 	</div>
 
 	<b>Official Documentation:</b>
 	
-		<a href="https://docs.unrealengine.com/latest/en-US/animation-blueprint-blend-nodes-in-unreal-engine/#blend">Link</a>
+		<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/blend-spaces-in-animation-blueprints-in-unreal-engine#blendspaceplayer">Link</a>
 	
 </div>
 
@@ -185,7 +183,9 @@ if (!doNotTrack) {
 	
 	
 	
-	<img src="../../animnode-reference/defaultnodes/TwoWayBlend.png" style="height:250px;border-radius:15px;">
+		
+	
+	<img src="../../animnode-reference/defaultnodes/BlendSpacePlayer.png" style="height:137.5px;border-radius:15px;">
 
 
 			<hr />
@@ -195,13 +195,24 @@ if (!doNotTrack) {
 			
 
 			<div class="post-content">
-				<p>Blends two local space input poses together based on an alpha value.
-That alpha value can be a float, a boolean or an AnimCurve value.</p>
+				<p>Plays a given blendspace with the provided coordinates.</p>
+<p>Settings include all relevant data like play rate, start position and whether the animation should loop.</p>
+<p>In the node creation menu this node shows up in its pure form without an associated blendspace, but also for every blendspace for the skeleton of the AnimBP  in the format of &ldquo;Play &lt;Blendspace&gt;&rdquo; where, if chosen, the node will have the corresponding blendspace already assigned.</p>
+<p>This node works for both regular BlendSpace assets (2D BlendSpaces) or 1D BlendSpace assets.
 <div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
-	While the underlying classes had the same name, this node was previously just called &ldquo;blend&rdquo; in the editor.
-This got changed with UE 5.4 which switched the name to be &ldquo;Two Way Blend&rdquo; in the editor.
+	<h4 id="a-note-on-switching-the-blendspace-type">A note on switching the blendspace type</h4>
+<p>When dragging a BlendSpace asset into the graph, UE wil automatically expose the correct number of coordinate inputs for the given BlendSpace.
+When assigning a different type of blendspace to an already existing node in an AnimBP, UE will not correctly refresh the coordinate inputs on its own though. To have access to them in the graph you need to refresh the nodes(for example by right-clicking on the node and choosing &ldquo;refresh node&rdquo;)</p>
 </div>
+</p>
+<p>The node can be converted to a <a href="https://www.aaronkemner.com/animnode-reference/blendspaceevaluator/">Blendspace Evaluator</a> with the relevant blendspace via the right click menu.
+<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	<h4 id="a-note-on-converting-between-player-and-evaluator">A note on converting between player and evaluator</h4>
+<p>The conversion between blendspace player and evaluator only works when a blendspace is specified.</p>
+<p>Empty player and evaluator nodes still have the option available in the right click menu, but will not perform the conversion.</p>
 
+</div>
+</p>
 
 			</div>
 		</article>
@@ -223,7 +234,6 @@ This got changed with UE 5.4 which switched the name to be &ldquo;Two Way Blend&
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
 
         <span class="tag"><a href="https://www.aaronkemner.com/categories/animnode-reference/">AnimNode Reference</a></span>
-        <span class="tag"><a href="https://www.aaronkemner.com/categories/blend-nodes/">Blend Nodes</a></span>
         
     </p>
 

@@ -43,13 +43,6 @@
       <description>Apply mesh space additive animation to normal pose</description>
     </item>
     <item>
-      <title>Blend</title>
-      <link>https://www.aaronkemner.com/animnode-reference/twowayblend/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.aaronkemner.com/animnode-reference/twowayblend/</guid>
-      <description>Blend two poses together</description>
-    </item>
-    <item>
       <title>Blend Bone by Channel</title>
       <link>https://www.aaronkemner.com/animnode-reference/blendbonebychannel/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -83,6 +76,20 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aaronkemner.com/animnode-reference/multiwayblend/</guid>
       <description>Blend multiple poses together by Alpha</description>
+    </item>
+    <item>
+      <title>BlendSpace Evaluator</title>
+      <link>https://www.aaronkemner.com/animnode-reference/blendspaceevaluator/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/blendspaceevaluator/</guid>
+      <description>Evaluate a blendspace at the specified time</description>
+    </item>
+    <item>
+      <title>BlendSpace Player</title>
+      <link>https://www.aaronkemner.com/animnode-reference/blendspaceplayer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/blendspaceplayer/</guid>
+      <description>Play a blendspace</description>
     </item>
     <item>
       <title>Call Function</title>
@@ -272,6 +279,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aaronkemner.com/animnode-reference/modifybone/</guid>
       <description>Modify the transform of a bone</description>
+    </item>
+    <item>
+      <title>Two Way Blend</title>
+      <link>https://www.aaronkemner.com/animnode-reference/twowayblend/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/twowayblend/</guid>
+      <description>Blend two poses together</description>
     </item>
     <item>
       <title>Use Cached Pose</title>
