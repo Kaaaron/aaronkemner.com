@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blueprints on Aaron Kemner</title>
+    <link>http://localhost:1313/tags/blueprints/</link>
+    <description>Recent content in Blueprints on Aaron Kemner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 22 Dec 2025 19:13:52 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/blueprints/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TechAnim in Unreal: AnimInstance and AnimationBlueprint</title>
+      <link>http://localhost:1313/blog/ue_techanimbasics_animinstance/</link>
+      <pubDate>Mon, 22 Dec 2025 19:13:52 +0100</pubDate>
+      <guid>http://localhost:1313/blog/ue_techanimbasics_animinstance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>TechAnim in Unreal: AnimNotify and AnimNotifyState</title>
+      <link>http://localhost:1313/blog/ue_techanimbasics_animnotifies/</link>
+      <pubDate>Mon, 22 Dec 2025 19:13:34 +0100</pubDate>
+      <guid>http://localhost:1313/blog/ue_techanimbasics_animnotifies/</guid>
+      <description>Among the most powerful tools that Unreal Engine offers out-of-the-box are AnimNotifies and AnimNotifyStates. These two features allow us to execute any logic we might want at a specific point in an animation. That might be firing of VFX at the feet of our character each time they take a step, or playing an audio cue while they are charging up an attack, or something else entirely.&#xA;They are one of the most-used ways of having animation directly interface with the rest of the game and I can pretty much guarantee you that any Unreal Engine Project of quality uses them in some capacity.</description>
+    </item>
+    <item>
+      <title>On Good Blueprints</title>
+      <link>http://localhost:1313/blog/ue_ongoodblueprints/</link>
+      <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/ue_ongoodblueprints/</guid>
+      <description>From time to time, I am involved in discussions on whether it is possible to create &amp;ldquo;objectively good&amp;rdquo; Blueprints in Unreal Engine. The realistic answer is: Probably not. Not fully objectively at least. But that still doesn&amp;rsquo;t mean that I don&amp;rsquo;t have some strong opinions on how Blueprints should look, so here we are.&#xA;My philosophy of what makes Blueprints &amp;ldquo;good&amp;rdquo; is a result of about 8 years of using the visual programming language, initially just on my own and in small non-professional teams, but since 2020 also in a more professional setting.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="From time to time, I am involved in discussions on whether it is possible to create &amp;ldquo;objectively good&amp;rdquo; Blueprints in Unreal Engine. The realistic answer is: Probably not. Not fully objectively at least. But that still doesn&amp;rsquo;t mean that I don&amp;rsquo;t have some strong opinions on how Blueprints should look, so here we are.
+My philosophy of what makes Blueprints &amp;ldquo;good&amp;rdquo; is a result of about 8 years of using the visual programming language, initially just on my own and in small non-professional teams, but since 2020 also in a more professional setting." />
+<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Blueprints" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://localhost:1313/blog/ue_ongoodblueprints/" />
+
+
+    <title>
+        
+            On Good Blueprints | Aaron Kemner 
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="/main.d0b38d6191e256808b3e7f78c9b98936e9bc7dbdd42f2bb1ccc1fa424ae425e7.css" integrity="sha256-0LONYZHiVoCLPn94ybmJNum8fb3ULyuxzMH6QkrkJec=">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="On Good Blueprints">
+<meta itemprop="description" content="From time to time, I am involved in discussions on whether it is possible to create &ldquo;objectively good&rdquo; Blueprints in Unreal Engine. The realistic answer is: Probably not. Not fully objectively at least. But that still doesn&rsquo;t mean that I don&rsquo;t have some strong opinions on how Blueprints should look, so here we are.
+My philosophy of what makes Blueprints &ldquo;good&rdquo; is a result of about 8 years of using the visual programming language, initially just on my own and in small non-professional teams, but since 2020 also in a more professional setting."><meta itemprop="datePublished" content="2025-08-30T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2025-08-30T00:00:00+00:00" />
+<meta itemprop="wordCount" content="723"><meta itemprop="image" content="http://localhost:1313/" />
+<meta itemprop="keywords" content="UE5,Blueprints," />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://localhost:1313/" /><meta name="twitter:title" content="On Good Blueprints"/>
+<meta name="twitter:description" content="From time to time, I am involved in discussions on whether it is possible to create &ldquo;objectively good&rdquo; Blueprints in Unreal Engine. The realistic answer is: Probably not. Not fully objectively at least. But that still doesn&rsquo;t mean that I don&rsquo;t have some strong opinions on how Blueprints should look, so here we are.
+My philosophy of what makes Blueprints &ldquo;good&rdquo; is a result of about 8 years of using the visual programming language, initially just on my own and in small non-professional teams, but since 2020 also in a more professional setting."/>
+
+
+
+    <meta property="og:title" content="On Good Blueprints" />
+<meta property="og:description" content="From time to time, I am involved in discussions on whether it is possible to create &ldquo;objectively good&rdquo; Blueprints in Unreal Engine. The realistic answer is: Probably not. Not fully objectively at least. But that still doesn&rsquo;t mean that I don&rsquo;t have some strong opinions on how Blueprints should look, so here we are.
+My philosophy of what makes Blueprints &ldquo;good&rdquo; is a result of about 8 years of using the visual programming language, initially just on my own and in small non-professional teams, but since 2020 also in a more professional setting." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/ue_ongoodblueprints/" /><meta property="og:image" content="http://localhost:1313/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-08-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-08-30T00:00:00+00:00" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2025-08-30 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark"> </span>
+            <span class="logo__text ">
+                Aaron Kemner</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/animnode-reference/">AnimNode Reference</a></li><li><a href="/blog/">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="http://localhost:1313/blog/ue_ongoodblueprints/">On Good Blueprints</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <p>From time to time, I am involved in discussions on whether it is possible to create &ldquo;objectively good&rdquo; Blueprints in Unreal Engine.
+The realistic answer is: Probably not. Not fully objectively at least.
+But that still doesn&rsquo;t mean that I don&rsquo;t have some strong opinions on how Blueprints <em>should</em> look, so here we are.</p>
+<p>My philosophy of what makes Blueprints &ldquo;good&rdquo; is a result of about 8 years of using the visual programming language, initially just on my own and in small non-professional teams, but since 2020 also in a more professional setting.
+This means that while I obviously don&rsquo;t know how <em>you</em> do your Blueprints I have seen a bunch of people (including myself of course) making very good and very bad decisions when creating these graphs.</p>
+<h1 id="preamble">Preamble</h1>
+<p>If you need something more in-depth than this blog post, I can recommend this <a href="https://github.com/Allar/ue5-style-guide">Unreal Engine Style Guide</a>.
+It was originally written for Unreal Engine 4 but it covers very fundamental topics so it still holds up in UE5.
+I do not agree with every single point in this style guide. <a href="https://github.com/Allar/ue5-style-guide">The use of tooltips</a> is redundant in most cases if your naming is descriptive enough, so making it mandatory does not make sense to me, and <a href="https://github.com/Allar/ue5-style-guide">limiting the numbers of nodes per function</a> is promoting unnecessarily splitting graphs up into single-use functions which increases complexity even more.
+But aside from a few examples like this, it is a very solid guide to use.</p>
+<h1 id="the-basics">The Basics</h1>
+<p>On a very basic level, we want to avoid <a href="https://blueprintsfromhell.tumblr.com/">Blueprints from Hell</a>, at the very least.
+To achieve this, we need to be thinking mainly about keeping our graphs readable.</p>
+<p>A big part of achieving that is to thinkg of Blueprints as code.
+It is a node-based language and while that is inherently different to text-based code in some ways, that does not absolve us from trying to write good code.</p>
+<h3 id="plug-ins">Plug-Ins</h3>
+<p>I recommend at least using 2 Plug-Ins to aid with readability in Blueprints: <strong>FlatNodes</strong> and <strong>BlueprintAssist</strong>.</p>
+<h4 id="flatnodes">FlatNodes</h4>
+<p><a href="https://github.com/brumenn/flat-nodes">FlatNodes</a> is a plug-in that simplifies the display of editor nodes in Unreal. It doesn&rsquo;t have any other implications besides the appearance, but this change alone already makes the graph less busy and more readable in comparison to the fancier appearance the nodes in Unreal take by default. And it is <em>completely free!</em>
+<img src="/blog/FlatNodes_comparison.png" alt="FlatNodes vs Default"></p>
+<h4 id="blueprintassist">BlueprintAssist</h4>
+<p><a href="https://www.fab.com/listings/14d7ba87-a587-406d-9369-ed75fa0a55ed">BlueprintAssist</a> is a more functional help adding a bunch of new shortcuts and options to Unreals Node-Based editors. The one we care about most though is the <a href="https://blueprintassist.github.io/features/command-list/#format-node">formatting help</a> Blueprint Assist provides at the click of a button.</p>
+<h1 id="left-handed-vs-helix">Left-Handed vs. Helix</h1>
+<p>When talking about formatting, the only acceptable answer for me is left-handed formatting. Helixing is just worse.
+<a href="/blog/lefthanded_vs_helix.png"><img src="/blog/lefthanded_vs_helix.png" alt="Left-Handed vs Helix Formatting"></a></p>
+<p>But why is helixing worse? Why isn&rsquo;t it?</p>
+<p>If you are reading this, you are reading it from left to right first, then top to bottom, I assume.
+This is how you (generally) read any text using the latin alphabet. It has been forced into every one of our minds from the moment we learned to read, whether we want to or not.
+Because of this, Blueprints following the same flow are intuitively more understandable than helixing.</p>
+<p>Helixing also forces the wires to overlap with the nodes themselves.
+In simple examples, this might still be fine, but as soon as you have more than a single nice chain it very quickly becomes hard to decipher which wire is going to which pin on which node.</p>
+<p>And if you are saying &ldquo;but I only have a simple case here, isn&rsquo;t it fine then?&rdquo;, this is just because you haven&rsquo;t met your future self yet. It is not too unlikely that a lot of cases you deem simple now will be more complex later.
+Using left-handed formatting from the start keeps your graph readable even when new nodes need to get added to an oh-so-simple graph.</p>
+<h1 id="wire-priority">Wire Priority</h1>
+<p><a href="https://github.com/Allar/ue5-style-guide?tab=readme-ov-file#342-align-wires-not-nodes">&ldquo;Align Wires, Not Nodes&rdquo;</a> is a excelet bit of the style guide metioned above and I agree with it whole-heartedly.</p>
+<p>Execution Wires should have the highest priority. They should not cross, and they should always go from left to right.</p>
+<h1 id="functions-macros-events-and-collapsed-graphs">Functions, Macros, Events and Collapsed Graphs</h1>
+<h1 id="tips-and-tricks-in-c">Tips and tricks in C++</h1>
+<p>If you are using C++ in addition to Blueprints, there are a few things you can do to aid users of your exposed Functions</p>
+<ul>
+<li>BlueprintCallable vs BlueprintPure</li>
+<li>ExpandEnumAsExecs</li>
+<li>ExpandBoolAsExecs</li>
+<li>DeterminesType</li>
+</ul>
+<p><a href="/blog/BP_metaSpecifiers_ExpandExecs_BlueprintPure.png"><img src="/blog/BP_metaSpecifiers_ExpandExecs_BlueprintPure.png" alt="Left-Handed vs Helix Formatting"></a></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="http://localhost:1313/tags/ue5/">UE5</a></span>
+        <span class="tag"><a href="http://localhost:1313/tags/blueprints/">Blueprints</a></span>
+        
+    </p>
+
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2026</span>
+            
+            
+            
+            <span>Aaron Kemner</span>
+        </div>
+    </div>
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ac2a4bcaed631ec2dc154407be7f09fc28da37de71fae6dee6711b2a3d1622770f87d3cda22c460e9a68ff619bdb1dd75cb7a5d33f159a54e419736cc4541087.js" integrity="sha512-rCpLyu1jHsLcFUQHvn8J/CjaN95x&#43;ube5nEbKj0WIncPh9PNoixGDppo/2Gb2x3XXLel0z8VmlTkGXNsxFQQhw=="></script>
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Copies a bone transform to another bone" />
+<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Node" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/copybone/" />
+
+
+    <title>
+        
+            Copy Bone | Aaron Kemner 
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="/main.d0b38d6191e256808b3e7f78c9b98936e9bc7dbdd42f2bb1ccc1fa424ae425e7.css" integrity="sha256-0LONYZHiVoCLPn94ybmJNum8fb3ULyuxzMH6QkrkJec=">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="Copy Bone">
+<meta itemprop="description" content="Copies a bone transform to another bone">
+
+<meta itemprop="wordCount" content="149"><meta itemprop="image" content="https://www.aaronkemner.com/" />
+<meta itemprop="keywords" content="UE5,Node," />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Copy Bone"/>
+<meta name="twitter:description" content="Copies a bone transform to another bone"/>
+
+
+
+    <meta property="og:title" content="Copy Bone" />
+<meta property="og:description" content="Copies a bone transform to another bone" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/copybone/" /><meta property="og:image" content="https://www.aaronkemner.com/" /><meta property="article:section" content="animnode-reference" />
+
+
+
+
+
+
+
+    <meta property="article:section" content="AnimNode Reference" />
+
+
+
+
+
+
+
+
+
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark"> </span>
+            <span class="logo__text ">
+                Aaron Kemner</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/animnode-reference/">AnimNode Reference</a></li><li><a href="/blog/">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+	<main class="post">
+		<article>
+			<h2 class="post-title">Copy Bone</h2>
+			
+				<h4>Copies a bone transform to another bone</h4>
+			
+			<hr />
+			<div style="height:fit-content;">
+	<div class="row">
+		<div class="column">
+			
+				<b>GraphNode:</b>
+				<code>UAnimGraphNode_CopyBone</code>
+			
+		</div>
+		<div class="column">
+			
+				<b>AnimNode:</b>
+				<code>FAnimNode_CopyBone</code>
+			
+		</div>
+	</div>
+
+	<b>Official Documentation:</b>
+	
+		<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-blueprint-copy-bone-in-unreal-engine">Link</a>
+	
+</div>
+
+			<hr />
+			
+	
+	
+	
+		
+	
+	<img src="../../animnode-reference/defaultnodes/CopyBone.png" style="height:300px;border-radius:15px;">
+
+
+			<hr />
+
+			
+
+			
+
+			<div class="post-content">
+				<p>Copies the transform completely or partially of one bone, the <code>Source Bone</code>, to a another bone, the <code>Target Bone</code>.</p>
+<p>There are options to copy any combination of rotation, translation, and/or scale from the source to the target bone.
+Ticking all three options copies the transform entirely, while ticking none performs no operation.</p>
+<p>Additionally, there is a <code>Control Space</code> option that can be set in the details panel of the node to dictate in which space the target bone should copy the source bone.</p>
+<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	<h4 id="a-note-on-the-performance-of-control-space">A note on the performance of <code>Control Space</code></h4>
+<p>Since the node operates only on bones within the component, I believe the <code>Control Space</code> settings <code>Component Space</code> and <code>World Space</code> produce the visually same result.</p>
+<p>They are computationally different though.</p>
+<p>Internally, as of UE5.6, the code performs additional space conversions for any space other than <code>Component Space</code>, making <code>World Space</code> technically more expensive for the same result.</p>
+
+</div>
+
+
+			</div>
+		</article>
+
+		<hr />
+
+		<div class="post-info">
+			
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/ue5/">UE5</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/node/">Node</a></span>
+        
+    </p>
+
+			
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/categories/animnode-reference/">AnimNode Reference</a></span>
+        
+    </p>
+
+		</div>
+	</main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2026</span>
+            
+            
+            
+            <span>Aaron Kemner</span>
+        </div>
+    </div>
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ac2a4bcaed631ec2dc154407be7f09fc28da37de71fae6dee6711b2a3d1622770f87d3cda22c460e9a68ff619bdb1dd75cb7a5d33f159a54e419736cc4541087.js" integrity="sha512-rCpLyu1jHsLcFUQHvn8J/CjaN95x&#43;ube5nEbKj0WIncPh9PNoixGDppo/2Gb2x3XXLel0z8VmlTkGXNsxFQQhw=="></script>
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Among the most powerful tools that Unreal Engine offers out-of-the-box are AnimNotifies and AnimNotifyStates. These two features allow us to execute any logic we might want at a specific point in an animation. That might be firing of VFX at the feet of our character each time they take a step, or playing an audio cue while they are charging up an attack, or something else entirely.
+They are one of the most-used ways of having animation directly interface with the rest of the game and I can pretty much guarantee you that any Unreal Engine Project of quality uses them in some capacity." />
+<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Blueprints, Unreal Basics" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://localhost:1313/blog/ue_techanimbasics_animnotifies/" />
+
+
+    <title>
+        
+            TechAnim in Unreal: AnimNotify and AnimNotifyState | Aaron Kemner 
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="/main.d0b38d6191e256808b3e7f78c9b98936e9bc7dbdd42f2bb1ccc1fa424ae425e7.css" integrity="sha256-0LONYZHiVoCLPn94ybmJNum8fb3ULyuxzMH6QkrkJec=">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="TechAnim in Unreal: AnimNotify and AnimNotifyState">
+<meta itemprop="description" content="Among the most powerful tools that Unreal Engine offers out-of-the-box are AnimNotifies and AnimNotifyStates. These two features allow us to execute any logic we might want at a specific point in an animation. That might be firing of VFX at the feet of our character each time they take a step, or playing an audio cue while they are charging up an attack, or something else entirely.
+They are one of the most-used ways of having animation directly interface with the rest of the game and I can pretty much guarantee you that any Unreal Engine Project of quality uses them in some capacity."><meta itemprop="datePublished" content="2025-12-22T19:13:34+01:00" />
+<meta itemprop="dateModified" content="2025-12-22T19:13:34+01:00" />
+<meta itemprop="wordCount" content="860"><meta itemprop="image" content="http://localhost:1313/" />
+<meta itemprop="keywords" content="UE5,Blueprints,Unreal Basics," />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://localhost:1313/" /><meta name="twitter:title" content="TechAnim in Unreal: AnimNotify and AnimNotifyState"/>
+<meta name="twitter:description" content="Among the most powerful tools that Unreal Engine offers out-of-the-box are AnimNotifies and AnimNotifyStates. These two features allow us to execute any logic we might want at a specific point in an animation. That might be firing of VFX at the feet of our character each time they take a step, or playing an audio cue while they are charging up an attack, or something else entirely.
+They are one of the most-used ways of having animation directly interface with the rest of the game and I can pretty much guarantee you that any Unreal Engine Project of quality uses them in some capacity."/>
+
+
+
+    <meta property="og:title" content="TechAnim in Unreal: AnimNotify and AnimNotifyState" />
+<meta property="og:description" content="Among the most powerful tools that Unreal Engine offers out-of-the-box are AnimNotifies and AnimNotifyStates. These two features allow us to execute any logic we might want at a specific point in an animation. That might be firing of VFX at the feet of our character each time they take a step, or playing an audio cue while they are charging up an attack, or something else entirely.
+They are one of the most-used ways of having animation directly interface with the rest of the game and I can pretty much guarantee you that any Unreal Engine Project of quality uses them in some capacity." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/ue_techanimbasics_animnotifies/" /><meta property="og:image" content="http://localhost:1313/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-12-22T19:13:34+01:00" />
+<meta property="article:modified_time" content="2025-12-22T19:13:34+01:00" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2025-12-22 19:13:34 &#43;0100 CET" />
+
+
+
+
+
+
+
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark"> </span>
+            <span class="logo__text ">
+                Aaron Kemner</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/animnode-reference/">AnimNode Reference</a></li><li><a href="/blog/">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="http://localhost:1313/blog/ue_techanimbasics_animnotifies/">TechAnim in Unreal: AnimNotify and AnimNotifyState</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <p>Among the most powerful tools that Unreal Engine offers out-of-the-box are AnimNotifies and AnimNotifyStates.
+These two features allow us to execute any logic we might want at a specific point in an animation.
+That might be firing of VFX at the feet of our character each time they take a step, or playing an audio cue while they are charging up an attack, or something else entirely.</p>
+<p>They are one of the most-used ways of having animation directly interface with the rest of the game and I can pretty much guarantee you that any Unreal Engine Project of quality uses them in some capacity.
+They are hugely flexible tools, for anyone touching animation assets, be that Animators, Tech-Artists, or Engineers, so knowing their ins and outs is key to creating great games and workflows.</p>
+<p>So lets take a deeper look at what this means.</p>
+<h1 id="using-animnotifies">Using AnimNotifies</h1>
+<p>When talking about these, we are really talking about instances of classes that derive either from <code>UAnimNotify</code> or <code>UAnimNotifyState</code>, which are both organized into an Array of<code>FAnimNotifyTrack</code> on any Asset deriving from <code>UAnimSequenceBase</code>.</p>
+<p>This means you can add AnimNotifies to <code>UAnimSequence</code>s and AnimComposites like <code>UAnimMontage</code>, but not other animation assets like <code>UBlendSpace</code>.
+Nonetheless, Blendspaces allow triggering of AnimNotifies for samples within the Blendspace as well.</p>
+<h2 id="animnotifies">AnimNotifies</h2>
+<p>Your first contact with AnimNotifies will likely have been Skeleton Notifies.</p>
+<ul>
+<li>Skeleton Notifies vs Notify Classes</li>
+</ul>
+<h2 id="animnotifystates">AnimNotifyStates</h2>
+<ul>
+<li>Interestingly not related to UAnimNotify. Both derive from UObject</li>
+<li>No such thing as a Skeleton-AnimNotifyState</li>
+</ul>
+<hr />
+
+<h1 id="api-overview">API Overview</h1>
+<p>AnimNotifies and AnimNotifyStates have a very similar API, especially
+All of these are always called on the GameThread after evaluation has completed.</p>
+<h2 id="runtime">Runtime</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// ------- Only UAnimNotify  -----------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Called when resolving the NotifyQueue. 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Notify</span>(USkeletalMeshComponent<span style="color:#f92672">*</span> MeshComp, UAnimSequenceBase<span style="color:#f92672">*</span> Animation, <span style="color:#66d9ef">const</span> FAnimNotifyEventReference<span style="color:#f92672">&amp;</span> EventReference);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Called for branching point Notifies only. Will call Notify() if not implemented.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">BranchingPointNotify</span>(FBranchingPointNotifyPayload<span style="color:#f92672">&amp;</span> BranchingPointPayload);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ------- Only UAnimNotifyState -------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Called before NotifyTick is called the first time, signaling the start of the Notify window.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">NotifyBegin</span>(USkeletalMeshComponent <span style="color:#f92672">*</span> MeshComp, UAnimSequenceBase <span style="color:#f92672">*</span> Animation, <span style="color:#66d9ef">float</span> TotalDuration, <span style="color:#66d9ef">const</span> FAnimNotifyEventReference<span style="color:#f92672">&amp;</span> EventReference);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Called each frame after NotifyBegin has been called once and before NotifyEnd is called.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">NotifyTick</span>(USkeletalMeshComponent <span style="color:#f92672">*</span> MeshComp, UAnimSequenceBase <span style="color:#f92672">*</span> Animation, <span style="color:#66d9ef">float</span> FrameDeltaTime, <span style="color:#66d9ef">const</span> FAnimNotifyEventReference<span style="color:#f92672">&amp;</span> EventReference);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Called after NotifyTick has been called for the last time, signaling the end of the Notify window.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">NotifyEnd</span>(USkeletalMeshComponent <span style="color:#f92672">*</span> MeshComp, UAnimSequenceBase <span style="color:#f92672">*</span> Animation, <span style="color:#66d9ef">const</span> FAnimNotifyEventReference<span style="color:#f92672">&amp;</span> EventReference);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Called for branching point Notifies only. Will call NotifyBegin() if not implemented.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">BranchingPointNotifyBegin</span>(FBranchingPointNotifyPayload<span style="color:#f92672">&amp;</span> BranchingPointPayload);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Called for branching point Notifies only. Will call NotifyTick() if not implemented.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">BranchingPointNotifyTick</span>(FBranchingPointNotifyPayload<span style="color:#f92672">&amp;</span> BranchingPointPayload, <span style="color:#66d9ef">float</span> FrameDeltaTime);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Called for branching point Notifies only. Will call NotifyEnd() if not implemented.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">BranchingPointNotifyEnd</span>(FBranchingPointNotifyPayload<span style="color:#f92672">&amp;</span> BranchingPointPayload);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ------- UAnimNotify and UAnimNotifyState -----------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Used to customize the name displayed in the timeline of animation assets. 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Does NOT affect the name displayed in the menu when selecting which Notify to create.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>FString <span style="color:#a6e22e">GetNotifyName</span>() <span style="color:#66d9ef">const</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Actually not called anywhere in the engine, so this doesn&#39;t do anything as far as I can tell.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> FString <span style="color:#a6e22e">GetEditorComment</span>();
+</span></span></code></pre></div><h2 id="editor">Editor:</h2>
+<p>The foollowing function declarations are guarded using <code>#if WITH_EDITOR</code>.
+Implementations should do the same.</p>
+<p><code>UAnimNotify</code> and <code>UAnimNotifyState</code> share the same editor API.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Called once after an AnimNotify is created
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OnAnimNotifyCreatedInEditor</span>(FAnimNotifyEvent<span style="color:#f92672">&amp;</span> ContainingAnimNotifyEvent);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Whether this class of Notify can be created for a given Asset.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Called on the ClassDefaultObject.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">CanBePlaced</span>(UAnimSequenceBase<span style="color:#f92672">*</span> Animation) <span style="color:#66d9ef">const</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Called during PreSave and PostLoad to notify the user of incorrect data.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ValidateAssociatedAssets</span>();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Draw debug data to the Viewport using the PDI.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">DrawInEditor</span>(FPrimitiveDrawInterface<span style="color:#f92672">*</span> PDI, USkeletalMeshComponent<span style="color:#f92672">*</span> MeshComp, <span style="color:#66d9ef">const</span> UAnimSequenceBase<span style="color:#f92672">*</span> Animation, <span style="color:#66d9ef">const</span> FAnimNotifyEvent<span style="color:#f92672">&amp;</span> NotifyEvent) <span style="color:#66d9ef">const</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Draw debug data to the Viewport using the Canvas and SceneView.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">DrawCanvasInEditor</span>(FCanvas<span style="color:#f92672">&amp;</span> Canvas, FSceneView<span style="color:#f92672">&amp;</span> View, USkeletalMeshComponent<span style="color:#f92672">*</span> MeshComp, <span style="color:#66d9ef">const</span> UAnimSequenceBase<span style="color:#f92672">*</span> Animation, <span style="color:#66d9ef">const</span> FAnimNotifyEvent<span style="color:#f92672">&amp;</span> NotifyEvent) <span style="color:#66d9ef">const</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Whether this Notify should be executed animation editors or not.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">ShouldFireInEditor</span>();
+</span></span></code></pre></div><h1 id="sample-implementation">Sample Implementation</h1>
+<ul>
+<li>Find good usecase for a sample implementation</li>
+</ul>
+<p>Header:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><p>SourceFile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><p><hr />
+
+<hr />
+</p>
+<h1 id="going-further">Going further</h1>
+<h2 id="the-notify-queue-and-branching-points">The Notify Queue and Branching Points</h2>
+<ul>
+<li>Branching Points
+<ul>
+<li>Only relevant in AnimMontages, otherwise has no effect</li>
+<li>Only 1 Branching Point per Frame allowed</li>
+</ul>
+</li>
+</ul>
+<h2 id="uanimnotifylibary"><code>UAnimNotifyLibary</code></h2>
+<h2 id="uanimationblueprintlibrary"><code>UAnimationBlueprintLibrary</code></h2>
+<ul>
+<li>
+<p>Adding and Removing AnimNotifies and AnimNotifyStates programmatically in the editor</p>
+</li>
+<li>
+<p>Usable within Animation Modifiers and Scripted Actions, as well as cpp</p>
+</li>
+<li>
+<p>Editor-Only, not Runtime</p>
+</li>
+</ul>
+<h2 id="special-case-syncmarkers">Special case: SyncMarkers</h2>
+<p>SyncMarkers are one way in Unreal to coordinate multiple animations you want to blend/transition between.
+In code, these are represented as <code>FAnimSyncMarker</code>, and they have the huge disadvantage that they have no point where one might hook into the system to customize/extend UEs animation syncing.
+There is also no such notion as a &ldquo;SyncMarkerState&rdquo; - they are just markers at a single frame, without a notion of &ldquo;duration&rdquo;.
+They contain a Name, and UE will try to sync them with other markers of the same name, and of course a position at which time in the animation they are positioned.</p>
+<p>While SyncMarkers are not really the aim of this post, due to the lack of extendability, they are definitely a hugely useful tool to have when working with Animation in Unreal.
+So if you haven&rsquo;t had the chance to, I recommend having a look at <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-sync-groups-in-unreal-engine#marker-basedsyncing">the docs</a>.</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="http://localhost:1313/tags/ue5/">UE5</a></span>
+        <span class="tag"><a href="http://localhost:1313/tags/blueprints/">Blueprints</a></span>
+        <span class="tag"><a href="http://localhost:1313/tags/unreal-basics/">Unreal Basics</a></span>
+        
+    </p>
+
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2026</span>
+            
+            
+            
+            <span>Aaron Kemner</span>
+        </div>
+    </div>
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ac2a4bcaed631ec2dc154407be7f09fc28da37de71fae6dee6711b2a3d1622770f87d3cda22c460e9a68ff619bdb1dd75cb7a5d33f159a54e419736cc4541087.js" integrity="sha512-rCpLyu1jHsLcFUQHvn8J/CjaN95x&#43;ube5nEbKj0WIncPh9PNoixGDppo/2Gb2x3XXLel0z8VmlTkGXNsxFQQhw=="></script>
+
+
+
+
+    </body>
+</html>
