@@ -289,6 +289,13 @@
       <description>Modify the transform of a bone</description>
     </item>
     <item>
+      <title>Two Bone IK</title>
+      <link>https://www.aaronkemner.com/animnode-reference/twoboneik/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/twoboneik/</guid>
+      <description>Applies simple IK to a short joint chain</description>
+    </item>
+    <item>
       <title>Two Way Blend</title>
       <link>https://www.aaronkemner.com/animnode-reference/twowayblend/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
