@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="author" content="">
+<meta name="author" content="Aaron Kemner ">
 <meta name="description" content="" />
 <meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation" />
 <meta name="robots" content="noodp" />
@@ -22,7 +23,9 @@
 
 
 
-<link rel="stylesheet" href="/main.d0b38d6191e256808b3e7f78c9b98936e9bc7dbdd42f2bb1ccc1fa424ae425e7.css" integrity="sha256-0LONYZHiVoCLPn94ybmJNum8fb3ULyuxzMH6QkrkJec=">
+  <link rel="stylesheet" href="/main.min.f500809bf44abddd75dc9f714963909bf89070f3f08f13efeb6da40484800b6c.css" integrity="sha256-9QCAm/RKvd113J9xSWOQm/iQcPPwjxPv622kBISAC2w=" crossorigin="anonymous">
+
+
 
 
 
@@ -35,19 +38,25 @@
     <meta name="msapplication-TileColor" content="">
 
 
-<meta itemprop="name" content="404 Page not found">
-<meta itemprop="description" content="Technical Animation is a tricky, but maybe I can be of help.">
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="404 Page not found"/>
-<meta name="twitter:description" content="Technical Animation is a tricky, but maybe I can be of help."/>
+
+  <meta itemprop="name" content="404 Page not found">
+  <meta itemprop="description" content="Technical Animation is a tricky, but maybe I can be of help.">
+  <meta itemprop="image" content="https://www.aaronkemner.com/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.aaronkemner.com/">
+  <meta name="twitter:title" content="404 Page not found">
+  <meta name="twitter:description" content="Technical Animation is a tricky, but maybe I can be of help.">
 
 
 
-    <meta property="og:title" content="404 Page not found" />
-<meta property="og:description" content="Technical Animation is a tricky, but maybe I can be of help." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.aaronkemner.com/404.html" /><meta property="og:image" content="https://www.aaronkemner.com/" />
-
+    <meta property="og:url" content="https://www.aaronkemner.com/404.html">
+  <meta property="og:site_name" content="Aaron Kemner">
+  <meta property="og:title" content="404 Page not found">
+  <meta property="og:description" content="Technical Animation is a tricky, but maybe I can be of help.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.aaronkemner.com/">
 
 
 
@@ -63,17 +72,20 @@
 
 
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
-}
-</script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GF053ZV41M');
+        }
+      </script>
 
 
 
@@ -84,21 +96,7 @@ if (!doNotTrack) {
     
     
         <div class="container">
-            <head>
-  
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
-}
-</script>
-
-</head>
-<header class="header">
+            <header class="header">
     <span class="header__inner">
         <a href="/" style="text-decoration: none;">
     <div class="logo">
@@ -117,11 +115,17 @@ if (!doNotTrack) {
 
 
         <span class="header__right">
-            
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/animnode-reference/">AnimNode Reference</a></li><li><a href="/blog/">Blog</a></li>
+    <ul class="menu__inner">
+                <li><a href="/about">About</a></li>
+            
+                <li><a href="/animnode-reference/">AnimNode Reference</a></li>
+            
+                <li><a href="/blog/">Blog</a></li>
+            
     </ul>
 </nav>
+
 
                 <span class="menu-trigger">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -129,7 +133,6 @@ if (!doNotTrack) {
                         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
                     </svg>
                 </span>
-            
                 <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
    <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
    3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
@@ -140,25 +143,25 @@ if (!doNotTrack) {
 </header>
 
 
-            <div class="content">
-                
-    <div id="spotlight" class="error-404 animated fadeIn">
-        <p class="img-404">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cloud-drizzle"><line x1="8" y1="19" x2="8" y2="21"></line><line x1="8" y1="13" x2="8" y2="15"></line><line x1="16" y1="19" x2="16" y2="21"></line><line x1="16" y1="13" x2="16" y2="15"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="12" y1="15" x2="12" y2="17"></line><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path></svg>
-        </p>
-        <div class="banner-404">
-            <h1>404</h1>
-            <p>Oops, page not found…</p>
-            <p class="btn-404">
-                <a href="https://www.aaronkemner.com/">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Home</a>
-                <a href="https://www.aaronkemner.com/posts">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>Archives</a>
+            
+    <div class="content-center">
+        <div id="spotlight" class="error-404 animated fadeIn">
+            <p class="img-404">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cloud-drizzle"><line x1="8" y1="19" x2="8" y2="21"></line><line x1="8" y1="13" x2="8" y2="15"></line><line x1="16" y1="19" x2="16" y2="21"></line><line x1="16" y1="13" x2="16" y2="15"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="12" y1="15" x2="12" y2="17"></line><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path></svg>
             </p>
+            <div class="banner-404">
+                <h1>404</h1>
+                <p>Oops, page not found…</p>
+                <p class="btn-404">
+                    <a href="https://www.aaronkemner.com/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Home</a>
+                    <a href="https://www.aaronkemner.com/posts">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>Archives</a>
+                </p>
+            </div>
         </div>
     </div>
 
-            </div>
 
             
                 <footer class="footer">
@@ -183,7 +186,7 @@ if (!doNotTrack) {
 
 
 
-<script type="text/javascript" src="/bundle.min.ac2a4bcaed631ec2dc154407be7f09fc28da37de71fae6dee6711b2a3d1622770f87d3cda22c460e9a68ff619bdb1dd75cb7a5d33f159a54e419736cc4541087.js" integrity="sha512-rCpLyu1jHsLcFUQHvn8J/CjaN95x&#43;ube5nEbKj0WIncPh9PNoixGDppo/2Gb2x3XXLel0z8VmlTkGXNsxFQQhw=="></script>
+<script type="text/javascript" src="/bundle.min.08b680078a3cf9c69e3dd217a5aa52cfddd4a1d850f8cdff127fdd7421a71f8b2b474be69386f67819edace92273916e7230c9054f38107db9dc6730b3530ab5.js" integrity="sha512-CLaAB4o8&#43;caePdIXpapSz93UodhQ&#43;M3/En/ddCGnH4srR0vmk4b2eBntrOkic5FucjDJBU84EH253Gcws1MKtQ=="></script>
 
 
 

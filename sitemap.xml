@@ -3,12 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.aaronkemner.com/</loc>
-    <lastmod>2025-12-22T19:13:52+01:00</lastmod>
-  </url><url>
-    <loc>https://www.aaronkemner.com/blog/</loc>
-    <lastmod>2025-12-22T19:13:52+01:00</lastmod>
-  </url><url>
-    <loc>https://www.aaronkemner.com/about/</loc>
   </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/identitypose/</loc>
   </url><url>
@@ -44,6 +38,8 @@
   </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/blendspaceplayer/</loc>
   </url><url>
+    <loc>https://www.aaronkemner.com/blog/</loc>
+  </url><url>
     <loc>https://www.aaronkemner.com/categories/caching/</loc>
   </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/callfunction/</loc>
@@ -60,11 +56,13 @@
   </url><url>
     <loc>https://www.aaronkemner.com/tags/function/</loc>
   </url><url>
+    <loc>https://www.aaronkemner.com/about/</loc>
+  </url><url>
     <loc>https://www.aaronkemner.com/categories/identity-pose/</loc>
   </url><url>
-    <loc>https://www.aaronkemner.com/categories/inertialization/</loc>
-  </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/inertialization/</loc>
+  </url><url>
+    <loc>https://www.aaronkemner.com/categories/inertialization/</loc>
   </url><url>
     <loc>https://www.aaronkemner.com/animnode-reference/linkedinputpose/</loc>
   </url><url>

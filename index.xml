@@ -4,17 +4,9 @@
     <title>Aaron Kemner</title>
     <link>https://www.aaronkemner.com/</link>
     <description>Recent content on Aaron Kemner</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aaronkemner.com/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About me</title>
-      <link>https://www.aaronkemner.com/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.aaronkemner.com/about/</guid>
-      <description>My name is Aaron and I am a Technical Animator working in the games industry.&#xA;I started getting into 3D as a hobbyist around 2014 and after some experimenting in the different disciplines 3D has to offer I shifted towards animation and technical animation. Since then I started working in the games industry in 2020.&#xA;My skills include Blender, Autodesk Maya, Unreal Engine and I am able to program in Python, Blueprints and C++.</description>
-    </item>
     <item>
       <title>Additive Identity Pose</title>
       <link>https://www.aaronkemner.com/animnode-reference/identitypose/</link>
@@ -121,6 +113,13 @@
       <description>Processes inertial blending requests from previous nodes</description>
     </item>
     <item>
+      <title>Hi, I&#39;m Aaron Kemner!</title>
+      <link>https://www.aaronkemner.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/about/</guid>
+      <description>&lt;p&gt;I am a german Senior Technical Animator working at &lt;a href=&#34;https://www.unseen-tokyo.com/&#34;&gt;UNSEEN Tokyo&lt;/a&gt; on &lt;a href=&#34;https://www.kemuriworld.com/&#34;&gt;&amp;ldquo;Kemuri&amp;rdquo;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;In the past I have worked at Claymore Game Studios on the reboot of the classic &amp;ldquo;Commados&amp;rdquo; franchise, &lt;a href=&#34;https://commandos-game.com/&#34;&gt;&amp;ldquo;Commandos: Origns&amp;rdquo;&lt;/a&gt;, as well as smaller undisclosed projects in different teams.&lt;/p&gt;&#xA;&lt;p&gt;My journey into 3D worlds started around 2014 when I started to get into 3D modeling.&#xA;Quickly I branched into other areas such as animation and rigging and eventually settled on the more gameplay-centric sides of technical animation in games by the time I started my professional journey in 2020.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Inertialization</title>
       <link>https://www.aaronkemner.com/animnode-reference/inertialization/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -202,7 +201,7 @@
       <link>https://www.aaronkemner.com/blog/proxy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aaronkemner.com/blog/proxy/</guid>
-      <description>Nothing here yet :eyes:</description>
+      <description>&lt;p&gt;Nothing here yet :eyes:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Observe Bone</title>

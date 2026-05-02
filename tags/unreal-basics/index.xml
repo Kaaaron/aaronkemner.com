@@ -4,7 +4,7 @@
     <title>Unreal Basics on Aaron Kemner</title>
     <link>http://localhost:1313/tags/unreal-basics/</link>
     <description>Recent content in Unreal Basics on Aaron Kemner</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Dec 2025 19:13:52 +0100</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/unreal-basics/index.xml" rel="self" type="application/rss+xml" />
@@ -20,7 +20,7 @@
       <link>http://localhost:1313/blog/ue_techanimbasics_animnotifies/</link>
       <pubDate>Mon, 22 Dec 2025 19:13:34 +0100</pubDate>
       <guid>http://localhost:1313/blog/ue_techanimbasics_animnotifies/</guid>
-      <description>Among the most powerful tools that Unreal Engine offers out-of-the-box are AnimNotifies and AnimNotifyStates. These two features allow us to execute any logic we might want at a specific point in an animation. That might be firing of VFX at the feet of our character each time they take a step, or playing an audio cue while they are charging up an attack, or something else entirely.&#xA;They are one of the most-used ways of having animation directly interface with the rest of the game and I can pretty much guarantee you that any Unreal Engine Project of quality uses them in some capacity.</description>
+      <description>&lt;p&gt;Among the most powerful tools that Unreal Engine offers out-of-the-box are AnimNotifies and AnimNotifyStates.&#xA;These two features allow us to execute any logic we might want at a specific point in an animation.&#xA;That might be firing of VFX at the feet of our character each time they take a step, or playing an audio cue while they are charging up an attack, or something else entirely.&lt;/p&gt;&#xA;&lt;p&gt;They are one of the most-used ways of having animation directly interface with the rest of the game and I can pretty much guarantee you that any Unreal Engine Project of quality uses them in some capacity.&#xA;They are hugely flexible tools, for anyone touching animation assets, be that Animators, Tech-Artists, or Engineers, so knowing their ins and outs is key to creating great games and workflows.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

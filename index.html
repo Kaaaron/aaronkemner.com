@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta name="generator" content="Hugo 0.123.8">
+	<meta name="generator" content="Hugo 0.160.1">
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="author" content="">
+<meta name="author" content="Aaron Kemner ">
 <meta name="description" content="Senior Technical Animator in Games" />
 <meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation" />
 <meta name="robots" content="noodp" />
@@ -23,7 +24,9 @@
 
 
 
-<link rel="stylesheet" href="/main.d0b38d6191e256808b3e7f78c9b98936e9bc7dbdd42f2bb1ccc1fa424ae425e7.css" integrity="sha256-0LONYZHiVoCLPn94ybmJNum8fb3ULyuxzMH6QkrkJec=">
+  <link rel="stylesheet" href="/main.min.f500809bf44abddd75dc9f714963909bf89070f3f08f13efeb6da40484800b6c.css" integrity="sha256-9QCAm/RKvd113J9xSWOQm/iQcPPwjxPv622kBISAC2w=" crossorigin="anonymous">
+
+
 
 
 
@@ -36,19 +39,25 @@
     <meta name="msapplication-TileColor" content="">
 
 
-<meta itemprop="name" content="Aaron Kemner">
-<meta itemprop="description" content="Technical Animation is a tricky, but maybe I can be of help.">
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.aaronkemner.com/" /><meta name="twitter:title" content="Aaron Kemner"/>
-<meta name="twitter:description" content="Technical Animation is a tricky, but maybe I can be of help."/>
+
+  <meta itemprop="name" content="Aaron Kemner">
+  <meta itemprop="description" content="Technical Animation is a tricky, but maybe I can be of help.">
+  <meta itemprop="image" content="https://www.aaronkemner.com/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.aaronkemner.com/">
+  <meta name="twitter:title" content="Aaron Kemner">
+  <meta name="twitter:description" content="Technical Animation is a tricky, but maybe I can be of help.">
 
 
 
-    <meta property="og:title" content="Aaron Kemner" />
-<meta property="og:description" content="Technical Animation is a tricky, but maybe I can be of help." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.aaronkemner.com/" /><meta property="og:image" content="https://www.aaronkemner.com/" />
-
+    <meta property="og:url" content="https://www.aaronkemner.com/">
+  <meta property="og:site_name" content="Aaron Kemner">
+  <meta property="og:title" content="Aaron Kemner">
+  <meta property="og:description" content="Technical Animation is a tricky, but maybe I can be of help.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.aaronkemner.com/">
 
 
 
@@ -65,17 +74,20 @@
 
 
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
-}
-</script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GF053ZV41M');
+        }
+      </script>
 
 
 
@@ -86,21 +98,7 @@ if (!doNotTrack) {
 
     
         <div class="container">
-            <head>
-  
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-GF053ZV41M', { 'anonymize_ip': false });
-}
-</script>
-
-</head>
-<header class="header">
+            <header class="header">
     <span class="header__inner">
         <a href="/" style="text-decoration: none;">
     <div class="logo">
@@ -119,11 +117,17 @@ if (!doNotTrack) {
 
 
         <span class="header__right">
-            
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/animnode-reference/">AnimNode Reference</a></li><li><a href="/blog/">Blog</a></li>
+    <ul class="menu__inner">
+                <li><a href="/about">About</a></li>
+            
+                <li><a href="/animnode-reference/">AnimNode Reference</a></li>
+            
+                <li><a href="/blog/">Blog</a></li>
+            
     </ul>
 </nav>
+
 
                 <span class="menu-trigger">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -131,7 +135,6 @@ if (!doNotTrack) {
                         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
                     </svg>
                 </span>
-            
                 <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
    <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
    3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
@@ -142,23 +145,23 @@ if (!doNotTrack) {
 </header>
 
 
-            <div class="content">
+            
+    <div class="content-center">
+        <main>
+            <div>
                 
-    <main aria-role="main">
-        <div>
-            
 
-            <h1>Aaron Kemner</h1>
+                <h1>Aaron Kemner</h1>
 
-            
+                
     <p>Senior Technical Animator in Games</p>
-                <div>
-                    &nbsp; <a href="https://bsky.app/profile/aarontechanim.bsky.social" target="_blank" rel="me noopener " title="Bluesky"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"/></svg></a> &nbsp;&nbsp; <a href="https://www.github.com/Kaaaron/" target="_blank" rel="me noopener " title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a> &nbsp;&nbsp; <a href="https://www.linkedin.com/in/aaronkemner" target="_blank" rel="me noopener " title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a> &nbsp;&nbsp; <a href="https://www.artstation.com/aaronkemner" target="_blank" rel="me noopener " title="Artstation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z"/></svg></a> &nbsp;
-                </div>
-        </div>
-    </main>
-
+                    <div>
+                        &nbsp; <a href="https://bsky.app/profile/aarontechanim.bsky.social"  rel="me noopener " title="Bluesky"><svg width="24" height="24" viewBox="0 0 360 320" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M254.896 184.158C252.81 183.926 250.733 183.645 248.671 183.315C250.773 183.574 252.849 183.855 254.896 184.158Z"/><path d="M180 141.964C163.699 110.262 119.308 51.1817 78.0347 22.044C38.4971 -5.86834 23.414 -1.03207 13.526 3.43594C2.08093 8.60755 0 26.1785 0 36.5164C0 46.8542 5.66748 121.272 9.36416 133.694C21.5786 174.738 65.0603 188.607 105.104 184.156C107.151 183.852 109.227 183.572 111.329 183.312C109.267 183.642 107.19 183.924 105.104 184.156C46.4204 192.847 -5.69621 214.233 62.6582 290.33C137.848 368.18 165.705 273.637 180 225.702C194.295 273.637 210.76 364.771 295.995 290.33C360 225.702 313.58 192.85 254.896 184.158C252.81 183.926 250.733 183.645 248.671 183.315C250.773 183.574 252.849 183.855 254.896 184.158C294.94 188.61 338.421 174.74 350.636 133.697C354.333 121.275 360 46.8568 360 36.519C360 26.1811 357.919 8.61012 346.474 3.43851C336.586 -1.02949 321.503 -5.86576 281.965 22.0466C240.692 51.1843 196.301 110.262 180 141.964Z" fill="currentColor"/></svg></a> &nbsp;&nbsp; <a href="https://www.github.com/Kaaaron/"  rel="me noopener " title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a> &nbsp;&nbsp; <a href="https://www.linkedin.com/in/aaronkemner"  rel="me noopener " title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a> &nbsp;&nbsp; <a href="https://www.artstation.com/aaronkemner"  rel="me noopener " title="Artstation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z"/></svg></a> &nbsp;
+                    </div>
             </div>
+        </main>
+    </div>
+
 
             
                 <footer class="footer">
@@ -183,7 +186,7 @@ if (!doNotTrack) {
 
 
 
-<script type="text/javascript" src="/bundle.min.ac2a4bcaed631ec2dc154407be7f09fc28da37de71fae6dee6711b2a3d1622770f87d3cda22c460e9a68ff619bdb1dd75cb7a5d33f159a54e419736cc4541087.js" integrity="sha512-rCpLyu1jHsLcFUQHvn8J/CjaN95x&#43;ube5nEbKj0WIncPh9PNoixGDppo/2Gb2x3XXLel0z8VmlTkGXNsxFQQhw=="></script>
+<script type="text/javascript" src="/bundle.min.08b680078a3cf9c69e3dd217a5aa52cfddd4a1d850f8cdff127fdd7421a71f8b2b474be69386f67819edace92273916e7230c9054f38107db9dc6730b3530ab5.js" integrity="sha512-CLaAB4o8&#43;caePdIXpapSz93UodhQ&#43;M3/En/ddCGnH4srR0vmk4b2eBntrOkic5FucjDJBU84EH253Gcws1MKtQ=="></script>
 
 
 
