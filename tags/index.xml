@@ -6,7 +6,36 @@
     <description>Recent content in Tags on Aaron Kemner</description>
     <generator>Hugo</generator>
     <language>en-us</language>
+    <lastBuildDate>Thu, 16 Jul 2026 10:57:49 +0200</lastBuildDate>
     <atom:link href="https://www.aaronkemner.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advanced Unreal Engine</title>
+      <link>https://www.aaronkemner.com/tags/advanced-unreal-engine/</link>
+      <pubDate>Thu, 16 Jul 2026 10:57:49 +0200</pubDate>
+      <guid>https://www.aaronkemner.com/tags/advanced-unreal-engine/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AnimNodes</title>
+      <link>https://www.aaronkemner.com/tags/animnodes/</link>
+      <pubDate>Thu, 16 Jul 2026 10:57:49 +0200</pubDate>
+      <guid>https://www.aaronkemner.com/tags/animnodes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://www.aaronkemner.com/tags/c&#43;&#43;/</link>
+      <pubDate>Thu, 16 Jul 2026 10:57:49 +0200</pubDate>
+      <guid>https://www.aaronkemner.com/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>UE5</title>
+      <link>https://www.aaronkemner.com/tags/ue5/</link>
+      <pubDate>Thu, 16 Jul 2026 10:57:49 +0200</pubDate>
+      <guid>https://www.aaronkemner.com/tags/ue5/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Animation Linking</title>
       <link>https://www.aaronkemner.com/tags/animation-linking/</link>
@@ -40,13 +69,6 @@
       <link>https://www.aaronkemner.com/tags/node/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aaronkemner.com/tags/node/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>UE5</title>
-      <link>https://www.aaronkemner.com/tags/ue5/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.aaronkemner.com/tags/ue5/</guid>
       <description></description>
     </item>
   </channel>

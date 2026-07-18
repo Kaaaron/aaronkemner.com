@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Aaron Kemner ">
+<meta name="description" content="Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.
+AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.
+" />
+<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, C&#43;&#43;, Advanced Unreal Engine, AnimNodes" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://www.aaronkemner.com/blog/ue_yourfirstanimnode/" />
+
+
+    <title>
+        
+            Your First AnimNode | Aaron Kemner 
+        
+    </title>
+
+
+
+
+
+  <link rel="stylesheet" href="/main.min.f500809bf44abddd75dc9f714963909bf89070f3f08f13efeb6da40484800b6c.css" integrity="sha256-9QCAm/RKvd113J9xSWOQm/iQcPPwjxPv622kBISAC2w=" crossorigin="anonymous">
+
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+
+  <meta itemprop="name" content="Your First AnimNode">
+  <meta itemprop="description" content="Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.
+AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.">
+  <meta itemprop="datePublished" content="2026-07-16T10:57:49+02:00">
+  <meta itemprop="dateModified" content="2026-07-16T10:57:49+02:00">
+  <meta itemprop="wordCount" content="3237">
+  <meta itemprop="image" content="https://www.aaronkemner.com/">
+  <meta itemprop="keywords" content="UE5,C&#43;&#43;,Advanced Unreal Engine,AnimNodes">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.aaronkemner.com/">
+  <meta name="twitter:title" content="Your First AnimNode">
+  <meta name="twitter:description" content="Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.
+AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.">
+
+
+
+    <meta property="og:url" content="https://www.aaronkemner.com/blog/ue_yourfirstanimnode/">
+  <meta property="og:site_name" content="Aaron Kemner">
+  <meta property="og:title" content="Your First AnimNode">
+  <meta property="og:description" content="Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.
+AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2026-07-16T10:57:49+02:00">
+    <meta property="article:modified_time" content="2026-07-16T10:57:49+02:00">
+    <meta property="article:tag" content="UE5">
+    <meta property="article:tag" content="C&#43;&#43;">
+    <meta property="article:tag" content="Advanced Unreal Engine">
+    <meta property="article:tag" content="AnimNodes">
+    <meta property="og:image" content="https://www.aaronkemner.com/">
+
+
+
+
+
+
+    <meta property="article:published_time" content="2026-07-16 10:57:49 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GF053ZV41M');
+        }
+      </script>
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark"> </span>
+            <span class="logo__text ">
+                Aaron Kemner</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+                <nav class="menu">
+    <ul class="menu__inner">
+                <li><a href="/about">About</a></li>
+            
+                <li><a href="/animnode-reference/">AnimNode Reference</a></li>
+            
+                <li><a href="/blog/">Blog</a></li>
+            
+    </ul>
+</nav>
+
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            
+    <div class="content">
+        <main class="post">
+
+            <div class="post-info">
+                
+                </p>
+            </div>
+
+            <article>
+                <h2 class="post-title"><a href="https://www.aaronkemner.com/blog/ue_yourfirstanimnode/">Your First AnimNode</a></h2>
+
+                
+                
+                
+
+                <div class="post-content">
+                    <p>Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.</p>
+<p>AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over most of that.
+The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C++, how to improve their UX beyond basic functionality and what to watch out for.</p>
+<p>You can read through this post, or code alongside it, and at the end you should have a simple but working AnimNode ready for use, but more importantly: You should be primed for creating your own AnimNodes when needed, and maybe even be able to collaborate with others on their code.</p>
+<p>As such, you don&rsquo;t need to have any specific experience in terms of Animation Programming in Unreal Engine.</p>
+<h1 id="step-0-what-you-need-to-know">Step 0: What you need to know</h1>
+<p>What you do need is:</p>
+<ul>
+<li>A working installation of Unreal Engine (doesn&rsquo;t matter whether it is built from source, or a binary build downloaded from the launcher)</li>
+<li>Basic knowledge about how Animation Blueprints are used in the Editor and how an AnimNode presents itself to the user</li>
+<li>Basic knowledge of C++ within of Unreal Engine. This means: You should be able to build your project, and have a basic understanding of Unreals reflection system and how to use the USTRUCT, UCLASS, UPROPERTY reflection macros and their specifiers. Also, you should at least have a basic understanding of code modules in UE.</li>
+</ul>
+<p>The assumed starting point for this post is a working Unreal Engine C++ project, but you don&rsquo;t need any specific content.</p>
+<p>Got all that? Great, let&rsquo;s go!</p>
+<h1 id="step-1-a-working-noop">Step 1: A working NoOp</h1>
+<p>Our first goal is to just get an AnimNode that we can use in the Editor. It doesn&rsquo;t do anything yet, but we will see that even this first, seemingly simple step has it&rsquo;s pitfalls.</p>
+<p>In Unreal, AnimNodes consist of two separate parts:</p>
+<ol>
+<li>A runtime struct that performs the actual pose-logic and</li>
+<li>An Editor Class that represents the node in the editor</li>
+</ol>
+<p>AnimNodes are generally very generic functional building blocks, and are reusable across characters by nature.
+As such, it is pretty natural to structure our AnimNodes into a PlugIn in Unreal, and that is what we will do.
+So to start, we&rsquo;ll set up a Plugin with this structure:</p>
+<pre tabindex="0"><code>YourFirstAnimNode 
+| YourFirstAnimNode.uplugin
+| Source
+| | AnimNodeTutorial
+| | |  Private
+| | | |  AnimNodeTutorial.cpp
+| | | Public
+| | | | AnimNodeTutorial.h
+| | | AnimNodeTutorial.Build.cs
+</code></pre><div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	From the editor, we can create a plugin using the &ldquo;Blank&rdquo; template, which should get you there already.
+If you are using Jetbrains Rider as your IDE of choice, you can also create a PlugIn from a template directly in Rider in your project&rsquo;s &ldquo;Plugins&rdquo; directory
+</div>
+
+<p>Fill your <code>.uplugin</code> file with the data you want, and make sure that this first module we have in there is a <code>Runtime</code> module, like this:</p>
+<pre tabindex="0"><code>&#34;Modules&#34;: [
+{
+	&#34;Name&#34;: &#34;AnimNodeTutorial&#34;,
+	&#34;Type&#34;: &#34;Runtime&#34;,
+	&#34;LoadingPhase&#34;: &#34;Default&#34;
+}
+</code></pre><p>This module will contain all the data our AnimNodes will require at runtime, meaning in the editor, but also in the final packaged game.</p>
+<p>So, let&rsquo;s start with the actual AnimNode.</p>
+<h2 id="the-runtime-struct">The Runtime Struct</h2>
+<p>Our goal is to create a simple Skeletal Control AnimNode that copies the transform of one bone and applies it to another bone.
+And we want to be able to add an offset to this copied transform.</p>
+<p>So the first step is to add &ldquo;AnimGraphRuntime&rdquo; to our public dependencies in the <code>.Build.cs</code> file for our runtime module.</p>
+<pre tabindex="0"><code>PublicDependencyModuleNames.AddRange(
+new string[]
+{
+	&#34;Core&#34;,
+	&#34;AnimGraphRuntime&#34;,
+}
+);
+</code></pre><p>This is required, since it contains the baseclasses that our runtime struct will inherit from.
+With this done, we can finally create the actual AnimNode that contains our functionality.</p>
+<p>This comes in the form of a USTRUCT that inherits from <code>FAnimNode_Base</code>.</p>
+<p>But since we want to modify only specific bones, we want our node to inherit from a more specialized struct: <code>FAnimNode_SkeletalControlBase</code>.
+This already provides us with a ton of convenience functionality that we will not need to care about, and it makes creating our first AnimNode a whole lot easier.</p>
+<p>This struct will not be exposed to Blueprints using the default reflection system, but instead a dedicated GraphNode that we will create later on, so we mark it as <code>BlueprintInternalUseOnly</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#pragma once
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;CoreMinimal.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;BoneControllers/AnimNode_SkeletalControlBase.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;AnimNode_CopyBoneWithOffset.generated.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define PLUGIN_API ANIMNODETUTORIAL_API
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>USTRUCT(BlueprintInternalUseOnly)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">PLUGIN_API</span> FAnimNode_CopyBoneWithOffset: <span style="color:#66d9ef">public</span> FAnimNode_SkeletalControlBase
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	GENERATED_BODY()
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#undef PLUGIN_API
+</span></span></span></code></pre></div><p>Also make sure to include the export macro. This is also required for our GraphNode to work in the next step.</p>
+<p>We&rsquo;ll leave the cpp file empty for now.</p>
+<h2 id="the-editor-node">The Editor Node</h2>
+<p>Now to the second part: The Editor Node. This is a class derived from <code>UAnimGraphNode_Base</code> that is responsible for how this node is displayed in the AnimGraph.
+It provides us with a bunch of little bits of functionality that are very useful when working on Animation Blueprints, but don&rsquo;t serve any use in the final game.</p>
+<p>But, since this is only in the editor, we&rsquo;ll need a new module. This module is generally of type <code>UncookedOnly</code>, and its name is by convention the name of the runtime module suffixed with <code>Editor</code>.
+So we&rsquo;ll expand our plugin to the following structure:</p>
+<pre tabindex="0"><code>AnimNodeTurorial 
+| AnimNodeTutorial.uplugin
+| Source
+| | AnimNodeTutorial
+| | |  [...]
+| | AnimNodeTutorialEditor
+| | |  Private
+| | | |  AnimNodeTutorialEditor.cpp
+| | | Public
+| | | | AnimNodeTutorialEditor.h
+| | | AnimNodeTutorialEditor.Build.cs
+</code></pre><p>and add <code>BlueprintGraph</code> and <code>AnimGraph</code> as to its dependencies as well as our AnimNode runtime module:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>PublicDependencyModuleNames.AddRange(
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">new</span> <span style="color:#66d9ef">string</span>[]
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Core&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;AnimGraph&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;BlueprintGraph&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;AnimNodeTutorial&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>Also add it to our <code>.uplugin</code> list of modules:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;AnimNodeTutorialEditor&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Type&#34;</span>: <span style="color:#e6db74">&#34;UncookedOnly&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;LoadingPhase&#34;</span>: <span style="color:#e6db74">&#34;Default&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In a similar fashion to the runtime struct, all editor nodes for AnimNodes should derive from <code>UAnimGraphNode_Base</code>, but we are going to pick a more specialized subclass: <code>UAnimGraphNode_SkeletalControlBase</code>.</p>
+<p>The way this editor node represents our runtime struct is that it has a member of the type of our runtime struct. In the special case of SkeletalControl nodes, we also want to override the protected virtual method <code>GetNode()</code> to return a pointer to that member.
+Doing that should yield a result like this in the header file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#pragma once
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;CoreMinimal.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;AnimNode_CopyBoneWithOffset.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Editor/AnimGraph/Public/AnimGraphNode_SkeletalControlBase.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;AnimGraphNode_CopyBoneWithOffset.generated.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define PLUGIN_API ANIMNODETUTORIALEDITOR_API
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>UCLASS()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PLUGIN_API</span> UAnimGraphNode_CopyBoneWithOffset : <span style="color:#66d9ef">public</span> UAnimGraphNode_SkeletalControlBase
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	GENERATED_BODY()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	UPROPERTY(EditAnywhere, Category<span style="color:#f92672">=</span>Settings)
+</span></span><span style="display:flex;"><span>	FAnimNode_CopyBoneWithOffset Node;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">const</span> FAnimNode_SkeletalControlBase<span style="color:#f92672">*</span> GetNode() <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">override</span> { <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>Node; }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#undef PLUGIN_API
+</span></span></span></code></pre></div><p>And again, we&rsquo;ll leave the cpp file empty at this stage.</p>
+<h2 id="profit">Profit!</h2>
+<p>&hellip;almost. But if we now build our project and start the editor, we should be able to create our new node in the AnimGraph!</p>
+<p><img src="FirstNoOpNode.png" alt="Your first AnimNode"></p>
+<h1 id="step-2-making-it-functional">Step 2: Making it functional</h1>
+<h2 id="adding-our-variables">Adding our variables</h2>
+<p>Now that we&rsquo;ve got our first bit of something, let&rsquo;s actually make it do something, because right now, it will have no effect if we wire it up and just pass along the input pose the node receives.</p>
+<p>To achieve that, we will need to add some member variables to our runtime struct.
+If we mark each of them as an editable UPROPERTY, Unreal will pick up on them and display them automagically in the details panel of the AnimGraph when the node is selected.</p>
+<p>Since we want to copy the transform of one bone to another with this node, we need some way of addressing specific bones and more importantly, we need to expose them to the user.</p>
+<p>The way we do that in AnimNodes is using <code>FBoneReference</code>. For our purposes, it is the way of accessing any data the engine might have about a specific bone during evaluation.</p>
+<p>So let&rsquo;s create two <code>FBoneReference</code> members of our runtime struct, one to specify the bone to copy, and one to specifiy the bone we will apply that copied transform to.
+Also we will add a <code>FTransform</code> member that will be our offset transform from the joint we copy.</p>
+<p>The bones should generally only be set in the editor, so we set them as <code>EditDefaultsOnly</code>, but what if we want to modify the transform at runtime? That might be quite common, so we need to expose it to the graph, so the user can bind variables to it by adding the meta-specifier <code>PinShownByDefault</code>. There is also a corresponding <code>PinHiddenByDefault</code> meta-specifier that can be used and the only thing that changes is whether that member will be exposed to the graph when the node is created. We can hide or show them in the editor ourself after that point, irrespective of the specifier.</p>
+<h2 id="using-our-variables">Using our variables</h2>
+<p>With these in place, we will need to override 3 functions from our base struct:</p>
+<ul>
+<li><code>InitializeBoneReferences</code>
+<ul>
+<li>Here we will make sure our bone references are initialized. This gets called by the engine when the node is initialized but also when the bones change, for example when LOD switches.</li>
+</ul>
+</li>
+<li><code>IsValidToEvaluate</code>
+<ul>
+<li>Here we can make sure our input data is valid so we can proceed to evaluation. If we return false, evaluation will be skipped entirely.</li>
+</ul>
+</li>
+<li><code>EvaluateSkeletalControl_AnyThread</code>
+<ul>
+<li>This is where the actual meat of the AnimNode lives. This gets called every frame to modify our input pose and produce an output that gets fed into the next node of the graph. As the name suggests, this method can be called from any thread, not just the game thread, since Unreal natively supports multithreaded animation evaluation.</li>
+</ul>
+</li>
+</ul>
+<p>So together with our new members, the structs declaration in th header should now look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>USTRUCT(BlueprintInternalUseOnly)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">PLUGIN_API</span> FAnimNode_CopyBoneWithOffset: <span style="color:#66d9ef">public</span> FAnimNode_SkeletalControlBase
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	GENERATED_BODY()
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	UPROPERTY(EditDefaultsOnly)
+</span></span><span style="display:flex;"><span>	FBoneReference BoneToModify;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	UPROPERTY(EditDefaultsOnly)
+</span></span><span style="display:flex;"><span>	FBoneReference BoneToCopy;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	UPROPERTY(EditAnywhere, meta <span style="color:#f92672">=</span> (PinShownByDefault))
+</span></span><span style="display:flex;"><span>	FTransform Offset <span style="color:#f92672">=</span> FTransform<span style="color:#f92672">::</span>Identity;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// FAnimNode_SkeletalControlBase Interface
+</span></span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> InitializeBoneReferences(<span style="color:#66d9ef">const</span> FBoneContainer<span style="color:#f92672">&amp;</span> RequiredBones) <span style="color:#66d9ef">override</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">IsValidToEvaluate</span>(<span style="color:#66d9ef">const</span> USkeleton<span style="color:#f92672">*</span> Skeleton, <span style="color:#66d9ef">const</span> FBoneContainer<span style="color:#f92672">&amp;</span> RequiredBones) <span style="color:#66d9ef">override</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">EvaluateSkeletalControl_AnyThread</span>(FComponentSpacePoseContext<span style="color:#f92672">&amp;</span> Output, TArray<span style="color:#f92672">&lt;</span>FBoneTransform<span style="color:#f92672">&gt;&amp;</span> OutBoneTransforms) <span style="color:#66d9ef">override</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//~ FAnimNode_SkeletalControlBase Interface
+</span></span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="initializing-bone-references">Initializing Bone References</h3>
+<p>Moving on to the definition of these functions, we&rsquo;ll start with <code>InitializeBoneReferences</code>. This takes in a const ref to a <code>FBoneContainer</code> which is a new type to us. Nonetheless, it is a core part of all AnimNode programming.</p>
+<p><code>FBoneContainer</code> is a struct that holds a ton of data related to the current set of bones that are in the evaluated pose. Most importantly for us though, we can use it to determine the index of the bones we want to reference.
+First, we want to initialize all our bone references with this bone container, so lets do that.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> FAnimNode_CopyBoneWithOffset<span style="color:#f92672">::</span>InitializeBoneReferences(<span style="color:#66d9ef">const</span> FBoneContainer<span style="color:#f92672">&amp;</span> RequiredBones)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	BoneToCopy.Initialize(RequiredBones);
+</span></span><span style="display:flex;"><span>	BoneToModify.Initialize(RequiredBones);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If we take a look at the <code>Initialize()</code> method we are using here, we will see that it returns a <code>bool</code> value. This indicates whether the initialization was successful, which is useful if we need to walk the hierarchy for example to find the parents of bones, since we can stop early when the current skeleton is missing relevant bones, for example. For now, we don&rsquo;t need it though.</p>
+<h3 id="guarding-evaluation">Guarding Evaluation</h3>
+<p>Next, we&rsquo;ll implement <code>IsValidToEvaluate</code>, which guards the Evaluation.
+Now that we have our bone refs set up, we can easily use them to check whether we can safely access them, again using an <code>FBoneContainer</code> we get passed into this method.</p>
+<p>And while we are at it, we can also make sure that our offset transform is NaN-free. This is a rule unreal enforces in non-shipping and non-test builds using <code>UE::Anim::Private::ValidatePose</code> after our node has finished evaluating.</p>
+<p>Taking all that into account we arrive at something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> FAnimNode_CopyBoneWithOffset<span style="color:#f92672">::</span>IsValidToEvaluate(<span style="color:#66d9ef">const</span> USkeleton<span style="color:#f92672">*</span> Skeleton, <span style="color:#66d9ef">const</span> FBoneContainer<span style="color:#f92672">&amp;</span> RequiredBones)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> BoneToCopy.IsValidToEvaluate(RequiredBones)
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&amp;&amp;</span> BoneToModify.IsValidToEvaluate(RequiredBones)
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>Offset.ContainsNaN();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="modifying-the-pose">Modifying the pose</h3>
+<p>And finally, we are ready for our actual evaluation method: <code>EvaluateSkeletalControl_AnyThread()</code>.</p>
+<p>Now we actually get two relevant inputs to this function:</p>
+<ol>
+<li><code>FComponentSpacePoseContext&amp; Output</code>, which we can use to access any data related to the ongoing evaluation and even most of the game around us using the contained <code>FAnimInstanceProxy</code> if desired.</li>
+<li><code>TArray&lt;FBoneTransform&gt;&amp; OutBoneTransforms</code>, which is an empty array that we are supposed to fill with the data of the bones we modify.</li>
+</ol>
+<p>Especially the <code>OutBoneTransforms</code> is the relevant bit, because whatever we do with this AnimNode, it will boil down to writing into this array.</p>
+<p>But first, we need to obtain the transform of the bone we want to copy, so how do we do that? Again, with the help of an <code>FBoneContainer</code>!
+The basic idea is that any given pose is just an array of transforms. If we know which index our bone corresponds to, we can simply look it up in that array and do whatever we want with it.
+That index comes in the form of a <code>FCompactPoseBoneIndex</code> we can get from a <code>FBoneReference</code>. The bone container we use for that can be found on the <code>FAnimInstanceProxy</code> we find in our <code>Output</code> context parameter.</p>
+<p>With this index we can look up the transform of our bone in the current pose, which is also part of the <code>Output</code> context object we get passed into the function. Note that that pose is a Component Space pose, and as such the transforms we retrieve will also be in component space.
+Once we have the transform we want to copy, we just need to apply our offset to it, which we can simply do by multiplying our <code>Offset</code> with the bone&rsquo;s transform. Keep in mind that the order of operands matters when composing transforms (meaning <code>A*B</code> is not the same as <code>B*A</code> when it comes to transforms).</p>
+<p>But okay, got that. How do we add that to the <code>OutBoneTransforms</code>? What even is a <code>FBoneTransform</code>?
+Actually, it isn&rsquo;t really anything new or special. The array we are given will always be an empty one, and we have to fill it.
+We can construct an <code>FBoneTransform</code> from a <code>FCompactPoseBoneIndex</code>, which identifies the bone we want to modify, and a <code>FTransform</code>, which is the transform we want to apply to that bone. We already have the transform we just calculated, and we can get the index of our <code>BoneToModify</code> just the same way we did before.
+So we construct a <code>FBoneTransform</code> using these two and add it to our OutBoneTransforms and that&rsquo;s it, our Node works!</p>
+<p>The final code for our evaluation method looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> FAnimNode_CopyBoneWithOffset<span style="color:#f92672">::</span>EvaluateSkeletalControl_AnyThread(FComponentSpacePoseContext<span style="color:#f92672">&amp;</span> Output,
+</span></span><span style="display:flex;"><span>                                                                     TArray<span style="color:#f92672">&lt;</span>FBoneTransform<span style="color:#f92672">&gt;&amp;</span> OutBoneTransforms)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	check(Output.AnimInstanceProxy)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> FBoneContainer<span style="color:#f92672">&amp;</span> RequiredBones <span style="color:#f92672">=</span> Output.AnimInstanceProxy<span style="color:#f92672">-&gt;</span>GetRequiredBones();
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> FCompactPoseBoneIndex BoneToCopyIdx <span style="color:#f92672">=</span> BoneToCopy.GetCompactPoseIndex(RequiredBones);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> FTransform<span style="color:#f92672">&amp;</span> CopiedTransform <span style="color:#f92672">=</span> Output.Pose.GetComponentSpaceTransform(BoneToCopyIdx);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> FTransform FinalTransform <span style="color:#f92672">=</span> Offset <span style="color:#f92672">*</span> CopiedTransform;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> FCompactPoseBoneIndex BoneToModifyIdx <span style="color:#f92672">=</span> BoneToModify.GetCompactPoseIndex(RequiredBones);
+</span></span><span style="display:flex;"><span>	OutBoneTransforms.Add(FBoneTransform(BoneToModifyIdx, FinalTransform));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Restart the editor, and have a play with it. Everything should work now.</p>
+<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	In our example we only modify one bone, but we can modify as many or as few bones as we want to, since we are writing to an array.
+The only thing we need to take into account is that this array is sorted by bone indices, which can be accomplished by sorting using the <code>FCompareBoneTransformIndex</code>-predicate.
+<code>OutBoneTransforms.Sort(FCompareBoneTransformIndex());</code>
+</div>
+
+<h1 id="step-3-making-it-nice">Step 3: Making it nice</h1>
+<p>Okay, so we have something working. That&rsquo;s it, right? Our work is done here!</p>
+<p>Weeeell, not quite. I mean yes, we could call it a day, but there is a lot more we can expand on with relatively little effort.
+Some of these may be more cosmetic points, but others will definitely boost the UX of whoever is using, maintaining or debugging this node in the future. Even if that <em>someone</em> turns out to be ourself.</p>
+<h2 id="a-prettier-graphnode">A Prettier GraphNode</h2>
+<p>There is a bunch we can to to improve the appearance of the node in the editor. For that lets go back to our AnimGraphNode that represents our struct in the editor and override a couple methods we are provided with.
+At least we want to give it a better title and description when we hover over it.
+To do that, let&rsquo;s implement <code>GetNodeTitle()</code> and <code>GetControllerDescription</code>.
+To the .h file of our GraphNode we would add:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// UEdGraphNode Interface
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">virtual</span> FText <span style="color:#a6e22e">GetNodeTitle</span>(ENodeTitleType<span style="color:#f92672">::</span>Type TitleType) <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">override</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//~ UEdGraphNode Interface
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// UAnimGraphNode_SkeletalControlBase Interface
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">virtual</span> FText GetControllerDescription() <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">override</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//~ UAnimGraphNode_SkeletalControlBase Interface
+</span></span></span></code></pre></div><p>and implement them in the cpp something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>FText UAnimGraphNode_CopyBoneWithOffset<span style="color:#f92672">::</span>GetNodeTitle(ENodeTitleType<span style="color:#f92672">::</span>Type TitleType) <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> FText<span style="color:#f92672">::</span>FromString(TEXT(<span style="color:#e6db74">&#34;Copy Bone with Offset&#34;</span>));
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>FText UAnimGraphNode_CopyBoneWithOffset<span style="color:#f92672">::</span>GetControllerDescription() <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> FText<span style="color:#f92672">::</span>FromString(TEXT(<span style="color:#e6db74">&#34;Copies the transform of one bone to another in mesh space and applies an offset based on that.&#34;</span>));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now, it actually gets displayed with the NodeTitle and we get a tooltip when we hover over it.
+<img src="NodeTitleAndControllerDescription.png" alt="Your first AnimNode(but prettier)"></p>
+<h2 id="debug-info">Debug Info</h2>
+<p>You are probably aware of the <code>ShowDebug Animation</code> command we can use in Unreal. It is very useful.
+If we try looking at what our node does right now, we will see that it just gives us a note that this node does not override a method called <code>GatherDebugData</code>. So lets do that next.
+In our runtime struct header we add:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// FAnimNode_Base Interface
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">GatherDebugData</span>(FNodeDebugData<span style="color:#f92672">&amp;</span> DebugData) <span style="color:#66d9ef">override</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//~ FAnimNode_Base Interface
+</span></span></span></code></pre></div><p>and in the cpp:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> FAnimNode_CopyBoneWithOffset<span style="color:#f92672">::</span>GatherDebugData(FNodeDebugData<span style="color:#f92672">&amp;</span> DebugData)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span> ActualBiasedAlpha <span style="color:#f92672">=</span> AlphaScaleBias.ApplyTo(Alpha);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	FString DebugLine <span style="color:#f92672">=</span> DebugData.GetNodeName(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>	DebugLine <span style="color:#f92672">+=</span> FString<span style="color:#f92672">::</span>Printf(TEXT(<span style="color:#e6db74">&#34;(Alpha: %.1f%%), &#34;</span>), ActualBiasedAlpha <span style="color:#f92672">*</span> <span style="color:#ae81ff">100.f</span>);
+</span></span><span style="display:flex;"><span>	DebugLine <span style="color:#f92672">+=</span> FString<span style="color:#f92672">::</span>Printf(TEXT(<span style="color:#e6db74">&#34;[Copying %s], &#34;</span>), <span style="color:#f92672">*</span>BoneToCopy.BoneName.ToString());
+</span></span><span style="display:flex;"><span>	DebugLine <span style="color:#f92672">+=</span> FString<span style="color:#f92672">::</span>Printf(TEXT(<span style="color:#e6db74">&#34;[Modifying %s]&#34;</span>), <span style="color:#f92672">*</span>BoneToModify.BoneName.ToString());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	DebugData.AddDebugItem(DebugLine);
+</span></span><span style="display:flex;"><span>	ComponentPose.GatherDebugData(DebugData);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And now <code>ShowDebug Animation</code> will yield accurate data for our node:
+<img src="GatherDebugLine.png" alt="Debug Line"></p>
+<h2 id="warnings-for-missing-bones">Warnings for missing bones</h2>
+<p>And the final improvement for the moment would be to utilize the &ldquo;VisualWarning&rdquo; functions SkeletalControl nodes provide.
+In the <code>InitializeBoneReferences()</code> method we override on the runtime struct, we are currently ignoring whether the initializationof our bone references was successful, but we don&rsquo;t need to. Instead we can add warnings, if we can&rsquo;t find the bones we add warnings directly on the node by modifying that method like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> FAnimNode_CopyBoneWithOffset<span style="color:#f92672">::</span>InitializeBoneReferences(<span style="color:#66d9ef">const</span> FBoneContainer<span style="color:#f92672">&amp;</span> RequiredBones)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>BoneToCopy.Initialize(RequiredBones))
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if WITH_EDITOR
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> FString Message <span style="color:#f92672">=</span> FString<span style="color:#f92672">::</span>Printf(TEXT(<span style="color:#e6db74">&#34;Missing/Invalid BoneToCopy: %s&#34;</span>), <span style="color:#f92672">*</span>BoneToCopy.BoneName.ToString());
+</span></span><span style="display:flex;"><span>		AddValidationVisualWarning(FText<span style="color:#f92672">::</span>FromString(Message));
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>BoneToModify.Initialize(RequiredBones))
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if WITH_EDITOR
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> FString Message <span style="color:#f92672">=</span> FString<span style="color:#f92672">::</span>Printf(TEXT(<span style="color:#e6db74">&#34;Missing/Invalid BoneToModify: %s&#34;</span>), <span style="color:#f92672">*</span>BoneToCopy.BoneName.ToString());
+</span></span><span style="display:flex;"><span>		AddValidationVisualWarning(FText<span style="color:#f92672">::</span>FromString(Message));
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Which leads to this result when a node is compiled where we can&rsquo;t find the bones:
+<img src="VisualWarning.png" alt="Visual Warning on the Node"></p>
+<h1 id="final-notes">Final Notes</h1>
+<p>This post is already quite long, but originally I planned to go over even more stuff. AnimNodes are a whole universe in itself and offer so many opportunities for awesome tech.
+This node specifically is just a SkeletalControl node, which already is very convenient. Working on other types of AnimNodes offers a host of new possibilities and a lot more granular control, but they also require more work to create and maintain.
+But even within the context of SkeletalControl AnimNodes, there is more that can be talked about, like debug drawing, property folding, strict validation, and other topics that are applicable to any AnimNode.</p>
+<p>Especially concepts such as the <code>FAnimInstanceProxy</code> we used in this node can probably fill many more blogposts by going into details like that we can obtain the mesh&rsquo;s world transform from it and thus can operate in world space. And a whole lot more.</p>
+<p>But that is not in the scope of this article.</p>
+<p>Instead, you now should have a basic grasp of how to create SkeletalControl AnimNodes. Honestly, these will probably be the kinds of AnimNodes you will be creating most frequently from now on anyway, so this is a great start.</p>
+<p>If you are curious though, I encourage you to look into the engine source. Look into how the methods we have worked with today get called. Look at other AnimNodes that the engine provides and try to understand them.</p>
+<p>Or you could wait and hope that I will put out more articles like this one. Up to you.</p>
+<p>In any case, the final source code of this node is available <a href="https://github.com/Kaaaron/YourFirstAnimNode">on my GitHub over here</a>.</p>
+
+                </div>
+            </article>
+
+            <hr />
+
+            <div class="post-info">
+                
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/ue5/">UE5</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/c&#43;&#43;/">C&#43;&#43;</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/advanced-unreal-engine/">Advanced Unreal Engine</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/animnodes/">AnimNodes</a></span>
+        
+    </p>
+
+                
+            </div>
+        </main>
+    </div>
+
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2026</span>
+            
+            
+            
+            <span>Aaron Kemner</span>
+        </div>
+    </div>
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.08b680078a3cf9c69e3dd217a5aa52cfddd4a1d850f8cdff127fdd7421a71f8b2b474be69386f67819edace92273916e7230c9054f38107db9dc6730b3530ab5.js" integrity="sha512-CLaAB4o8&#43;caePdIXpapSz93UodhQ&#43;M3/En/ddCGnH4srR0vmk4b2eBntrOkic5FucjDJBU84EH253Gcws1MKtQ=="></script>
+
+
+
+
+    </body>
+</html>
