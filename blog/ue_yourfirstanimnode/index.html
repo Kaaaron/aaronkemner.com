@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Aaron Kemner ">
 <meta name="description" content="Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.
-AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.
+AnimNodes are a deep topic with a lot of nuances. This blog post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.
 " />
 <meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, C&#43;&#43;, Advanced Unreal Engine, AnimNodes" />
 <meta name="robots" content="noodp" />
@@ -43,10 +43,10 @@ AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over 
 
   <meta itemprop="name" content="Your First AnimNode">
   <meta itemprop="description" content="Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.
-AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.">
+AnimNodes are a deep topic with a lot of nuances. This blog post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.">
   <meta itemprop="datePublished" content="2026-07-16T10:57:49+02:00">
   <meta itemprop="dateModified" content="2026-07-16T10:57:49+02:00">
-  <meta itemprop="wordCount" content="3237">
+  <meta itemprop="wordCount" content="3331">
   <meta itemprop="image" content="https://www.aaronkemner.com/">
   <meta itemprop="keywords" content="UE5,C&#43;&#43;,Advanced Unreal Engine,AnimNodes">
 
@@ -54,7 +54,7 @@ AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over 
   <meta name="twitter:image" content="https://www.aaronkemner.com/">
   <meta name="twitter:title" content="Your First AnimNode">
   <meta name="twitter:description" content="Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.
-AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.">
+AnimNodes are a deep topic with a lot of nuances. This blog post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.">
 
 
 
@@ -62,7 +62,7 @@ AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over 
   <meta property="og:site_name" content="Aaron Kemner">
   <meta property="og:title" content="Your First AnimNode">
   <meta property="og:description" content="Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.
-AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.">
+AnimNodes are a deep topic with a lot of nuances. This blog post will skip over most of that. The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C&#43;&#43;, how to improve their UX beyond basic functionality and what to watch out for.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -179,14 +179,13 @@ AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over 
 
                 <div class="post-content">
                     <p>Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.</p>
-<p>AnimNodes are a deep topic with a lot of nuances. This Blog Post will skip over most of that.
+<p>AnimNodes are a deep topic with a lot of nuances. This blog post will skip over most of that.
 The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C++, how to improve their UX beyond basic functionality and what to watch out for.</p>
 <p>You can read through this post, or code alongside it, and at the end you should have a simple but working AnimNode ready for use, but more importantly: You should be primed for creating your own AnimNodes when needed, and maybe even be able to collaborate with others on their code.</p>
 <p>As such, you don&rsquo;t need to have any specific experience in terms of Animation Programming in Unreal Engine.</p>
 <h1 id="step-0-what-you-need-to-know">Step 0: What you need to know</h1>
 <p>What you do need is:</p>
 <ul>
-<li>A working installation of Unreal Engine (doesn&rsquo;t matter whether it is built from source, or a binary build downloaded from the launcher)</li>
 <li>Basic knowledge about how Animation Blueprints are used in the Editor and how an AnimNode presents itself to the user</li>
 <li>Basic knowledge of C++ within of Unreal Engine. This means: You should be able to build your project, and have a basic understanding of Unreals reflection system and how to use the USTRUCT, UCLASS, UPROPERTY reflection macros and their specifiers. Also, you should at least have a basic understanding of code modules in UE.</li>
 </ul>
@@ -485,7 +484,7 @@ In our runtime struct header we add:</p>
 <img src="GatherDebugLine.png" alt="Debug Line"></p>
 <h2 id="warnings-for-missing-bones">Warnings for missing bones</h2>
 <p>And the final improvement for the moment would be to utilize the &ldquo;VisualWarning&rdquo; functions SkeletalControl nodes provide.
-In the <code>InitializeBoneReferences()</code> method we override on the runtime struct, we are currently ignoring whether the initializationof our bone references was successful, but we don&rsquo;t need to. Instead we can add warnings, if we can&rsquo;t find the bones we add warnings directly on the node by modifying that method like this:</p>
+In the <code>InitializeBoneReferences()</code> method we override on the runtime struct, we are currently ignoring whether the initialization of our bone references was successful, but we don&rsquo;t need to. Instead we can add warnings, if we can&rsquo;t find the bones we add warnings directly on the node by modifying that method like this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> FAnimNode_CopyBoneWithOffset<span style="color:#f92672">::</span>InitializeBoneReferences(<span style="color:#66d9ef">const</span> FBoneContainer<span style="color:#f92672">&amp;</span> RequiredBones)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>BoneToCopy.Initialize(RequiredBones))
@@ -505,9 +504,21 @@ In the <code>InitializeBoneReferences()</code> method we override on the runtime
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Which leads to this result when a node is compiled where we can&rsquo;t find the bones:
 <img src="VisualWarning.png" alt="Visual Warning on the Node"></p>
+<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	Note the <code>#if WITH_EDITOR</code> guards in the code above. These methods are declared with the same guards in <code>FAnimNode_SkeletalControlBase</code> so
+using them without will work fine in the editor, but non-editor builds will not compile.
+</div>
+
+<h1 id="results">Results</h1>
+<p>We now have a working AnimNode that we can use in any project we add this plugin to.</p>
+<p>Lets check it out!
+<img src="ResultToggle.gif" alt="The Final Result"></p>
+<p>Here I am simply matching the IK Hands to the FK hands and also add an offset to the IK joint I have attached the weapon to (and also toggle the alpha for demonstration purposes).</p>
+<p>This is a simple but effective usecase, but it is barely scratching the surface of what we can achieve with custom animnodes.</p>
 <h1 id="final-notes">Final Notes</h1>
-<p>This post is already quite long, but originally I planned to go over even more stuff. AnimNodes are a whole universe in itself and offer so many opportunities for awesome tech.
-This node specifically is just a SkeletalControl node, which already is very convenient. Working on other types of AnimNodes offers a host of new possibilities and a lot more granular control, but they also require more work to create and maintain.
+<p>This post is already quite long, but originally I planned to go over even more stuff.
+AnimNodes are a whole universe in itself and offer so many opportunities for awesome tech.</p>
+<p>This node specifically is &ldquo;just&rdquo; a SkeletalControl node, which already is very convenient. Working on other types of AnimNodes offers a host of new possibilities and a lot more granular control, but they also require more work to create and maintain.
 But even within the context of SkeletalControl AnimNodes, there is more that can be talked about, like debug drawing, property folding, strict validation, and other topics that are applicable to any AnimNode.</p>
 <p>Especially concepts such as the <code>FAnimInstanceProxy</code> we used in this node can probably fill many more blogposts by going into details like that we can obtain the mesh&rsquo;s world transform from it and thus can operate in world space. And a whole lot more.</p>
 <p>But that is not in the scope of this article.</p>
