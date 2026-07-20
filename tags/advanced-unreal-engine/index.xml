@@ -6,12 +6,12 @@
     <description>Recent content in Advanced Unreal Engine on Aaron Kemner</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jul 2026 10:57:49 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2026 13:36:49 +0200</lastBuildDate>
     <atom:link href="https://www.aaronkemner.com/tags/advanced-unreal-engine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Your First AnimNode</title>
       <link>https://www.aaronkemner.com/blog/ue_yourfirstanimnode/</link>
-      <pubDate>Thu, 16 Jul 2026 10:57:49 +0200</pubDate>
+      <pubDate>Mon, 20 Jul 2026 13:36:49 +0200</pubDate>
       <guid>https://www.aaronkemner.com/blog/ue_yourfirstanimnode/</guid>
       <description>&lt;p&gt;Today, we are going to create our very own, very first AnimNode that can be used to modify the pose in the AnimGraph of an Animation Blueprint in Unreal Engine.&lt;/p&gt;&#xA;&lt;p&gt;AnimNodes are a deep topic with a lot of nuances. This blog post will skip over most of that.&#xA;The goal is to get something working. To introduce the basic concepts of how to create AnimNodes using C++, how to improve their UX beyond basic functionality and what to watch out for.&lt;/p&gt;</description>
     </item>
