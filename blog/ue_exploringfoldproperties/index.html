@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Aaron Kemner ">
+<meta name="description" content="When programming AnimNodes in Unreal Engine, you might encounter an interesting meta-specifier in some UPROPERTY-fields: FoldProperty.
+Interestingly, while there have been a few (very few) community contributions on this topic, it seems to have never been officially documented. How unexpected.
+So what does this do, how do we use it, and how does it work?
+What is a FoldProperty? Let&rsquo;s get this one out of the way first.
+The general Idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don&rsquo;t need every instance of an AnimNode to hold that value. Instead we only need one instance of that node for all Animation Blueprints of a given class. And each of the AnimNodes within these Animation Blueprints can then read that value from the same location.
+" />
+<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, C&#43;&#43;, Advanced Unreal Engine, AnimNodes" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://www.aaronkemner.com/blog/ue_exploringfoldproperties/" />
+
+
+    <title>
+        
+            Exploring the &#34;FoldProperty&#34; specifier | Aaron Kemner 
+        
+    </title>
+
+
+
+
+
+  <link rel="stylesheet" href="/main.min.f500809bf44abddd75dc9f714963909bf89070f3f08f13efeb6da40484800b6c.css" integrity="sha256-9QCAm/RKvd113J9xSWOQm/iQcPPwjxPv622kBISAC2w=" crossorigin="anonymous">
+
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+
+  <meta itemprop="name" content="Exploring the &#34;FoldProperty&#34; specifier">
+  <meta itemprop="description" content="When programming AnimNodes in Unreal Engine, you might encounter an interesting meta-specifier in some UPROPERTY-fields: FoldProperty.
+Interestingly, while there have been a few (very few) community contributions on this topic, it seems to have never been officially documented. How unexpected.
+So what does this do, how do we use it, and how does it work?
+What is a FoldProperty? Let’s get this one out of the way first.
+The general Idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don’t need every instance of an AnimNode to hold that value. Instead we only need one instance of that node for all Animation Blueprints of a given class. And each of the AnimNodes within these Animation Blueprints can then read that value from the same location.">
+  <meta itemprop="datePublished" content="2026-08-01T19:10:05+02:00">
+  <meta itemprop="dateModified" content="2026-08-01T19:10:05+02:00">
+  <meta itemprop="wordCount" content="1123">
+  <meta itemprop="image" content="https://www.aaronkemner.com/">
+  <meta itemprop="keywords" content="UE5,C&#43;&#43;,Advanced Unreal Engine,AnimNodes">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.aaronkemner.com/">
+  <meta name="twitter:title" content="Exploring the &#34;FoldProperty&#34; specifier">
+  <meta name="twitter:description" content="When programming AnimNodes in Unreal Engine, you might encounter an interesting meta-specifier in some UPROPERTY-fields: FoldProperty.
+Interestingly, while there have been a few (very few) community contributions on this topic, it seems to have never been officially documented. How unexpected.
+So what does this do, how do we use it, and how does it work?
+What is a FoldProperty? Let’s get this one out of the way first.
+The general Idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don’t need every instance of an AnimNode to hold that value. Instead we only need one instance of that node for all Animation Blueprints of a given class. And each of the AnimNodes within these Animation Blueprints can then read that value from the same location.">
+
+
+
+    <meta property="og:url" content="https://www.aaronkemner.com/blog/ue_exploringfoldproperties/">
+  <meta property="og:site_name" content="Aaron Kemner">
+  <meta property="og:title" content="Exploring the &#34;FoldProperty&#34; specifier">
+  <meta property="og:description" content="When programming AnimNodes in Unreal Engine, you might encounter an interesting meta-specifier in some UPROPERTY-fields: FoldProperty.
+Interestingly, while there have been a few (very few) community contributions on this topic, it seems to have never been officially documented. How unexpected.
+So what does this do, how do we use it, and how does it work?
+What is a FoldProperty? Let’s get this one out of the way first.
+The general Idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don’t need every instance of an AnimNode to hold that value. Instead we only need one instance of that node for all Animation Blueprints of a given class. And each of the AnimNodes within these Animation Blueprints can then read that value from the same location.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2026-08-01T19:10:05+02:00">
+    <meta property="article:modified_time" content="2026-08-01T19:10:05+02:00">
+    <meta property="article:tag" content="UE5">
+    <meta property="article:tag" content="C&#43;&#43;">
+    <meta property="article:tag" content="Advanced Unreal Engine">
+    <meta property="article:tag" content="AnimNodes">
+    <meta property="og:image" content="https://www.aaronkemner.com/">
+
+
+
+
+
+
+    <meta property="article:published_time" content="2026-08-01 19:10:05 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GF053ZV41M');
+        }
+      </script>
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark"> </span>
+            <span class="logo__text ">
+                Aaron Kemner</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+                <nav class="menu">
+    <ul class="menu__inner">
+                <li><a href="/about">About</a></li>
+            
+                <li><a href="/animnode-reference/">AnimNode Reference</a></li>
+            
+                <li><a href="/blog/">Blog</a></li>
+            
+    </ul>
+</nav>
+
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            
+    <div class="content">
+        <main class="post">
+
+            <div class="post-info">
+                
+                </p>
+            </div>
+
+            <article>
+                <h2 class="post-title"><a href="https://www.aaronkemner.com/blog/ue_exploringfoldproperties/">Exploring the &ldquo;FoldProperty&rdquo; specifier</a></h2>
+
+                
+                
+                
+
+                <div class="post-content">
+                    <p>When programming AnimNodes in Unreal Engine, you might encounter an interesting meta-specifier in some <code>UPROPERTY</code>-fields: <code>FoldProperty</code>.</p>
+<p>Interestingly, while there have been a few (very few) community contributions on this topic, it seems to have never been officially documented. How unexpected.</p>
+<p>So what does this do, how do we use it, and how does it work?</p>
+<h1 id="what-is-a-foldproperty">What is a FoldProperty?</h1>
+<p>Let&rsquo;s get this one out of the way first.</p>
+<p>The general Idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated <em>a lot</em>.
+How, you may ask? By removing some of the member variables of the node and treating them as constants.
+Because if they are constant, we don&rsquo;t need every instance of an AnimNode to hold that value. Instead we only need one instance of that node for all Animation Blueprints of a given class.
+And each of the AnimNodes within these Animation Blueprints can then read that value from the same location.</p>
+<p>For a simple boolean variable, saving one byte is likely not going to be worth it, but once your AnimNode grows it may become worth saving some memory.
+Especially if there are a lot of instance of that node running in the scene(either because you have a lot of characters, or just a few characters that simply use your node a lot).</p>
+<p>For what it is though, it is a fairly simple and straight forward optimization if you know your value may be a constant, so there rarely is much of an argument against using this tool at your disposal.</p>
+<h1 id="how-do-we-use-it">How do we use it?</h1>
+<p>This one&rsquo;s quick.</p>
+<p>First, you declare your variable as usual with the only difference being that it needs to be guarded by an <code>#if WITH_EDITORONLY_DATA</code> preprocessor guard.
+This means that in the editor, our property will be available as usual, but in a shipped build it will simply not exist, as it is compiled out.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">/** Within FMyAnimNode */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if WITH_EDITORONLY_DATA
+</span></span></span><span style="display:flex;"><span>	UPROPERTY(EditAnywhere, meta <span style="color:#f92672">=</span> (FoldProperty, PinHiddenByDefault))
+</span></span><span style="display:flex;"><span>	FTransform MySampleProperty;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif </span><span style="color:#75715e">//WITH_EDITORONLY_DATA
+</span></span></span></code></pre></div><p>But if it won&rsquo;t be available in a shipped build, is our data simply lost in the final game? Nay! We just need to trust Unreal to keep it safe and ask nicely.
+So let&rsquo;s create a getter method we can use to obtain our folded properties value.</p>
+<p>We&rsquo;ll do this using the <code>GET_ANIM_NODE_DATA</code> macro which we feed the type and name of our variable and that&rsquo;s it. Wrapped up in a nice getter function, marked as <code>[[nodiscard]]</code> and <code>const</code> for cleanliness and correctness and this is what we end up with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">/** Within FMyAnimNode */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">[[nodiscard]]</span> FTransform FMyAnimNode<span style="color:#f92672">::</span>GetMySampleProperty() <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">GET_ANIM_NODE_DATA</span>(FTransform, MySampleProperty);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And we can use it anywhere in our AnimNode, so any time we would read <code>MySampleProperty</code>, we will now use <code>GetMySampleProperty()</code> instead.
+And since our getter is not guarded by preprocessor statements, it will also be available in a shipped build.</p>
+<p>If we were to forget to use the getter over direct variable access, that previous preprocessor guard will not even let us compile the project.
+This means that even if we were to forget we have a getter, our own design will force us to use the correct way. Neat!</p>
+<p>Anything else? Nope!
+If all you care about is what it does and how to use it, you are good to go now.
+But if you are curious, let&rsquo;s take a look at&hellip;</p>
+<h1 id="how-it-works">How it works</h1>
+<p>If we search the engine source code for the string literal <code>&quot;FoldProperty&quot;</code>, we will encounter it being used within the Animation Blueprint Compiler. More specifically <code>FAnimBlueprintCompilerContext::GatherFoldRecordsForAnimationNode</code>.
+And the two usecases we find both lead to <code>FAnimBlueprintCompilerContext::AddFoldedPropertyRecord</code> if our variable has that meta specifier, which is determines whether a given property on an animation blueprint is actually constant by definition, or whether it might actually change.</p>
+<p>And how does the compiler know if a property is constant or not? Well, there are a few conditions.</p>
+<ol>
+<li>If that property is marked as a &ldquo;Dynamic Value&rdquo; in the AnimNodes details panel, it is assumed to be mutable, as it&rsquo;s data can change at any point,</li>
+<li>otherwise, if the property is not exposed as a pin, it is treated as a constant,</li>
+<li>otherwise, if the property <em>is</em> exoposed as a pin, but that pin is not connected, it is also treated as a constant.
+In all other cases, the property is regarded as &ldquo;mutable&rdquo;, meaning it could change at any time and thus cannot be folded.</li>
+</ol>
+<p><code>AddFoldedPropertyRecord</code> will also add an error to the compilation result, if our variable is not an editor-only property, so we don&rsquo;t even need to wait until our build fails to notice an error.</p>
+<p>But assuming we did our job, and he prerequisites are met, the AnimBlueprint compiler will end up calling <code>FAnimBlueprintCompilerContext::ProcessFoldedPropertyRecords</code>, which will end up adding our constant variables to <code>UAnimBlueprintGeneratedClass::AnimNodeData</code>, which is an Array of <code>FAnimNodeData</code>. This array is one entry, per AnimNode and once compilation is done, each AnimNode will receive a pointer to their data entry.,</p>
+<p>Alrighty, now we know how Unreal folds our constant data into the compiled <code>UAnimBlueprintGeneratedClass</code>. How do we get it back?
+Using the <code>GET_ANIM_NODE_DATA</code> macro like we did in our example above, we essentially resolve to a call to <code>FAnimNodeData::GetData</code> via <code>FAnimNode_Base::GetData&lt;&gt;()</code>.
+This takes an <code>UE::Anim::FNodeDataId</code>, which is based on the identifier( read &ldquo;name&rdquo;) of our variable and gets automatically passed into the function by the macro.</p>
+<p>From here on, it is more straight forward. <code>FAnimNodeData</code> has an array called <code>Entries</code>, and the <code>NodeDataId</code> the macro passes into this function contains an index into these <code>Entries</code>.
+The function then uses a bit mask to determine whether that the entry for the property we are requesting is mutable or constant and returns the corresponding mutable or constant data that got compiled into the <code>UAnimBlueprintGeneratedClass</code> beforehand.
+The only other notable thing is that <code>FAnimNodeData::GetData()</code> actually just returns <code>void*</code>, so that gets casted to the correct type in <code>FAnimNode_Base::GetData&lt;&gt;()</code> which then returns to our original callsite in the AnimNode and we continue with our AnimNode code.</p>
+<p>And because the macro uses a protected method on the AnimNode baseclass and passes in the <code>this</code> pointer, it is only usable within an AnimNode.</p>
+<h2 id="and-that-is-it">And that is it!</h2>
+<p>Now we know what the <code>FoldProperty</code> meta specifier does, how we can use it, and have at least an overview over how it is actually implemented in the engine.</p>
+<p>I hope you learned something. I sure did, as exploring the depths of the engine always brings up interesting new nuggets of knowledge, no matter how often you have already done so.</p>
+<p>And if you are <em>really</em> curious now and didn&rsquo;t know about this topic before, I encourage you to see if you can track the flow I have described here yourself in the engine.</p>
+
+                </div>
+            </article>
+
+            <hr />
+
+            <div class="post-info">
+                
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/ue5/">UE5</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/c&#43;&#43;/">C&#43;&#43;</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/advanced-unreal-engine/">Advanced Unreal Engine</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/animnodes/">AnimNodes</a></span>
+        
+    </p>
+
+                
+            </div>
+        </main>
+    </div>
+
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2026</span>
+            
+            
+            
+            <span>Aaron Kemner</span>
+        </div>
+    </div>
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.08b680078a3cf9c69e3dd217a5aa52cfddd4a1d850f8cdff127fdd7421a71f8b2b474be69386f67819edace92273916e7230c9054f38107db9dc6730b3530ab5.js" integrity="sha512-CLaAB4o8&#43;caePdIXpapSz93UodhQ&#43;M3/En/ddCGnH4srR0vmk4b2eBntrOkic5FucjDJBU84EH253Gcws1MKtQ=="></script>
+
+
+
+
+    </body>
+</html>
