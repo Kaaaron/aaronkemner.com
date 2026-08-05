@@ -10,7 +10,7 @@
 Interestingly, while there have been a few (very few) community contributions on this topic, it seems to have never been officially documented. How unexpected.
 So what does this do, how do we use it, and how does it work?
 What is a FoldProperty? Let&rsquo;s get this one out of the way first.
-The general Idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don&rsquo;t need every instance of an AnimNode to hold that value. Instead we only need one instance of that node for all Animation Blueprints of a given class. And each of the AnimNodes within these Animation Blueprints can then read that value from the same location.
+The general idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don&rsquo;t need every instance of an AnimNode to hold an instance of that value.
 " />
 <meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, C&#43;&#43;, Advanced Unreal Engine, AnimNodes" />
 <meta name="robots" content="noodp" />
@@ -49,10 +49,10 @@ The general Idea behind this meta-specifier is that we can save on memory if an 
 Interestingly, while there have been a few (very few) community contributions on this topic, it seems to have never been officially documented. How unexpected.
 So what does this do, how do we use it, and how does it work?
 What is a FoldProperty? Let’s get this one out of the way first.
-The general Idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don’t need every instance of an AnimNode to hold that value. Instead we only need one instance of that node for all Animation Blueprints of a given class. And each of the AnimNodes within these Animation Blueprints can then read that value from the same location.">
+The general idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don’t need every instance of an AnimNode to hold an instance of that value.">
   <meta itemprop="datePublished" content="2026-08-01T19:10:05+02:00">
   <meta itemprop="dateModified" content="2026-08-01T19:10:05+02:00">
-  <meta itemprop="wordCount" content="1123">
+  <meta itemprop="wordCount" content="1329">
   <meta itemprop="image" content="https://www.aaronkemner.com/">
   <meta itemprop="keywords" content="UE5,C&#43;&#43;,Advanced Unreal Engine,AnimNodes">
 
@@ -63,7 +63,7 @@ The general Idea behind this meta-specifier is that we can save on memory if an 
 Interestingly, while there have been a few (very few) community contributions on this topic, it seems to have never been officially documented. How unexpected.
 So what does this do, how do we use it, and how does it work?
 What is a FoldProperty? Let’s get this one out of the way first.
-The general Idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don’t need every instance of an AnimNode to hold that value. Instead we only need one instance of that node for all Animation Blueprints of a given class. And each of the AnimNodes within these Animation Blueprints can then read that value from the same location.">
+The general idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don’t need every instance of an AnimNode to hold an instance of that value.">
 
 
 
@@ -74,7 +74,7 @@ The general Idea behind this meta-specifier is that we can save on memory if an 
 Interestingly, while there have been a few (very few) community contributions on this topic, it seems to have never been officially documented. How unexpected.
 So what does this do, how do we use it, and how does it work?
 What is a FoldProperty? Let’s get this one out of the way first.
-The general Idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don’t need every instance of an AnimNode to hold that value. Instead we only need one instance of that node for all Animation Blueprints of a given class. And each of the AnimNodes within these Animation Blueprints can then read that value from the same location.">
+The general idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don’t need every instance of an AnimNode to hold an instance of that value.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -195,13 +195,20 @@ The general Idea behind this meta-specifier is that we can save on memory if an 
 <p>So what does this do, how do we use it, and how does it work?</p>
 <h1 id="what-is-a-foldproperty">What is a FoldProperty?</h1>
 <p>Let&rsquo;s get this one out of the way first.</p>
-<p>The general Idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated <em>a lot</em>.
+<p>The general idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated <em>a lot</em>.
 How, you may ask? By removing some of the member variables of the node and treating them as constants.
-Because if they are constant, we don&rsquo;t need every instance of an AnimNode to hold that value. Instead we only need one instance of that node for all Animation Blueprints of a given class.
+Because if they are constant, we don&rsquo;t need every instance of an AnimNode to hold an instance of that value.</p>
+<p>Instead we only need one instance of that node for all Animation Blueprints of a given class.
 And each of the AnimNodes within these Animation Blueprints can then read that value from the same location.</p>
 <p>For a simple boolean variable, saving one byte is likely not going to be worth it, but once your AnimNode grows it may become worth saving some memory.
-Especially if there are a lot of instance of that node running in the scene(either because you have a lot of characters, or just a few characters that simply use your node a lot).</p>
-<p>For what it is though, it is a fairly simple and straight forward optimization if you know your value may be a constant, so there rarely is much of an argument against using this tool at your disposal.</p>
+Especially if there are a lot of instance of that node running in the scene(either because you have a lot of characters, or just a few complex characters that simply use your node a lot).</p>
+<p>For what it is though, it is a fairly simple and straight forward memory optimization if you know your value may be a constant and reducing memory footprint is your goal.</p>
+<p>A word of caution though, accessing folded properties is more expensive due to the indirection that this system introduces.</p>
+<p>In a test in a development build on my machine (Ryzen 9 7950X), accessing a folded property was around 10x slower than directly accessing a non-folded member variable of the same type.
+This discrepancy was only noticeable though in a loop that read out each version 10.000 times. Looking at individual access is reaching the smallest timeframe that Unreal Insights supports as it seems (100 nanoseconds).</p>
+<p>Now, this is in a quick and dirty test case, so feel free to test for yourself. How it performs on your target machines for your project is more important than what I could give you here.</p>
+<p>However, the conclusion I draw from this test is that using FoldProperty is not noticeable slower in reasonable usecases, especially when you only query the property once and cache it for the remainder of the scope.</p>
+<p>Okay, but&hellip;</p>
 <h1 id="how-do-we-use-it">How do we use it?</h1>
 <p>This one&rsquo;s quick.</p>
 <p>First, you declare your variable as usual with the only difference being that it needs to be guarded by an <code>#if WITH_EDITORONLY_DATA</code> preprocessor guard.
@@ -212,8 +219,8 @@ This means that in the editor, our property will be available as usual, but in a
 </span></span></span><span style="display:flex;"><span>	UPROPERTY(EditAnywhere, meta <span style="color:#f92672">=</span> (FoldProperty, PinHiddenByDefault))
 </span></span><span style="display:flex;"><span>	FTransform MySampleProperty;
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#endif </span><span style="color:#75715e">//WITH_EDITORONLY_DATA
-</span></span></span></code></pre></div><p>But if it won&rsquo;t be available in a shipped build, is our data simply lost in the final game? Nay! We just need to trust Unreal to keep it safe and ask nicely.
-So let&rsquo;s create a getter method we can use to obtain our folded properties value.</p>
+</span></span></span></code></pre></div><p>But if it won&rsquo;t be available in a shipped build, is our data simply lost in the final game? Nay! We just need to trust Unreal to keep it safe and ask nicely when we need it.
+So let&rsquo;s create a getter method we can use to retrieve our folded properties value.</p>
 <p>We&rsquo;ll do this using the <code>GET_ANIM_NODE_DATA</code> macro which we feed the type and name of our variable and that&rsquo;s it. Wrapped up in a nice getter function, marked as <code>[[nodiscard]]</code> and <code>const</code> for cleanliness and correctness and this is what we end up with:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">/** Within FMyAnimNode */</span>
 </span></span><span style="display:flex;"><span>
@@ -223,7 +230,7 @@ So let&rsquo;s create a getter method we can use to obtain our folded properties
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>And we can use it anywhere in our AnimNode, so any time we would read <code>MySampleProperty</code>, we will now use <code>GetMySampleProperty()</code> instead.
 And since our getter is not guarded by preprocessor statements, it will also be available in a shipped build.</p>
-<p>If we were to forget to use the getter over direct variable access, that previous preprocessor guard will not even let us compile the project.
+<p>If we were to forget to use the getter over direct variable access, that previous preprocessor guard will not even let us package the project.
 This means that even if we were to forget we have a getter, our own design will force us to use the correct way. Neat!</p>
 <p>Anything else? Nope!
 If all you care about is what it does and how to use it, you are good to go now.
@@ -247,10 +254,13 @@ This takes an <code>UE::Anim::FNodeDataId</code>, which is based on the identifi
 The function then uses a bit mask to determine whether that the entry for the property we are requesting is mutable or constant and returns the corresponding mutable or constant data that got compiled into the <code>UAnimBlueprintGeneratedClass</code> beforehand.
 The only other notable thing is that <code>FAnimNodeData::GetData()</code> actually just returns <code>void*</code>, so that gets casted to the correct type in <code>FAnimNode_Base::GetData&lt;&gt;()</code> which then returns to our original callsite in the AnimNode and we continue with our AnimNode code.</p>
 <p>And because the macro uses a protected method on the AnimNode baseclass and passes in the <code>this</code> pointer, it is only usable within an AnimNode.</p>
-<h2 id="and-that-is-it">And that is it!</h2>
+<p>You can see though, it is a lot more work than simply accessing a property directly on our AnimNode, which is why it technically is more expensive than if we were to access a member as usual.</p>
+<p>And&hellip;</p>
+<h2 id="thats-it">That&rsquo;s it!</h2>
 <p>Now we know what the <code>FoldProperty</code> meta specifier does, how we can use it, and have at least an overview over how it is actually implemented in the engine.</p>
 <p>I hope you learned something. I sure did, as exploring the depths of the engine always brings up interesting new nuggets of knowledge, no matter how often you have already done so.</p>
-<p>And if you are <em>really</em> curious now and didn&rsquo;t know about this topic before, I encourage you to see if you can track the flow I have described here yourself in the engine.</p>
+<p>If you are <em>really</em> curious now and didn&rsquo;t know about this topic before, I encourage you to see if you can track the flow I have described here yourself in the engine.</p>
+<p>And as always with optimizations: If in doubt, profile first!</p>
 
                 </div>
             </article>
