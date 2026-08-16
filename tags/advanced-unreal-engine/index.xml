@@ -6,12 +6,12 @@
     <description>Recent content in Advanced Unreal Engine on Aaron Kemner</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Aug 2026 19:10:05 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2026 14:25:00 +0200</lastBuildDate>
     <atom:link href="https://www.aaronkemner.com/tags/advanced-unreal-engine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Exploring the &#34;FoldProperty&#34; specifier</title>
       <link>https://www.aaronkemner.com/blog/ue_exploringfoldproperties/</link>
-      <pubDate>Sat, 01 Aug 2026 19:10:05 +0200</pubDate>
+      <pubDate>Sun, 16 Aug 2026 14:25:00 +0200</pubDate>
       <guid>https://www.aaronkemner.com/blog/ue_exploringfoldproperties/</guid>
       <description>&lt;p&gt;When programming AnimNodes in Unreal Engine, you might encounter an interesting meta-specifier in some &lt;code&gt;UPROPERTY&lt;/code&gt;-fields: &lt;code&gt;FoldProperty&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Interestingly, while there have been a few (very few) community contributions on this topic, it seems to have never been officially documented. How unexpected.&lt;/p&gt;&#xA;&lt;p&gt;So what does this do, how do we use it, and how does it work?&lt;/p&gt;&#xA;&lt;h1 id=&#34;what-is-a-foldproperty&#34;&gt;What is a FoldProperty?&lt;/h1&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s get this one out of the way first.&lt;/p&gt;&#xA;&lt;p&gt;The general idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated &lt;em&gt;a lot&lt;/em&gt;.&#xA;How, you may ask? By removing some of the member variables of the node and treating them as constants.&#xA;Because if they are constant, we don&amp;rsquo;t need every instance of an AnimNode to hold an instance of that value.&lt;/p&gt;</description>
     </item>

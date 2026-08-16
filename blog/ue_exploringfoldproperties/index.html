@@ -50,9 +50,9 @@ Interestingly, while there have been a few (very few) community contributions on
 So what does this do, how do we use it, and how does it work?
 What is a FoldProperty? Let’s get this one out of the way first.
 The general idea behind this meta-specifier is that we can save on memory if an AnimNode is instantiated a lot. How, you may ask? By removing some of the member variables of the node and treating them as constants. Because if they are constant, we don’t need every instance of an AnimNode to hold an instance of that value.">
-  <meta itemprop="datePublished" content="2026-08-01T19:10:05+02:00">
-  <meta itemprop="dateModified" content="2026-08-01T19:10:05+02:00">
-  <meta itemprop="wordCount" content="1329">
+  <meta itemprop="datePublished" content="2026-08-16T14:25:00+02:00">
+  <meta itemprop="dateModified" content="2026-08-16T14:25:00+02:00">
+  <meta itemprop="wordCount" content="1312">
   <meta itemprop="image" content="https://www.aaronkemner.com/">
   <meta itemprop="keywords" content="UE5,C&#43;&#43;,Advanced Unreal Engine,AnimNodes">
 
@@ -78,8 +78,8 @@ The general idea behind this meta-specifier is that we can save on memory if an 
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2026-08-01T19:10:05+02:00">
-    <meta property="article:modified_time" content="2026-08-01T19:10:05+02:00">
+    <meta property="article:published_time" content="2026-08-16T14:25:00+02:00">
+    <meta property="article:modified_time" content="2026-08-16T14:25:00+02:00">
     <meta property="article:tag" content="UE5">
     <meta property="article:tag" content="C&#43;&#43;">
     <meta property="article:tag" content="Advanced Unreal Engine">
@@ -91,7 +91,7 @@ The general idea behind this meta-specifier is that we can save on memory if an 
 
 
 
-    <meta property="article:published_time" content="2026-08-01 19:10:05 &#43;0200 CEST" />
+    <meta property="article:published_time" content="2026-08-16 14:25:00 &#43;0200 CEST" />
 
 
 
@@ -203,11 +203,11 @@ And each of the AnimNodes within these Animation Blueprints can then read that v
 <p>For a simple boolean variable, saving one byte is likely not going to be worth it, but once your AnimNode grows it may become worth saving some memory.
 Especially if there are a lot of instance of that node running in the scene(either because you have a lot of characters, or just a few complex characters that simply use your node a lot).</p>
 <p>For what it is though, it is a fairly simple and straight forward memory optimization if you know your value may be a constant and reducing memory footprint is your goal.</p>
-<p>A word of caution though, accessing folded properties is more expensive due to the indirection that this system introduces.</p>
-<p>In a test in a development build on my machine (Ryzen 9 7950X), accessing a folded property was around 10x slower than directly accessing a non-folded member variable of the same type.
-This discrepancy was only noticeable though in a loop that read out each version 10.000 times. Looking at individual access is reaching the smallest timeframe that Unreal Insights supports as it seems (100 nanoseconds).</p>
-<p>Now, this is in a quick and dirty test case, so feel free to test for yourself. How it performs on your target machines for your project is more important than what I could give you here.</p>
-<p>However, the conclusion I draw from this test is that using FoldProperty is not noticeable slower in reasonable usecases, especially when you only query the property once and cache it for the remainder of the scope.</p>
+<p>A word of caution though, accessing folded properties is more expensive due to the indirection that this system introduces.
+It is not game-breaking though. Looking at individual access is reaching the smallest timeframe that Unreal Insights supports as it seems ( &lt;100 nanoseconds), so it is effectively not measurable like this.</p>
+<p>Now, my results were in a quick and dirty test case, so I won&rsquo;t be publishing any specific numbers here without doing some rigorous testing first. Feel free to test for yourself though.
+How it performs on your target machines for your project is more important than what I could give you here anyway.</p>
+<p>However, the conclusion I draw from my test is that using FoldProperty is not <em>noticeably</em> slower in reasonable usecases, especially when you only query the property once and cache it for the remainder of the scope.</p>
 <p>Okay, but&hellip;</p>
 <h1 id="how-do-we-use-it">How do we use it?</h1>
 <p>This one&rsquo;s quick.</p>
