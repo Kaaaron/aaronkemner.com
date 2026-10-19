@@ -194,6 +194,20 @@ The general idea behind this meta-specifier is that we can save on memory if an 
                 
                 
                 
+                    <hr />
+                    <aside id="toc">
+                    <div class="toc-title">Table of Contents</div>
+                        <nav id="TableOfContents">
+  <ol>
+    <li><a href="#what-is-a-foldproperty">What is a FoldProperty?</a></li>
+    <li><a href="#how-do-we-use-it">How do we use it?</a></li>
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#thats-it">That&rsquo;s it!</a></li>
+  </ol>
+</nav>
+                    </aside>
+                    <hr />
+                
 
                 <div class="post-content">
                     <p>When programming AnimNodes in Unreal Engine, you might encounter an interesting meta-specifier in some <code>UPROPERTY</code>-fields: <code>FoldProperty</code>.</p>
@@ -262,7 +276,7 @@ The only other notable thing is that <code>FAnimNodeData::GetData()</code> actua
 <p>And because the macro uses a protected method on the AnimNode baseclass and passes in the <code>this</code> pointer, it is only usable within an AnimNode.</p>
 <p>You can see though, it is a lot more work than simply accessing a property directly on our AnimNode, which is why it technically is more expensive than if we were to access a member as usual.</p>
 <p>And&hellip;</p>
-<h2 id="thats-it">That&rsquo;s it!</h2>
+<h1 id="thats-it">That&rsquo;s it!</h1>
 <p>Now we know what the <code>FoldProperty</code> meta specifier does, how we can use it, and have at least an overview over how it is actually implemented in the engine.</p>
 <p>I hope you learned something. I sure did, as exploring the depths of the engine always brings up interesting new nuggets of knowledge, no matter how often you have already done so.</p>
 <p>If you are <em>really</em> curious now and didn&rsquo;t know about this topic before, I encourage you to see if you can track the flow I have described here yourself in the engine.</p>

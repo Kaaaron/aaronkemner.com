@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Aaron Kemner ">
+<meta name="description" content="When you are programming your own AnimNodes, there&rsquo;s a high chance that you&rsquo;ll need to debug them at some point as well. And once you have confirmed that the issue is actually in your AnimNode and not some other part of the graph, you have a couple of options available.
+To find out whether your AnimNode is actually causing the issue you want to debug is a different topic though and we won&rsquo;t get into that today. Unreal offers tools like Pose Watches AnimBP live compilation and the Rewind Debugger that can all help you single down specific nodes, but in this post I assume all of that has already been done.
+" />
+<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, C&#43;&#43;, Advanced Unreal Engine, AnimNodes" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://www.aaronkemner.com/blog/ue_debugginyouranimnodes/" />
+
+
+    <title>
+        
+            Debugging your AnimNodes | Aaron Kemner 
+        
+    </title>
+
+
+
+
+
+  <link rel="stylesheet" href="/main.min.f500809bf44abddd75dc9f714963909bf89070f3f08f13efeb6da40484800b6c.css" integrity="sha256-9QCAm/RKvd113J9xSWOQm/iQcPPwjxPv622kBISAC2w=" crossorigin="anonymous">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="scss/tiles.scss">
+    
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+
+  <meta itemprop="name" content="Debugging your AnimNodes">
+  <meta itemprop="description" content="When you are programming your own AnimNodes, there’s a high chance that you’ll need to debug them at some point as well. And once you have confirmed that the issue is actually in your AnimNode and not some other part of the graph, you have a couple of options available.
+To find out whether your AnimNode is actually causing the issue you want to debug is a different topic though and we won’t get into that today. Unreal offers tools like Pose Watches AnimBP live compilation and the Rewind Debugger that can all help you single down specific nodes, but in this post I assume all of that has already been done.">
+  <meta itemprop="datePublished" content="2026-10-14T20:07:41+02:00">
+  <meta itemprop="dateModified" content="2026-10-14T20:07:41+02:00">
+  <meta itemprop="wordCount" content="1637">
+  <meta itemprop="image" content="https://www.aaronkemner.com/">
+  <meta itemprop="keywords" content="UE5,C&#43;&#43;,Advanced Unreal Engine,AnimNodes">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.aaronkemner.com/">
+  <meta name="twitter:title" content="Debugging your AnimNodes">
+  <meta name="twitter:description" content="When you are programming your own AnimNodes, there’s a high chance that you’ll need to debug them at some point as well. And once you have confirmed that the issue is actually in your AnimNode and not some other part of the graph, you have a couple of options available.
+To find out whether your AnimNode is actually causing the issue you want to debug is a different topic though and we won’t get into that today. Unreal offers tools like Pose Watches AnimBP live compilation and the Rewind Debugger that can all help you single down specific nodes, but in this post I assume all of that has already been done.">
+
+
+
+    <meta property="og:url" content="https://www.aaronkemner.com/blog/ue_debugginyouranimnodes/">
+  <meta property="og:site_name" content="Aaron Kemner">
+  <meta property="og:title" content="Debugging your AnimNodes">
+  <meta property="og:description" content="When you are programming your own AnimNodes, there’s a high chance that you’ll need to debug them at some point as well. And once you have confirmed that the issue is actually in your AnimNode and not some other part of the graph, you have a couple of options available.
+To find out whether your AnimNode is actually causing the issue you want to debug is a different topic though and we won’t get into that today. Unreal offers tools like Pose Watches AnimBP live compilation and the Rewind Debugger that can all help you single down specific nodes, but in this post I assume all of that has already been done.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2026-10-14T20:07:41+02:00">
+    <meta property="article:modified_time" content="2026-10-14T20:07:41+02:00">
+    <meta property="article:tag" content="UE5">
+    <meta property="article:tag" content="C&#43;&#43;">
+    <meta property="article:tag" content="Advanced Unreal Engine">
+    <meta property="article:tag" content="AnimNodes">
+    <meta property="og:image" content="https://www.aaronkemner.com/">
+
+
+
+
+
+
+    <meta property="article:published_time" content="2026-10-14 20:07:41 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GF053ZV41M');
+        }
+      </script>
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark"> </span>
+            <span class="logo__text ">
+                Aaron Kemner</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+                <nav class="menu">
+    <ul class="menu__inner">
+                <li><a href="/about">About</a></li>
+            
+                <li><a href="/work/">Work</a></li>
+            
+                <li><a href="/animnode-reference/">AnimNode Reference</a></li>
+            
+                <li><a href="/blog/">Blog</a></li>
+            
+    </ul>
+</nav>
+
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            
+    <div class="content">
+        <main class="post">
+
+            <div class="post-info">
+                
+                </p>
+            </div>
+
+            <article>
+                <h2 class="post-title"><a href="https://www.aaronkemner.com/blog/ue_debugginyouranimnodes/">Debugging your AnimNodes</a></h2>
+
+                
+                
+                
+                    <hr />
+                    <aside id="toc">
+                    <div class="toc-title">Table of Contents</div>
+                        <nav id="TableOfContents">
+  <ol>
+    <li><a href="#option-1-breakpoints">Option 1: Breakpoints</a></li>
+    <li><a href="#option-2-implement-gatherdebugdata">Option 2: Implement GatherDebugData</a></li>
+    <li><a href="#option-3-debug-drawing">Option 3: Debug Drawing</a>
+      <ol>
+        <li><a href="#my-workflow">My workflow</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                    </aside>
+                    <hr />
+                
+
+                <div class="post-content">
+                    <p>When you are programming your own AnimNodes, there&rsquo;s a high chance that you&rsquo;ll need to debug them at some point as well.
+And once you have confirmed that the issue is actually in your AnimNode and not some other part of the graph, you have a couple of options available.</p>
+<p>To find out whether your AnimNode is actually causing the issue you want to debug is a different topic though and we won&rsquo;t get into that today.
+Unreal offers tools like Pose Watches AnimBP live compilation and the Rewind Debugger that can all help you single down specific nodes, but in this post I assume all of that has already been done.</p>
+<p>Also, this is not meant as an exhaustive list, but rather what I tend to do when faced with issues in an AnimNode of mine.</p>
+<h1 id="option-1-breakpoints">Option 1: Breakpoints</h1>
+<p>This is the obvious option and I am mostly listing it here for completeness.</p>
+<p>And if you are reading this post, I assume you know about breakpoints in C++ and how to use them. Blueprint Breakpoints sadly aren&rsquo;t a thing that Unreal Engine offers for the AnimGraph portion of your Animation Blueprints, so we have to go deeper for AnimNodes.</p>
+<p>There is one point of caution however that I want to mention: Most function on AnimNodes are executed on worker threads.
+And if you have a bunch of characters running AnimBPs with your AnimNode in the current level, it can quickly become overwhelming which characters exhibit the issue you are trying to debug.</p>
+<p>So try and isolate the issue to a specific circumstance with as few involved actors as possible before trying to dive into breakpoints to debug AnimNodes.</p>
+<h1 id="option-2-implement-gatherdebugdata">Option 2: Implement GatherDebugData</h1>
+<p>We have briefly touched on this method during <a href="https://www.aaronkemner.com/blog/ue_yourfirstanimnode/">your first AnimNode</a>, but let&rsquo;s take a look at it again.</p>
+<p><code>FAnimNode_Base</code> has a method <code>virtual void GatherDebugData(FNodeDebugData&amp; DebugData)</code> that can (and should!) be overriden in descending AnimNodes.</p>
+<p>A fairly straight forward override might look something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// MyAnimNode.h
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">GatherDebugData</span>(FNodeDebugData<span style="color:#f92672">&amp;</span> DebugData) <span style="color:#66d9ef">override</span>
+</span></span><span style="display:flex;"><span>{ 
+</span></span><span style="display:flex;"><span>	DebugData.AddDebugItem(FString<span style="color:#f92672">::</span>Printf(TEXT(<span style="color:#e6db74">&#34;(%s) Debug Data here&#34;</span>), <span style="color:#f92672">*</span>DebugData.GetNodeName(<span style="color:#66d9ef">this</span>)));
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Call GatherDebugData for any pose inputs this node might have
+</span></span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>and if you execute the <code>ShowDebug Animation</code> command, it will display whatever string you add to the <code>DebugData</code>.</p>
+<p>Now, this is a function of <code>FAnimNode_Base</code>, so it doesn&rsquo;t come with a done of comfort features, like automatically calling it for inputs.
+So if your AnimNode has pose inputs, make sure to call GatherDebugData on them as well if they are being evaluated to make sure the entire active graph is properly displayed.</p>
+<p>You might also notice that this method does not have the characteristic <code>_AnyThread</code> suffix some of the other methods of <code>FAnimNode_Base</code> have.
+This is because it is not part of the regular update cycle of an AnimNode.
+The troubling thing here is though: This <code>GatherDebugData</code> is not <code>const</code>, so technically, you are free to modify data as you wish in here.
+It is also not guarded by any preprocessor statements to be only included in builds that allow the <code>ShowDebug</code> commands.
+Both would be measures I&rsquo;d expect the engine to take.
+So eventhough this is not part of the guaranteed update cycle of AnimNodes, you should <em>never</em> modify any data in here and treat this method <em>as if</em> it were marked <code>const</code>.</p>
+<p>But okay, let&rsquo;s go deeper than that: What is this <code>FNodeDebugData</code> about we get passed into the function?</p>
+<p>Well, it basically is a tree-like representation of the debug data that gets accumulated as the graph is traversed by the recursive function calls to <code>GatherDebugData</code>.
+That sounds all fancy, but if your Animgraph does not contain any branching logic, this essentially boils down to just an array of debug items. That&rsquo;s it.
+And if your graph does actually branch at some point, we get to the &ldquo;tree-like&rdquo; part, where we can split up the debug data using the <code>BranchFlow</code> method to represent different paths along the graph.</p>
+<p>Taking a look at this struct, we can see that <code>FNodeDebugData</code> has a few methods that can be called:</p>
+<ul>
+<li><code>AddDebugItem()</code>, which we already used above</li>
+<li><code>BranchFlow()</code></li>
+<li><code>GetCachePoseDebugData()</code></li>
+<li><code>GetNodeName()</code></li>
+</ul>
+<p>Of course, none of them are documented, so let&rsquo;s go over them in brief:</p>
+<p><code>AddDebugItem</code> will append a new <code>FNodeDebugData::DebugItem</code> to the end of the array of debug items that nodes higher up in the graph have already added to.</p>
+<p><code>BranchFlow</code> will create and return a new <code>FNodeDebugData</code> that you can pass into the <code>GatherDebugInfo</code> call of any input-poses your node has.
+This will always branch out from the last debug item that was added, so you cannot go back up the hierarchy and start branching from anywhere.
+Once you have called <code>BranchFlow</code> on <code>FNodeDebugData</code>, you will not be able to call <code>AddDebugItem()</code> on it anymore.
+Instead, you will only be able to add debug items to the new <code>FNodeDebugData</code> instance returned by <code>BranchFlow</code>.
+This is asserted in the engine and will crash your game if violated.</p>
+<p><code>GetCachePoseDebugData</code> is a specialized function for use in <code>FAnimNode_SaveCachedPose</code>. I don&rsquo;t think there is a practical use outside of that.</p>
+<p><code>GetNodeName</code> should probably always be the first thing when you want to add a new debug item.
+It will return an <code>FString</code> that alreaday contains your nodes name and weight, as well as a potential node description.
+Start off with this and add your node-specific debug info to the string before pushing it to <code>AddDebugItem</code> to be displayed.</p>
+<h1 id="option-3-debug-drawing">Option 3: Debug Drawing</h1>
+<p>This is my favourite option, if applicable.</p>
+<p>The context struct you get as an input in your <code>_AnyThread</code> methods contains a pointer to the AnimInstanceProxy that does the evaluation.
+And <code>FAnimInstanceProxy</code> has a nice little collection of methods you can use for debug drawing.</p>
+<p>Here&rsquo;s a list of what is currently available:</p>
+<ul>
+<li><code>AnimDrawDebugOnScreenMessage</code></li>
+<li><code>AnimDrawDebugInWorldMessage</code></li>
+<li><code>AnimDrawDebugLine</code></li>
+<li><code>AnimDrawDebugDirectionalArrow</code></li>
+<li><code>AnimDrawDebugSphere</code></li>
+<li><code>AnimDrawDebugCoordinateSystem</code></li>
+<li><code>AnimDrawDebugPlane</code></li>
+<li><code>AnimDrawDebugPoint</code></li>
+<li><code>AnimDrawDebugCircle</code></li>
+<li><code>AnimDrawDebugCone</code></li>
+<li><code>AnimDrawDebugCapsule</code></li>
+</ul>
+<p>as you can see, they are pretty exhaustive.
+But that also means you can do pretty much any debug drawing you would like right from your AnimNode. And it works both in the editor as well as in-game!</p>
+<p>All of them are guarded via preprocessor <code>#if ENABLE_ANIM_DRAW_DEBUG</code>, so if you want to use them, you should do the same whenever you call these methods.
+The only disadvantage is that this macro will compile the debug drawing out of test- and shipping-builds.
+But still, it will work in the editor, as well as development builds, which is usually good enough.</p>
+<p>And technically, you can use them like that however you want.</p>
+<h2 id="my-workflow">My workflow</h2>
+<p>The approach I typically take has two goals I want to achieve when utilizing thise <code>AnimDrawWhatever</code> methods.
+So let me share these as well and how I go about them:</p>
+<ol>
+<li>When selected in the AnimGraph, I want that node to draw its debug info</li>
+<li>When in-game I want to be able to display the debug info as well</li>
+</ol>
+<p>Both points are relatively straight forward, if you know what to look out for.</p>
+<p>The first thing to do is to add a new boolean to your <code>FAnimNode_Base</code> derived struct.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// MyAnimNode.h
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#if ENABLE_ANIM_DRAW_DEBUG
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> bRequestDebugDraw <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>and in your evaluate function, where I typically add my debug drawing code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// MyAnimNode.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// FMyAnimNode::Evaluate_AnyThread
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#if ENABLE_ANIM_DRAW_DEBUG
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(bRequestDebugDraw)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/** Do your debug drawing */</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	bRequestDebugDraw <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>This enables us to request a debug draw for exactly one evaluation cycle.</p>
+<p>But from where do we request it? From the AnimGraphNode!</p>
+<p><code>UAnimGraphNode_Base</code> as a method called <code>Draw</code>. And you can do your debug drawin here if you want to.</p>
+<p>The issue with that is that all the drawing you do here is based on the final result of the AnimGraph, as you only get access to the preview skeletal mesh component that has the animation already fully evaluated.
+So any pose overlays, additives, or SkeletalControl modifications that happen ontop of your AnimNode are already folded into the final pose here, with no practical way of getting it back.</p>
+<p>What I do instead is to get the active preview node using <code>GetActiveInstanceNode()</code> and simply set the request flag on it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// MyAnimGraphNode.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// UMyAnimGraphNode::Draw
+</span></span></span><span style="display:flex;"><span>FMyAnimNode<span style="color:#f92672">*</span> PreviewNode <span style="color:#f92672">=</span> GetActiveInstanceNode<span style="color:#f92672">&lt;</span>FMyAnimNode<span style="color:#f92672">&gt;</span>(PreviewSkelMeshComp<span style="color:#f92672">-&gt;</span>GetAnimInstance());
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(PreviewNode)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	PreviewNode<span style="color:#f92672">-&gt;</span>bRequestDebugDraw <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That way, the next time the node gets evaluated, it will process the request and set the flag to false.
+But as long as we select this node, we will request more debug drawing each frame.</p>
+<p>So that is goal 1 achieved.
+Onto the second one.</p>
+<p>To have the debug drawing work in-game, I tend to use a console variable and check if either the console variable is set to 1, or use the debug request.
+It&rsquo;s not really more than that.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// MyAnimNode.cpp
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if ENABLE_ANIM_DRAW_DEBUG
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> TAutoConsoleVariable<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> CVarDrawMyAnimNode(
+</span></span><span style="display:flex;"><span>	TEXT(<span style="color:#e6db74">&#34;a.AnimNode.DrawMyAnimNode&#34;</span>),
+</span></span><span style="display:flex;"><span>	false <span style="color:#75715e">/** default value */</span>,
+</span></span><span style="display:flex;"><span>	TEXT(<span style="color:#e6db74">&#34;Enables debug drawing for MyAnimNode.&#34;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// FMyAnimNode::Evaluate_AnyThread
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#if ENABLE_ANIM_DRAW_DEBUG
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(bRequestDebugDraw <span style="color:#f92672">||</span> CVarDrawMyAnimNode.GetValueOnAnyThread())
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/** Do your debug drawing */</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	bRequestDebugDraw <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>And that way, once you enable the console variable, you will get your debug drawing both in-game and in the editor, even if the node is not selected in the editor.</p>
+<p>The only caveat I want to mention is that most of your transforms in an AnimNode will be handled in component-space or even local space, but the debug drawing parameters are always in world-space.
+So to have debug drawin in-game work properly on the character and not be centered around the world origin, you&rsquo;ll want to take into account the components world transform.
+You can do that using <code>FAnimInstanceProxy::GetComponentTransform()</code> and simply transform anything you have from component space to world space.</p>
+<p>And that&rsquo;s it! Once you&rsquo;ve got that you may end up with something like this:
+<img src="DrawHierarchy.png" alt="DrawHierarchy"> (This example is the <a href="https://github.com/Kaaaron/AKUnrealTools/blob/master/Source/AKAnimNodeRuntime/Private/AKAnimNode_DrawHierarchy.cpp">DrawHierarchy AnimNode fom my tool-collection plugin</a>)</p>
+<p>And now you know how I like to go about debugging my AnimNodes!</p>
+<p>As always I hope this is useful to you, and maybe you even learned something new.</p>
+<p>Cheers!</p>
+
+                </div>
+            </article>
+
+            <hr />
+
+            <div class="post-info">
+                
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/ue5/">UE5</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/c&#43;&#43;/">C&#43;&#43;</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/advanced-unreal-engine/">Advanced Unreal Engine</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/animnodes/">AnimNodes</a></span>
+        
+    </p>
+
+                
+            </div>
+        </main>
+    </div>
+
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2026</span>
+            
+            
+            
+            <span>Aaron Kemner</span>
+        </div>
+    </div>
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.08b680078a3cf9c69e3dd217a5aa52cfddd4a1d850f8cdff127fdd7421a71f8b2b474be69386f67819edace92273916e7230c9054f38107db9dc6730b3530ab5.js" integrity="sha512-CLaAB4o8&#43;caePdIXpapSz93UodhQ&#43;M3/En/ddCGnH4srR0vmk4b2eBntrOkic5FucjDJBU84EH253Gcws1MKtQ=="></script>
+
+
+
+
+    </body>
+</html>
