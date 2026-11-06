@@ -51,6 +51,20 @@
       <description>Additive Identity Pose</description>
     </item>
     <item>
+      <title>AimOffset Graph</title>
+      <link>https://www.aaronkemner.com/animnode-reference/rotationoffsetblendspacegraph/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/rotationoffsetblendspacegraph/</guid>
+      <description>Play an AimOffset as an inline graph</description>
+    </item>
+    <item>
+      <title>AimOffset Player</title>
+      <link>https://www.aaronkemner.com/animnode-reference/rotationoffsetblendspace/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/rotationoffsetblendspace/</guid>
+      <description>Play an AimOffset</description>
+    </item>
+    <item>
       <title>Apply Additive</title>
       <link>https://www.aaronkemner.com/animnode-reference/applyadditive/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -111,14 +125,14 @@
       <link>https://www.aaronkemner.com/animnode-reference/blendspaceevaluator/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aaronkemner.com/animnode-reference/blendspaceevaluator/</guid>
-      <description>Evaluate a blendspace at the specified time</description>
+      <description>Evaluate a Blendspace at the specified time</description>
     </item>
     <item>
       <title>BlendSpace Player</title>
       <link>https://www.aaronkemner.com/animnode-reference/blendspaceplayer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aaronkemner.com/animnode-reference/blendspaceplayer/</guid>
-      <description>Play a blendspace</description>
+      <description>Play a BlendSpace</description>
     </item>
     <item>
       <title>Call Function</title>
@@ -196,6 +210,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aaronkemner.com/animnode-reference/lookat/</guid>
       <description>Look at another location</description>
+    </item>
+    <item>
+      <title>LookAt AimOffset</title>
+      <link>https://www.aaronkemner.com/animnode-reference/aimoffsetlookat/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.aaronkemner.com/animnode-reference/aimoffsetlookat/</guid>
+      <description>Computes AimOffset params to achieve a LookAt</description>
     </item>
     <item>
       <title>Make Dynamic Additive</title>

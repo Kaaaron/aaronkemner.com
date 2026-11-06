@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Aaron Kemner ">
+<meta name="description" content="Play an AimOffset as an inline graph" />
+<meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Node" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://www.aaronkemner.com/animnode-reference/rotationoffsetblendspacegraph/" />
+
+
+    <title>
+        
+            AimOffset Graph | Aaron Kemner 
+        
+    </title>
+
+
+
+
+
+  <link rel="stylesheet" href="/main.min.f500809bf44abddd75dc9f714963909bf89070f3f08f13efeb6da40484800b6c.css" integrity="sha256-9QCAm/RKvd113J9xSWOQm/iQcPPwjxPv622kBISAC2w=" crossorigin="anonymous">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="scss/tiles.scss">
+    
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+
+  <meta itemprop="name" content="AimOffset Graph">
+  <meta itemprop="description" content="Play an AimOffset as an inline graph">
+  <meta itemprop="wordCount" content="169">
+  <meta itemprop="image" content="https://www.aaronkemner.com/">
+  <meta itemprop="keywords" content="UE5,Node">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.aaronkemner.com/">
+  <meta name="twitter:title" content="AimOffset Graph">
+  <meta name="twitter:description" content="Play an AimOffset as an inline graph">
+
+
+
+    <meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/rotationoffsetblendspacegraph/">
+  <meta property="og:site_name" content="Aaron Kemner">
+  <meta property="og:title" content="AimOffset Graph">
+  <meta property="og:description" content="Play an AimOffset as an inline graph">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="animnode-reference">
+    <meta property="article:tag" content="UE5">
+    <meta property="article:tag" content="Node">
+    <meta property="og:image" content="https://www.aaronkemner.com/">
+
+
+
+
+    <meta property="article:section" content="AnimNode Reference" />
+
+
+
+
+
+
+
+
+
+
+
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GF053ZV41M"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GF053ZV41M');
+        }
+      </script>
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark"> </span>
+            <span class="logo__text ">
+                Aaron Kemner</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+                <nav class="menu">
+    <ul class="menu__inner">
+                <li><a href="/about/">About</a></li>
+            
+                <li><a href="/work/">Work</a></li>
+            
+                <li><a href="/animnode-reference/">AnimNode Reference</a></li>
+            
+                <li><a href="/blog/">Blog</a></li>
+            
+    </ul>
+</nav>
+
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            
+	<main class="post">
+		<article>
+			<h2 class="post-title">AimOffset Graph</h2>
+			
+				<h4>Play an AimOffset as an inline graph</h4>
+			
+			<hr />
+			<div style="height:fit-content;">
+	<div class="row">
+		<div class="column">
+			
+				<b>GraphNode:</b>
+				<code>UAnimGraphNode_RotationOffsetBlendSpaceGraph</code>
+			
+		</div>
+		<div class="column">
+			
+				<b>AnimNode:</b>
+				<code>FAnimNode_RotationOffsetBlendSpaceGraph</code>
+			
+		</div>
+	</div>
+
+	<b>Official Documentation:</b>
+	
+		<i> Not officially documented. </i>
+	
+</div>
+
+			<hr />
+			
+	
+	
+	
+		
+	
+	<img src="../../animnode-reference/defaultnodes/RotationOffsetBlendSpaceGraph.png" style="height:250px;border-radius:15px;">
+
+
+			<hr />
+
+			
+
+			
+
+			<div class="post-content">
+				<p>Creates an AimOffset BlendSpace that can be edited as an inline graph in the AnimBP and plays it with the provided coordinates.</p>
+<p>Settings include all relevant data like play rate, start position and whether the animation should loop.</p>
+<p>In the node creation menu this node shows up in its pure form without an associated AimOffset, but also for every AimOffset for the skeleton of the AnimBP  in the format of &ldquo;AimOffset &lt;AimOffset&gt;&rdquo; where, if chosen, the node will have the corresponding AimOffset already assigned. Note that it just says &ldquo;AimOffset&rdquo;, and not &ldquo;AimOffset Player&rdquo;, which leads to the <a href="https://www.aaronkemner.com/animnode-reference/rotationoffsetblendspace/">AimOffset Player AnimNode</a>.</p>
+<p>When creating a graph from an actual asset player, the graph will copy all the data to the new inline graph. After that, any modifications in the asset will not be reflected in the graph and vice versa.</p>
+<div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
+	<h4 id="on-converting-between-player-different-player-types">On converting between player different player types</h4>
+<p>Unlike the asset-based players, the AimOffset Graph cannot be converted back to an Asset Player once it has been turned into a graph.</p>
+</div>
+
+
+			</div>
+		</article>
+
+		<hr />
+
+		<div class="post-info">
+			
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/ue5/">UE5</a></span>
+        <span class="tag"><a href="https://www.aaronkemner.com/tags/node/">Node</a></span>
+        
+    </p>
+
+			
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+
+        <span class="tag"><a href="https://www.aaronkemner.com/categories/animnode-reference/">AnimNode Reference</a></span>
+        
+    </p>
+
+		</div>
+	</main>
+
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2026</span>
+            
+            
+            
+            <span>Aaron Kemner</span>
+        </div>
+    </div>
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>No AI was used in the creation of this website</span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.08b680078a3cf9c69e3dd217a5aa52cfddd4a1d850f8cdff127fdd7421a71f8b2b474be69386f67819edace92273916e7230c9054f38107db9dc6730b3530ab5.js" integrity="sha512-CLaAB4o8&#43;caePdIXpapSz93UodhQ&#43;M3/En/ddCGnH4srR0vmk4b2eBntrOkic5FucjDJBU84EH253Gcws1MKtQ=="></script>
+
+
+
+
+    </body>
+</html>

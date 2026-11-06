@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Aaron Kemner ">
-<meta name="description" content="Play a blendspace" />
+<meta name="description" content="Play a BlendSpace" />
 <meta name="keywords" content="aaron kemner, games, technical animation, game development, developer, animation, programming, documentation, UE5, Node" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -44,22 +44,22 @@
 
 
   <meta itemprop="name" content="BlendSpace Player">
-  <meta itemprop="description" content="Play a blendspace">
-  <meta itemprop="wordCount" content="225">
+  <meta itemprop="description" content="Play a BlendSpace">
+  <meta itemprop="wordCount" content="222">
   <meta itemprop="image" content="https://www.aaronkemner.com/">
   <meta itemprop="keywords" content="UE5,Node">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://www.aaronkemner.com/">
   <meta name="twitter:title" content="BlendSpace Player">
-  <meta name="twitter:description" content="Play a blendspace">
+  <meta name="twitter:description" content="Play a BlendSpace">
 
 
 
     <meta property="og:url" content="https://www.aaronkemner.com/animnode-reference/blendspaceplayer/">
   <meta property="og:site_name" content="Aaron Kemner">
   <meta property="og:title" content="BlendSpace Player">
-  <meta property="og:description" content="Play a blendspace">
+  <meta property="og:description" content="Play a BlendSpace">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="animnode-reference">
@@ -161,7 +161,7 @@
 		<article>
 			<h2 class="post-title">BlendSpace Player</h2>
 			
-				<h4>Play a blendspace</h4>
+				<h4>Play a BlendSpace</h4>
 			
 			<hr />
 			<div style="height:fit-content;">
@@ -203,24 +203,24 @@
 			
 
 			<div class="post-content">
-				<p>Plays a given blendspace with the provided coordinates.</p>
+				<p>Plays a given BlendSpace with the provided coordinates.</p>
 <p>Settings include all relevant data like play rate, start position and whether the animation should loop.</p>
-<p>In the node creation menu this node shows up in its pure form without an associated blendspace, but also for every blendspace for the skeleton of the AnimBP  in the format of &ldquo;Play &lt;Blendspace&gt;&rdquo; where, if chosen, the node will have the corresponding blendspace already assigned.</p>
-<p>This node works for both regular BlendSpace assets (2D BlendSpaces) or 1D BlendSpace assets.
+<p>In the node creation menu this node shows up in its pure form without an associated BlendSpace, but also for every BlendSpace for the skeleton of the AnimBP  in the format of &ldquo;Play &lt;Blendspace&gt;&rdquo; where, if chosen, the node will have the corresponding BlendSpace already assigned.</p>
+<p>This node works for both regular BlendSpace assets (2D BlendSpaces) or 1D BlendSpace assets.</p>
 <div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
-	<h4 id="a-note-on-switching-the-blendspace-type">A note on switching the blendspace type</h4>
+	<h4 id="on-switching-the-blendspace-type">On switching the BlendSpace type</h4>
 <p>When dragging a BlendSpace asset into the graph, UE wil automatically expose the correct number of coordinate inputs for the given BlendSpace.
-When assigning a different type of blendspace to an already existing node in an AnimBP, UE will not correctly refresh the coordinate inputs on its own though. To have access to them in the graph you need to refresh the nodes(for example by right-clicking on the node and choosing &ldquo;refresh node&rdquo;)</p>
+When assigning a different type of BlendSpace to an already existing node in an AnimBP, UE will not correctly refresh the coordinate inputs on its own though. To have access to them in the graph you need to refresh the nodes(for example by right-clicking on the node and choosing &ldquo;refresh node&rdquo;)</p>
 </div>
-</p>
-<p>The node can be converted to a <a href="https://www.aaronkemner.com/animnode-reference/blendspaceevaluator/">Blendspace Evaluator</a> with the relevant blendspace via the right click menu.
+
+<p>The node can be converted to a <a href="https://www.aaronkemner.com/animnode-reference/blendspaceevaluator/">Blendspace Evaluator</a> with the same BlendSpace, or a Blendspace Graph via the right click menu.</p>
 <div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
-	<h4 id="a-note-on-converting-between-player-and-evaluator">A note on converting between player and evaluator</h4>
-<p>The conversion between blendspace player and evaluator only works when a blendspace is specified.</p>
-<p>Empty player and evaluator nodes still have the option available in the right click menu, but will not perform the conversion.</p>
+	<h4 id="on-converting-between-players">On converting between players</h4>
+<p>The conversion between BlendSpace player, evaluator and graph only works when a BlendSpace is specified.</p>
+<p>Empty nodes still have the option available in the right click menu, but will not actually perform the conversion.</p>
 
 </div>
-</p>
+
 
 			</div>
 		</article>
@@ -262,6 +262,12 @@ When assigning a different type of blendspace to an already existing node in an 
         </div>
     </div>
     
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>No AI was used in the creation of this website</span>
+        </div>
+    </div>
     
 </footer>
 
