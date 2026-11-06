@@ -45,7 +45,7 @@
 
   <meta itemprop="name" content="LookAt AimOffset">
   <meta itemprop="description" content="Computes AimOffset params to achieve a LookAt">
-  <meta itemprop="wordCount" content="240">
+  <meta itemprop="wordCount" content="226">
   <meta itemprop="image" content="https://www.aaronkemner.com/">
   <meta itemprop="keywords" content="UE5,Node">
 
@@ -204,13 +204,12 @@
 
 			<div class="post-content">
 				<p>Plays a given AimOffset BlendSpace in such a way that the provided <code>SocketAxis</code> of the <code>SourceSocketName</code>-bone looks at the provided world-space <code>LookAtLocation</code>.
-Otionally, a <code>PivotSocketName</code> can be specified, which will cause the node to treat the <code>SourceSocketName</code>-bone as if it were positioed at the specified pivot.</p>
+Optionally, a <code>PivotSocketName</code> can be specified, which will cause the node to treat the <code>SourceSocketName</code>-bone as if it were positioed at the specified pivot.</p>
 <p>Other settings include all relevant data like play rate, start position and whether the animation should loop.</p>
 <p>In contrast to the other BlendSpace / AimOffset player nodes, the input parameters are calculated automatically from the specified parameters, and cannot be set from outside logic.
 This also means that using a LookAt AimOffset node always requires a very specific AimOffset setup, as the computed inputs woll range from -180° to +180° in actor space.</p>
 <p>In the node creation menu this node shows up in its pure form without an associated AimOffset, but also for every AimOffset for the skeleton of the AnimBP  in the format of &ldquo;LookAt AimOffset &lt;AimOffset&gt;&rdquo; where, if chosen, the node will have the corresponding AimOffset already assigned.</p>
-<p>This node works for both regular AimOffset assets (2D AimOffset) or 1D AimOffset assets.</p>
-<p>The node can be converted to a <a href="https://www.aaronkemner.com/animnode-reference/aimoffsetlookat/">LookAt AimOffset</a> with the same AimOffset, or an <a href="https://www.aaronkemner.com/animnode-reference/rotationoffsetblendspacegraph/">AimOffset Graph</a> via the right click menu.</p>
+<p>The node can be converted to a <a href="https://www.aaronkemner.com/animnode-reference/rotationoffsetblendspace/">AimOffset Player</a> with the same AimOffset, or an <a href="https://www.aaronkemner.com/animnode-reference/rotationoffsetblendspacegraph/">AimOffset Graph</a> via the right click menu.</p>
 <div style="border: dimgrey 2px solid; padding: 0.5em 1em 0.5em 2em; ">
 	<h4 id="on-converting-between-players">On converting between players</h4>
 <p>The conversion between AimOffset player, evaluator, and graph only works when a AimOffset is specified.</p>
